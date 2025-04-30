@@ -38,11 +38,13 @@ public class UserController {
             //Redirect to try again page with redirect attributes
         }
 
+        //Create the user with the inputs from the page
         User createdUser = new User(firstName, lastname, userService.generateUserName(firstName, lastname), password, role);
 
         userRepository.saveUser(createdUser);
 
-        return "redirect:/";
+        redirectAttributes.addFlashAttribute("message", "hej " + createdUser.getFirstName());
+        return "redirect:/getUserPage";
     }
 
     @PostMapping("/loginUser")

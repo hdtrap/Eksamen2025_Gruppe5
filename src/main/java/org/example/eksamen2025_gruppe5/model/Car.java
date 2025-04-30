@@ -4,9 +4,19 @@ public class Car {
 
     private int vehicleNumber;
     private String chassisNumber;
+    private String brand;
     private String model;
+    private int productionYear;
     private double price;
     private Fuel fuel;
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public int getProductionYear() {
+        return productionYear;
+    }
 
     public int getVehicleNumber() {
         return vehicleNumber;
@@ -26,6 +36,14 @@ public class Car {
 
     public Fuel getFuel() {
         return fuel;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setProductionYear(int productionYear) {
+        this.productionYear = productionYear;
     }
 
     public void setVehicleNumber(int vehicleNumber) {

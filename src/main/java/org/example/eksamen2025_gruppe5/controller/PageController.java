@@ -10,4 +10,9 @@ public class PageController {
     public String getLoginpage(){
         return "index";
     }
+
+    @GetMapping("getCreateUser")
+    public String getCreateUserPage(){
+        return "createUserPage";
+    }
 }

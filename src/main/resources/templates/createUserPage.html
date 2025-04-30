@@ -9,8 +9,6 @@ Arrived at User page
 
 <form th:action="@{/saveCreateUser}" method="post" class="loginForm">
 
-    <input type="text" id="userName" name="userName" placeholder="Indtast dit brugernavn" required class="inputBox">
-    <br>
     <input type="text" id="firstName" name="firstName" placeholder="Indtast dit fornavn" required class="inputBox">
     <br>
     <input type="text" id="lastName" name="lastName" placeholder="Indtast dit efternavn" required class="inputBox">
@@ -19,6 +17,12 @@ Arrived at User page
     <br>
     <input type="password" id="confirmPassWord" name="confirmPassWord" placeholder="Indtast password igen" required class="inputBox">
     <br>
+    <select name="role" id="role" multiple>
+        <option value="Data">Data</option>
+        <option value="Repair">Repair</option>
+        <option value="Business">Business</option>
+        <option value="Sysadmin">Sysadmin</option>
+    </select>
 
     <button type="submit" class="styledButton">submit</button>
 </form>

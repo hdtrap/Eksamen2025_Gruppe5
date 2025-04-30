@@ -7,6 +7,12 @@
 <body>
     Hello world
 
+    <form th:action="@{/loginUser}" method="post" class="formBox">
+        <input type="text" id="userName" name="userName">
+        <input type="password" id="passWord" name="passWord">
+        <button type="submit">Log ind</button>
+    </form>
+
     <a th:href="@{/getCreateUser}" class="styledButton">Opret en ny bruger</a>
 </body>
 </html>

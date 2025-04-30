@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Arrived at User page
+
+<form th:action="@/savecreate">
+    <input type="text" id="userName" name="userName" placeholder="Indtast dit brugernavn" required class="inputBox">
+    <br>
+    <input type="text" id="firstName" name="firstName" placeholder="Indtast dit fornavn" required class="inputBox">
+    <br>
+    <input type="text" id="lastName" name="lastName" placeholder="Indtast dit efternavn" required class="inputBox">
+    <br>
+    <input type="password" id="passWord" name="passWord" placeholder="Indtast password" required class="inputBox">
+    <br>
+    <input type="password" id="passWordControl" name="passWordControl" placeholder="Indtast password igen" required class="inputBox">
+    <br>
+
+    <button type="submit" class="styledButton">submit</button>
+</form>
+
+</body>
+</html>

@@ -43,7 +43,9 @@ public class UserController {
 
         userRepository.saveUser(createdUser);
 
-        redirectAttributes.addFlashAttribute("message", "hej " + createdUser.getFirstName());
+        userRepository.LogInUserSuccess(createdUser.getUserName(), createdUser.getPassword());
+
+        redirectAttributes.addFlashAttribute("message", "hej " + userRepository.getcurrentUser().getUserName());
         return "redirect:/getUserPage";
     }
 
@@ -51,8 +53,8 @@ public class UserController {
     public String tryLoginUser(@RequestParam("userName") String userName,
                                @RequestParam("passWord") String passWord,
                                RedirectAttributes redirectAttributes){
-        if(true){
-            redirectAttributes.addFlashAttribute("message", "hej " + userName);
+        if(userRepository.LogInUserSuccess(userName, passWord)){
+            redirectAttributes.addFlashAttribute("message", "hej " + userRepository.getcurrentUser().getUserName());
             return "redirect:/getUserPage";
         }
         else {

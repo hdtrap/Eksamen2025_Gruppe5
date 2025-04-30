@@ -4,6 +4,9 @@ package org.example.eksamen2025_gruppe5.model;
 import org.example.eksamen2025_gruppe5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 enum Role {DATA, REPAIR, BUSINESS, SYSADMIN}
 
 public class User {
@@ -19,6 +22,14 @@ public class User {
         this.userName = userName;
         Password = password;
         this.role = Role.valueOf(role.toUpperCase());
+    }
+
+    public User(ResultSet res) throws SQLException {
+        this.firstName = res.getString("first_name");
+        this.lastName = res.getString("last_name");
+        this.userName = res.getString("username");
+        Password = res.getString("password");
+        this.role = Role.valueOf(res.getString("role"));
     }
 
     public String getFirstName() {

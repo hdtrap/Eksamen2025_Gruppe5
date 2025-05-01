@@ -1,6 +1,10 @@
-CREATE DATABASE Bilabonnement;
-
 USE Bilabonnement;
+
+DROP TABLE Damages;
+DROP TABLE Leases;
+DROP TABLE Cars;
+DROP TABLE Users;
+
 
 CREATE TABLE Users (
                        username VARCHAR(50)UNIQUE PRIMARY KEY,
@@ -22,14 +26,14 @@ CREATE TABLE Cars (
 );
 
 CREATE TABLE Leases (
-                       lease_id INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
-                       vehicle_no INT,
-                       length_in_months INT,
-                       price_pr_month DOUBLE,
-                       fully_processed BOOL,
-                       start_date DATE,
-                       end_date DATE,
-                       CONSTRAINT fk_vehicle_no FOREIGN KEY (vehicle_no) REFERENCES Cars(vehicle_no)
+                        lease_id INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
+                        vehicle_no INT,
+                        length_in_months INT,
+                        price_pr_month DOUBLE,
+                        fully_processed BOOL,
+                        start_date DATE,
+                        end_date DATE,
+                        CONSTRAINT fk_vehicle_no FOREIGN KEY (vehicle_no) REFERENCES Cars(vehicle_no)
 );
 
 CREATE TABLE Damages (

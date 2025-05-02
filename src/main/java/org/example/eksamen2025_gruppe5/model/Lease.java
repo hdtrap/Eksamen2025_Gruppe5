@@ -13,8 +13,8 @@ public class Lease {
     private String customerNumber;
     private double priceToStart;
     private double pricePrMonth;
-    private boolean fullyProcessed;
     private String typeOfLease;
+    private boolean fullyProcessed;
 
     public Lease(int leaseId, Car car, LocalDate startDate, LocalDate endDate,
                  int leaseTimeInMonths, String customerName, String customerEmail,

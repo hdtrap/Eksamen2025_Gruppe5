@@ -30,12 +30,17 @@ CREATE TABLE cars (
 CREATE TABLE leases (
                         lease_id INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
                         vehicle_no INT,
-                        length_in_months INT,
-                        price_pr_month DOUBLE,
-                        fully_processed BOOL,
                         start_date DATE,
                         end_date DATE,
-                        CONSTRAINT fk_vehicle_no FOREIGN KEY (vehicle_no) REFERENCES Cars(vehicle_no)
+                        length_in_months INT,
+                        customer_name VARCHAR(100),
+                        customer_email VARCHAR(100),
+                        customer_number VARCHAR(50),
+                        price_to_start DOUBLE,
+                        price_pr_month DOUBLE,
+                        type_of_lease VARCHAR(50),
+                        fully_processed BOOL,
+                        CONSTRAINT fk_vehicle_no FOREIGN KEY (vehicle_no) REFERENCES cars(vehicle_no)
 );
 
 CREATE TABLE damages (
@@ -44,7 +49,7 @@ CREATE TABLE damages (
                          damage_type VARCHAR(50),
                          category INT,
                          price DOUBLE,
-                         CONSTRAINT fk_lease_id FOREIGN KEY (lease_id) REFERENCES Leases(lease_id)
+                         CONSTRAINT fk_lease_id FOREIGN KEY (lease_id) REFERENCES leases(lease_id)
 );
 
 -- Insert Users

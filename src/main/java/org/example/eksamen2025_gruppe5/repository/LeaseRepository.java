@@ -21,6 +21,6 @@ public class LeaseRepository {
     // Oprette en lejeaftale
     public void createLease(Lease lease){
         // SQL forespørgsel
-        String sqlRequest = "INSRT INTO ";
+        String sqlRequest = "INSRT INTO leases (vehicle_no, start_date, )";
     }
 }

@@ -1,8 +1,8 @@
-CREATE DATABASE Bilabonnement;
+CREATE DATABASE bilabonnement;
 
-USE Bilabonnement;
+USE bilabonnement;
 
-CREATE TABLE Users (
+CREATE TABLE users (
                        username VARCHAR(50)UNIQUE PRIMARY KEY,
                        first_name VARCHAR(50),
                        last_name VARCHAR(50),
@@ -10,7 +10,7 @@ CREATE TABLE Users (
                        role VARCHAR(50)
 );
 
-CREATE TABLE Cars (
+CREATE TABLE cars (
                       vehicle_no INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
                       chassis_no VARCHAR(50),
                       brand VARCHAR(50),
@@ -21,7 +21,7 @@ CREATE TABLE Cars (
                       available BOOL
 );
 
-CREATE TABLE Leases (
+CREATE TABLE leases (
                        lease_id INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
                        vehicle_no INT,
                        length_in_months INT,
@@ -32,7 +32,7 @@ CREATE TABLE Leases (
                        CONSTRAINT fk_vehicle_no FOREIGN KEY (vehicle_no) REFERENCES Cars(vehicle_no)
 );
 
-CREATE TABLE Damages (
+CREATE TABLE damages (
                          damage_id INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
                          lease_id INT,
                          damage_type VARCHAR(50),
@@ -42,7 +42,7 @@ CREATE TABLE Damages (
 );
 
 -- Insert Users
-INSERT INTO Users (username, first_name, last_name, password, role) VALUES
+INSERT INTO users (username, first_name, last_name, password, role) VALUES
                                    ('jdoe', 'John', 'Doe', 'password123', 'SYSADMIN'),
                                    ('asmith', 'Alice', 'Smith', 'alicepass', 'REPAIR'),
                                    ('bwhite', 'Bob', 'White', 'bobpass', 'BUSINESS'),
@@ -50,7 +50,7 @@ INSERT INTO Users (username, first_name, last_name, password, role) VALUES
                                    ('rgreen', 'Rachel', 'Green', 'rachelpwd', 'DATA');
 
 -- Insert Cars
-INSERT INTO Cars (chassis_no, brand, model, production_year, price, fuel_type, available) VALUES
+INSERT INTO cars (chassis_no, brand, model, production_year, price, fuel_type, available) VALUES
                                    ('CHS123456789', 'Toyota', 'Corolla', 2020, 20000.00, 'Petrol', TRUE),       -- vehicle_no 1
                                    ('CHS987654321', 'Tesla', 'Model 3', 2021, 35000.00, 'Electric', TRUE),      -- vehicle_no 2
                                    ('CHS567890123', 'Ford', 'Focus', 2019, 18000.00, 'Diesel', FALSE),          -- vehicle_no 3
@@ -58,7 +58,7 @@ INSERT INTO Cars (chassis_no, brand, model, production_year, price, fuel_type, a
                                    ('CHS998877665', 'BMW', 'i3', 2023, 30000.00, 'Electric', FALSE);            -- vehicle_no 5
 
 -- Insert Leases
-INSERT INTO Leases (vehicle_no, length_in_months, price_pr_month, fully_processed, start_date, end_date) VALUES
+INSERT INTO leases (vehicle_no, length_in_months, price_pr_month, fully_processed, start_date, end_date) VALUES
                                    (1, 12, 400.00, TRUE, '2024-01-01', '2024-12-31'),      -- lease_id 1
                                    (2, 24, 500.00, FALSE, '2024-06-01', '2026-05-31'),     -- lease_id 2
                                    (3, 6, 350.00, TRUE, '2023-03-01', '2023-08-31'),       -- lease_id 3
@@ -66,7 +66,7 @@ INSERT INTO Leases (vehicle_no, length_in_months, price_pr_month, fully_processe
                                    (5, 12, 420.00, FALSE, '2025-01-01', '2025-12-31');     -- lease_id 5
 
 -- Insert Damages
-INSERT INTO Damages (lease_id, damage_type, category, price) VALUES
+INSERT INTO damages (lease_id, damage_type, category, price) VALUES
                                    (1, 'Scratched Paint', 1, 150.00),
                                    (2, 'Broken Mirror', 2, 250.00),
                                    (3, 'Flat Tire', 1, 100.00),

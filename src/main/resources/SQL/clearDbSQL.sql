@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS 'bilabonnement';
+CREATE DATABASE IF NOT EXISTS bilabonnement;
 
 USE bilabonnement;
 
@@ -6,7 +6,6 @@ DROP TABLE damages;
 DROP TABLE leases;
 DROP TABLE cars;
 DROP TABLE users;
-
 
 CREATE TABLE users (
                        username VARCHAR(50)UNIQUE PRIMARY KEY,
@@ -32,7 +31,6 @@ CREATE TABLE leases (
                         vehicle_no INT,
                         start_date DATE,
                         end_date DATE,
-                        length_in_months INT,
                         customer_name VARCHAR(100),
                         customer_email VARCHAR(100),
                         customer_number VARCHAR(50),
@@ -69,12 +67,12 @@ INSERT INTO cars (chassis_no, brand, model, production_year, price, fuel_type, a
                                 ('CHS998877665', 'BMW', 'i3', 2023, 30000.00, 'Electric', FALSE);            -- vehicle_no 5
 
 -- Insert Leases
-INSERT INTO leases (vehicle_no, length_in_months, price_pr_month, fully_processed, start_date, end_date) VALUES
-                                (1, 12, 400.00, TRUE, '2024-01-01', '2024-12-31'),      -- lease_id 1
-                                (2, 24, 500.00, FALSE, '2024-06-01', '2026-05-31'),     -- lease_id 2
-                                (3, 6, 350.00, TRUE, '2023-03-01', '2023-08-31'),       -- lease_id 3
-                                (4, 18, 450.00, TRUE, '2024-09-01', '2026-02-28'),      -- lease_id 4
-                                (5, 12, 420.00, FALSE, '2025-01-01', '2025-12-31');     -- lease_id 5
+INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES
+                               (1, '2025-05-01', '2026-05-01', 'Anna Jensen', 'anna.jensen@email.com', '12345678', 10000, 2500, 'Privatleasing', true),             -- lease_id 1
+                               (2, '2025-04-15', '2026-04-15', 'Mark Sørensen', 'mark.sorensen@email.com', '23456789', 8000, 2200, 'Erhvervsleasing', false),       -- lease_id 2
+                               (3, '2025-03-10', '2026-03-10', 'Lise Hansen', 'lise.hansen@email.com', '34567890', 12000, 2800, 'Privatleasing', true),             -- lease_id 3
+                               (4, '2025-05-02', '2026-05-02', 'Thomas Nielsen', 'thomas.nielsen@email.com', '45678901', 9000, 2400, 'Erhvervsleasing', false),     -- lease_id 4
+                               (5, '2025-01-20', '2026-01-20', 'Mette Larsen', 'mette.larsen@email.com', '56789012', 11000, 2600, 'Privatleasing', true);           -- lease_id 5
 
 -- Insert Damages
 INSERT INTO damages (lease_id, damage_type, category, price) VALUES

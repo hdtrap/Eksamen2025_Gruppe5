@@ -1,5 +1,6 @@
 package org.example.eksamen2025_gruppe5.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 public class Lease {
@@ -32,6 +33,23 @@ public class Lease {
         this.pricePrMonth = pricePrMonth;
         this.fullyProcessed = fullyProcessed;
         this.typeOfLease = typeOfLease;
+    }
+
+    public Lease(Car car, LocalDate startDate, LocalDate endDate,
+                 int leaseTimeInMonths, String customerName, String customerEmail,
+                 String customerNumber, double priceToStart, double pricePrMonth,
+                 String typeOfLease) {
+        this.car = car;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.leaseTimeInMonths = leaseTimeInMonths;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerNumber = customerNumber;
+        this.priceToStart = priceToStart;
+        this.pricePrMonth = pricePrMonth;
+        this.typeOfLease = typeOfLease;
+        fullyProcessed = false;
     }
 
     public Lease(){}

@@ -5,6 +5,7 @@ import org.example.eksamen2025_gruppe5.repository.UserRepository;
 import org.example.eksamen2025_gruppe5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,9 +44,8 @@ public class UserController {
 
         userRepository.saveUser(createdUser);
 
-        userRepository.LogInUserSuccess(createdUser.getUserName(), createdUser.getPassword());
 
-        redirectAttributes.addFlashAttribute("message", "hej " + userRepository.getcurrentUser().getUserName());
+        redirectAttributes.addFlashAttribute("message", "Bruger oprettet med brugernavnet: " + createdUser.getUserName());
         return "redirect:/getUserPage";
     }
 
@@ -63,7 +63,10 @@ public class UserController {
     }
 
     @GetMapping("/getUserPage")
-    public String getUserPage(){
+    public String getUserPage(Model model){
+        if(userRepository.getcurrentUser().isAdmin()){
+            model.addAttribute("isAdmin", "this user is admin");
+        }
         return "showUser";
     }
 }

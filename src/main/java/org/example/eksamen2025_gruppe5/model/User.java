@@ -75,4 +75,13 @@ public class User {
     public String getRoleAsString(){
         return role.toString();
     }
+
+    public Boolean isAdmin(){
+        if(this.role == role.SYSADMIN){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

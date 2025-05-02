@@ -6,5 +6,7 @@
 </head>
 <body>
     <p th:if="${message}" th:text="${message}"></p>
+
+    <a th:if="${isAdmin}" th:href="@{/getCreateUser}" class="styledButton">Opret en ny bruger</a>
 </body>
 </html>

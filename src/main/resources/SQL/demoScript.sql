@@ -43,11 +43,11 @@ CREATE TABLE Damages (
 
 -- Insert Users
 INSERT INTO Users (username, first_name, last_name, password, role) VALUES
-                                   ('jdoe', 'John', 'Doe', 'password123', 'sysadmin'),
-                                   ('asmith', 'Alice', 'Smith', 'alicepass', 'repair'),
-                                   ('bwhite', 'Bob', 'White', 'bobpass', 'business'),
-                                   ('knguyen', 'Kim', 'Nguyen', 'kimsecure', 'repair'),
-                                   ('rgreen', 'Rachel', 'Green', 'rachelpwd', 'data');
+                                   ('jdoe', 'John', 'Doe', 'password123', 'SYSADMIN'),
+                                   ('asmith', 'Alice', 'Smith', 'alicepass', 'REPAIR'),
+                                   ('bwhite', 'Bob', 'White', 'bobpass', 'BUSINESS'),
+                                   ('knguyen', 'Kim', 'Nguyen', 'kimsecure', 'REPAIR'),
+                                   ('rgreen', 'Rachel', 'Green', 'rachelpwd', 'DATA');
 
 -- Insert Cars
 INSERT INTO Cars (chassis_no, brand, model, production_year, price, fuel_type, available) VALUES

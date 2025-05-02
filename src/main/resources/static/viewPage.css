@@ -1,0 +1,25 @@
+.notifications {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 12dvh;
+    right: 0;
+    width: 50dvw;
+    height: 88dvh;
+
+    outline: red solid 1px;
+}
+
+.userOptions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 12dvh;
+    left: 0;
+    width: 50dvw;
+    height: 88dvh;
+
+    outline: blue solid 1px;
+}

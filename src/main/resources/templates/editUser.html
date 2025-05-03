@@ -5,6 +5,26 @@
     <title>Rediger bruger</title>
 </head>
 <body>
+<form th:action="@{/saveUpdateUser}" method="post" class="loginForm">
+    <input type="hidden" th:value="${user.getUserName()}" name="oldUserName" id="oldUserName">
+    <input type="text" th:value="${user.getUserName()}" id="userName" name="userName" placeholder="Indtast dit username" required class="inputBox">
+    <br>
+    <input type="text" th:value="${user.getFirstName}" id="firstName" name="firstName" placeholder="Indtast dit fornavn" required class="inputBox">
+    <br>
+    <input type="text" th:value="${user.getLastName()}" id="lastName" name="lastName" placeholder="Indtast dit efternavn" required class="inputBox">
+    <br>
+    <input type="password" th:value="${user.getPassword()}" id="passWord" name="passWord" placeholder="Indtast password" required class="inputBox">
+    <br>
+    <input type="password" id="passWordControl" name="passWordControl" placeholder="Indtast password igen" required class="inputBox">
+    <br>
+    <select name="role" id="role" multiple required>
+        <option value="Data">Data</option>
+        <option value="Repair">Repair</option>
+        <option value="Business">Business</option>
+        <option value="Sysadmin">Sysadmin</option>
+    </select>
 
+    <button type="submit" class="styledButton">submit</button>
+</form>
 </body>
 </html>

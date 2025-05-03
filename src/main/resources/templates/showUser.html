@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Brugerside</title>
+    <title>Title</title>
 </head>
 <body>
-    <p th:if="${message}" th:text="${message}"></p>
-
-    <a th:if="${isAdmin}" th:href="@{/getCreateUser}" class="styledButton">Opret en ny bruger</a>
+<div class="infoBox">
+    <p th:text="${user.getUserName()}"></p>
+    <p th:text="${user.getFirstName()}"></p>
+    <p th:text="${user.getLastName()}"></p>
+    <p th:text="${user.getRoleAsString()}"></p>
+</div>
+<form th:action="@{/deleteUser}" method="post">
+    <input type="hidden" th:value="${user.getUserName()}" name="usernameDelete" id="usernameDelete">
+    <button type="submit">Slet denne bruger</button>
+</form>
+<form th:action="@{/getEditUser}" method="post">
+    <input type="hidden" th:value="${user.getUserName()}" name="usernameEdit" id="usernameEdit">
+    <button type="submit">Rediger denne bruger</button>
+</form>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class LeaseRepository {
             statement.setString(6, lease.getCustomerNumber());
             statement.setDouble(7, lease.getPriceToStart());
             statement.setDouble(8, lease.getPricePrMonth());
-            statement.setString(9, lease.getTypeOfLease());
+            statement.setString(9, String.valueOf(lease.getTypeOfLease()));
 
             statement.executeUpdate();
         } catch (SQLException e){

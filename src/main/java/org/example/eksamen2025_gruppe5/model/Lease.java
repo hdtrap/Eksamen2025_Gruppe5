@@ -3,6 +3,8 @@ package org.example.eksamen2025_gruppe5.model;
 import java.sql.Date;
 import java.time.LocalDate;
 
+enum TypeOfLease {ABONNEMENT, MINILEASING, VAREBIL}
+
 public class Lease {
     private int leaseId;
     private Car car;
@@ -14,13 +16,13 @@ public class Lease {
     private String customerNumber;
     private double priceToStart;
     private double pricePrMonth;
-    private String typeOfLease;
+    TypeOfLease typeOfLease;
     private boolean fullyProcessed;
 
     public Lease(int leaseId, Car car, LocalDate startDate, LocalDate endDate,
                  int leaseTimeInMonths, String customerName, String customerEmail,
                  String customerNumber, double priceToStart, double pricePrMonth,
-                 boolean fullyProcessed, String typeOfLease) {
+                 boolean fullyProcessed, TypeOfLease typeOfLease) {
         this.leaseId = leaseId;
         this.car = car;
         this.startDate = startDate;
@@ -38,7 +40,7 @@ public class Lease {
     public Lease(Car car, LocalDate startDate, LocalDate endDate,
                  int leaseTimeInMonths, String customerName, String customerEmail,
                  String customerNumber, double priceToStart, double pricePrMonth,
-                 String typeOfLease) {
+                 TypeOfLease typeOfLease) {
         this.car = car;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -142,11 +144,11 @@ public class Lease {
         this.fullyProcessed = fullyProcessed;
     }
 
-    public String getTypeOfLease() {
+    public TypeOfLease getTypeOfLease() {
         return typeOfLease;
     }
 
-    public void setTypeOfLease(String typeOfLease) {
+    public void setTypeOfLease(TypeOfLease typeOfLease) {
         this.typeOfLease = typeOfLease;
     }
 }

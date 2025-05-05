@@ -11,17 +11,18 @@
     <p>HEADER</p>
 </div>
 
-<div class="notifications">NOTIFICATIONS</div>
+<div class="notifications">
+    NOTIFICATIONS
+</div>
 <div class="userOptions">
     <button>Registrer ny lease</button>
-
 
     <form th:action="@{/showLease}"  method=get>
         <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID">
 
         <button type="submit">Find lease</button>
     </form>
-</div>
+</div> <!-- div userOptions ends -->
 
 </body>
 </html>

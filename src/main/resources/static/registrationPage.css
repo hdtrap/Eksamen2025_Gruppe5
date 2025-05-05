@@ -4,7 +4,22 @@ form{
     justify-content: center;
     align-items: center;
     position: relative;
+
+    height: 100%;
+
+    outline: black solid 1px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     height: 88dvh;
+    box-sizing: border-box;
+
+    padding: 2%;
 
     outline: black solid 1px;
 }

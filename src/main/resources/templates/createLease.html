@@ -3,54 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret lejeaftale</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/registrationPage.css" th:href="@{/registrationPage.css}">
 </head>
 <body>
-
-<form th:action="@{/saveCreateLease}" method="post" class="createForm">
-    <div class form-group>
-        <label for="vehicle_no">Vogn Nummer:</label>
-        <input type="text" id="vehicle_no" name="vehicle_no" placeholder="Indtast vogn nummer" required>
+<div class="mainContent">
+    <div class="header">
+        <p>HEADER</p>
     </div>
-    <div class form-group>
-        <label for="start_date">Start Dato:</label>
-        <input type="date" id="start_date" name="start_date" required>
-    </div>
-    <div class form-group>
-        <label for="end_date">Slut Dato:</label>
-        <input type="date" id="end_date" name="end_date" required>
-    </div>
-    <div class form-group>
-        <label for="customer_name">Kunde Navn:</label>
-        <input type="text" id="customer_name" name="customer_name" placeholder="Indtast kundens navn" required>
-    </div>
-    <div class form-group>
-        <label for="customer_email">Kunde Email:</label>
-        <input type="text" id="customer_email" name="customer_email" placeholder="Indtast kundens email" required>
-    </div>
-    <div class form-group>
-        <label for="customer_number">Kunde Nummer:</label>
-        <input type="text" id="customer_number" name="customer_number" placeholder="Indtast kundens nummer" required>
-    </div>
-    <div class form-group>
-        <label for="price_to_start">Udbetaling:</label>
-        <input type="number" id="price_to_start" name="price_to_start" placeholder="Indtast udbetalingsbeløb" required>
-    </div>
-    <div class form-group>
-        <label for="price_pr_month">Månedlig Ydelse:</label>
-        <input type="number" id="price_pr_month" name="price_pr_month" placeholder="Indtast mdl. ydelse" required>
-    </div>
-    <div class form-group>
-        <label for="type_of_lease">Type Abonnement:</label>
-        <select id="type_of_lease" name="type_of_lease" placeholder="Vælg abonnement" required>
-            <option value="ABONNEMENT">Abonnement (3-36 mdr.)</option>
-            <option value="MINILEASING">Minileasing</option>
-            <option value="VAREBIL">Varebil</option>
-        </select>
-
-        <button type="submit" class="styledButton">submit</button>
-    </div>
-
-</form>
-
+    <div class="formContainer">
+        <form th:action="@{/saveCreateLease}" method="post" class="createForm">
+            <div class form-group>
+                <label for="vehicle_no">Vogn Nummer:</label>
+                <input type="text" id="vehicle_no" name="vehicle_no" placeholder="Indtast vogn nummer" required>
+            </div>
+            <div class form-group>
+                <label for="start_date">Start Dato:</label>
+                <input type="date" id="start_date" name="start_date" required>
+            </div>
+            <div class form-group>
+                <label for="end_date">Slut Dato:</label>
+                <input type="date" id="end_date" name="end_date" required>
+            </div>
+            <div class form-group>
+                <label for="customer_name">Kunde Navn:</label>
+                <input type="text" id="customer_name" name="customer_name" placeholder="Indtast kundens navn" required>
+            </div>
+            <div class form-group>
+                <label for="customer_email">Kunde Email:</label>
+                <input type="text" id="customer_email" name="customer_email" placeholder="Indtast kundens email" required>
+            </div>
+            <div class form-group>
+                <label for="customer_number">Kunde Nummer:</label>
+                <input type="text" id="customer_number" name="customer_number" placeholder="Indtast kundens nummer" required>
+            </div>
+            <div class form-group>
+                <label for="price_to_start">Udbetaling:</label>
+                <input type="number" id="price_to_start" name="price_to_start" placeholder="Indtast udbetalingsbeløb" required>
+            </div>
+            <div class form-group>
+                <label for="price_pr_month">Månedlig Ydelse:</label>
+                <input type="number" id="price_pr_month" name="price_pr_month" placeholder="Indtast mdl. ydelse" required>
+            </div>
+            <div class form-group>
+                <label for="type_of_lease">Type Abonnement:</label>
+                <select id="type_of_lease" name="type_of_lease" placeholder="Vælg abonnement" required>
+                    <option value="ABONNEMENT">Abonnement (3-36 mdr.)</option>
+                    <option value="MINILEASING">Minileasing</option>
+                    <option value="VAREBIL">Varebil</option>
+                </select>
+                <button type="submit" class="styledButton">submit</button>
+            </div>
+        </form>
+    </div> <!-- div formContainer ends -->
+</div> <!-- div mainContent ends -->
 </body>
 </html>

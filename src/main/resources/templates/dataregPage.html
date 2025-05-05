@@ -12,10 +12,10 @@
         <p>HEADER</p>
     </div>
 
-    <p th:if="${message}" th:text="${message}"></p>
+
 
     <div class="userOptions">
-        <a th:href="@{/createLease.html}" class="btn">Opret ny lease</a>
+        <a th:href="@{/createLease}" class="btn">Opret ny lease</a>
         <form th:action="@{/showLease}"  method=get>
             <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID">
             <button type="submit">Find lease</button>
@@ -23,6 +23,7 @@
     </div> <!-- div userOptions ends -->
     <div class="notifications">
         NOTIFICATIONS
+        <p th:if="${message}" th:text="${message}"></p>
     </div> <!-- div notifications ends -->
 
 </div> <!-- div mainContent ends -->

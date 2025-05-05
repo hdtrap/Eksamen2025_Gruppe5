@@ -17,7 +17,7 @@ CREATE TABLE users (
 
 CREATE TABLE cars (
                       vehicle_no INT AUTO_INCREMENT UNIQUE PRIMARY KEY,
-                      chassis_no VARCHAR(50),
+                      chassis_no VARCHAR(50) UNIQUE,
                       brand VARCHAR(50),
                       model VARCHAR(50),
                       production_year INT,

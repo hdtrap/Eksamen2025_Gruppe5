@@ -9,6 +9,11 @@ public class Damage {
     private double price;
     private int category;
 
+    public Damage(String damageType, int category, double price) {
+        this.damageType = damageType;
+        this.price = price;
+        this.category = category;
+    }
 
     public int getDamageId() {
         return damageId;

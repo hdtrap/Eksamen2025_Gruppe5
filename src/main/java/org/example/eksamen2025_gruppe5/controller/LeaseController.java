@@ -4,7 +4,9 @@ import org.example.eksamen2025_gruppe5.model.Lease;
 import org.example.eksamen2025_gruppe5.repository.LeaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,5 +38,20 @@ public class LeaseController {
             Lease lease = new Lease();
             leaseRepository.saveLease(lease);
         return "redirect:/dataregPage";
+    }
+    @GetMapping("/showLease")
+    public String getLease(@RequestParam("leaseId") int leaseId, Model model) {
+        System.out.println("showLease skal blive vist");
+        Lease currentLease = leaseRepository.findById(leaseId);
+
+        if (currentLease != null) {
+            model.addAttribute("lease", currentLease);
+        } else {
+            System.out.println("Lease ikke fundet " + leaseId);
+        }
+
+        System.out.println("bliver vist");
+
+        return "/showLease";
     }
 }

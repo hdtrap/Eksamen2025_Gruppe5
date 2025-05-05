@@ -5,6 +5,14 @@
     <title>Lejeaftale</title>
 </head>
 <body>
+<h1>Lease Detaljer</h1>
+<div th:if="${lease != null}">
+    <p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
+    <p>Customer Name: <span th:text="${lease.customerName}"></span></p>
+    <p>Price to Start: <span th:text="${lease.priceToStart}"></span></p>
+</div>
+
+
 
 </body>
 </html>

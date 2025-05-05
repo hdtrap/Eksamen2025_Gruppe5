@@ -15,4 +15,8 @@ public class PageController {
     public String getCreateUserPage(){
         return "createUserPage";
     }
+    @GetMapping("/dataregPage")
+    public String showDataRegPage(){
+        return "dataregPage";
+    }
 }

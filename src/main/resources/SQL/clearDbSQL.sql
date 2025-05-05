@@ -2,10 +2,10 @@ CREATE DATABASE IF NOT EXISTS bilabonnement;
 
 USE bilabonnement;
 
-DROP TABLE damages;
-DROP TABLE leases;
-DROP TABLE cars;
-DROP TABLE users;
+DROP TABLE IF EXISTS damages;
+DROP TABLE IF EXISTS leases;
+DROP TABLE IF EXISTS cars;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
                        username VARCHAR(50)UNIQUE PRIMARY KEY,

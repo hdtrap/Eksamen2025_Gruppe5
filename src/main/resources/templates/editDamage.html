@@ -15,8 +15,15 @@
             <h1>Rediger skade</h1>
             <input type="text">
         </form>
+
+        div th:if="${damage != null}">
+        <p>Lease ID: <span th:text="${damage.leaseId}"></span></p>
+
     </div>
-</div> <!-- div mainContent ends -->
+
+
+    </div>
+</div>
 
 </body>
 </html>

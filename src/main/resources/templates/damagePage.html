@@ -9,5 +9,11 @@
     <p th:if="${message}" th:text="${message}"></p>
     <p>Dette er skade siden</p>
 
+    <form th:action="@{/showLease}"  method=get>
+        <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID">
+        <button type="submit">Find lease</button>
+    </form>
+
+
 </body>
 </html>

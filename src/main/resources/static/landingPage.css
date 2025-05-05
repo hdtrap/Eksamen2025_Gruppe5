@@ -1,16 +1,3 @@
-.mainContent {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-
-    outline: green solid 1px;
-}
 
 .notifications {
     display: flex;

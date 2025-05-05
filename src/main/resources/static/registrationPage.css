@@ -1,27 +1,10 @@
-.formContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 12dvh;
-    right: 0;
-    width: 50dvw;
-    height: 88dvh;
-    padding: 2%;
-
-    background-color: orange;
-}
-
 form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 80%;
-    height: 100%;
+    height: 88dvh;
 
-    background-color: grey;
     outline: black solid 1px;
 }

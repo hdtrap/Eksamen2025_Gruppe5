@@ -4,10 +4,17 @@ form{
     justify-content: center;
     align-items: center;
     position: relative;
-
     height: 100%;
+    box-sizing: border-box;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     outline: black solid 1px;
+
+    label, input, select {
+        font-size: 5dvh;
+    }
 }
 
 .formContainer {
@@ -21,5 +28,23 @@ form{
 
     padding: 2%;
 
+
+
     outline: black solid 1px;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+
+    width: 100%;
+    margin: 1%;
+
+    outline: orange solid 1px;
+
+    label, input, select {
+        width: 50%;
+    }
 }

@@ -1,6 +1,7 @@
 root {
 }
 html, body {
+/* html and body apparently has build-in margin and/or padding */
     margin: 0;
     padding: 0;
 }

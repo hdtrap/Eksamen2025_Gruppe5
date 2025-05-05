@@ -1,4 +1,7 @@
 root {
+    font-family: Arial;
+
+    --btnColor: blue;
 }
 html, body {
 /* html and body apparently has build-in margin and/or padding */
@@ -32,3 +35,4 @@ html, body {
 
     outline: black solid 1px;
 }
+

@@ -13,7 +13,7 @@
     </div>
 
     <div class="userOptions">
-        <button>Registrer ny lease</button>
+        <a th:href="@{/createLease.html}" class="btn">Opret ny lease</a>
         <form th:action="@{/showLease}"  method=get>
             <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID">
             <button type="submit">Find lease</button>

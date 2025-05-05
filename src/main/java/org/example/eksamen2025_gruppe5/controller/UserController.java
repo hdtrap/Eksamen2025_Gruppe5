@@ -69,8 +69,24 @@ public class UserController {
     public String getUserPage(Model model){
         if(userRepository.getcurrentUser().isAdmin()){
             model.addAttribute("isAdmin", "this user is admin");
+            return "adminPage";
         }
-        return "userPage";
+        if(userRepository.getcurrentUser().isDataReg()){
+            model.addAttribute("Data", "this user is data registration");
+            return "dataregPage";
+        }
+        if(userRepository.getcurrentUser().isRepair()){
+            model.addAttribute("isRepair", "this user is repair");
+            return "damagePage";
+        }
+        if(userRepository.getcurrentUser().isBusiness()){
+            model.addAttribute("isBusiness", "this user is business");
+            return "businessPage";
+        }
+        else{
+            model.addAttribute("message", "Could not log in: User has no usertype");
+            return "/";
+        }
     }
 
     @PostMapping("/getShowUserPage")

@@ -5,6 +5,15 @@
     <title>Admin</title>
 </head>
 <body>
+    <p th:if="${message}" th:text="${message}"></p>
 
+    <div th:if="${isAdmin}">
+        <a th:href="@{/getCreateUser}" class="styledButton">Opret en ny bruger</a>
+        <br>
+        <form th:action="@{/getShowUserPage}" method="post">
+            <input type="text" name="usernameBox" id="usernameBox" placeholder="indtast navn på den bruger du vil vise">
+            <button type="submit">find bruger</button>
+        </form>
+    </div>
 </body>
 </html>

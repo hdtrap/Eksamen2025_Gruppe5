@@ -84,4 +84,31 @@ public class User {
             return false;
         }
     }
+
+    public Boolean isDataReg(){
+        if(this.role == role.DATA){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public Boolean isRepair(){
+        if(this.role == role.REPAIR){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public Boolean isBusiness(){
+        if(this.role == role.BUSINESS){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

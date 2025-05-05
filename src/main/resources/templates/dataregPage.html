@@ -12,6 +12,8 @@
         <p>HEADER</p>
     </div>
 
+    <p th:if="${message}" th:text="${message}"></p>
+
     <div class="userOptions">
         <a th:href="@{/createLease.html}" class="btn">Opret ny lease</a>
         <form th:action="@{/showLease}"  method=get>

@@ -30,7 +30,7 @@ public class UserRepository {
     public void saveUser(User createdUser){
         System.out.println("AT this point the user will be saved");
 
-        String sql = "INSERT INTO Users (username, first_name, last_name, password, role) VALUES (?,?,?,?,?);";
+        String sql = "INSERT INTO users (username, first_name, last_name, password, role) VALUES (?,?,?,?,?);";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -49,7 +49,7 @@ public class UserRepository {
     }
 
     public Boolean LogInUserSuccess(String username, String passWord){
-        String sql = "SELECT * FROM Users WHERE username=? AND password=?;";
+        String sql = "SELECT * FROM users WHERE username=? AND password=?;";
 
         try(Connection connection = dataSource.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)){

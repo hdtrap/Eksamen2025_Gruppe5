@@ -3,8 +3,6 @@ package org.example.eksamen2025_gruppe5.model;
 import java.sql.Date;
 import java.time.LocalDate;
 
-enum TypeOfLease {ABONNEMENT, MINILEASING, VAREBIL}
-
 public class Lease {
     private int leaseId;
     private Car car;
@@ -22,7 +20,7 @@ public class Lease {
     public Lease(int leaseId, Car car, LocalDate startDate, LocalDate endDate,
                  int leaseTimeInMonths, String customerName, String customerEmail,
                  String customerNumber, double priceToStart, double pricePrMonth,
-                 boolean fullyProcessed, TypeOfLease typeOfLease) {
+                 boolean fullyProcessed, String typeOfLease) {
         this.leaseId = leaseId;
         this.car = car;
         this.startDate = startDate;
@@ -34,23 +32,22 @@ public class Lease {
         this.priceToStart = priceToStart;
         this.pricePrMonth = pricePrMonth;
         this.fullyProcessed = fullyProcessed;
-        this.typeOfLease = typeOfLease;
+        this.typeOfLease = TypeOfLease.valueOf(typeOfLease);
     }
 
     public Lease(Car car, LocalDate startDate, LocalDate endDate,
-                 int leaseTimeInMonths, String customerName, String customerEmail,
+                 String customerName, String customerEmail,
                  String customerNumber, double priceToStart, double pricePrMonth,
-                 TypeOfLease typeOfLease) {
+                 String typeOfLease) {
         this.car = car;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.leaseTimeInMonths = leaseTimeInMonths;
         this.customerName = customerName;
         this.customerEmail = customerEmail;
         this.customerNumber = customerNumber;
         this.priceToStart = priceToStart;
         this.pricePrMonth = pricePrMonth;
-        this.typeOfLease = typeOfLease;
+        this.typeOfLease = TypeOfLease.valueOf(typeOfLease);
         fullyProcessed = false;
     }
 
@@ -88,6 +85,7 @@ public class Lease {
         this.endDate = endDate;
     }
 
+    /*
     public int getLeaseTimeInMonths() {
         return leaseTimeInMonths;
     }
@@ -95,6 +93,7 @@ public class Lease {
     public void setLeaseTimeInMonths(int leaseTimeInMonths) {
         this.leaseTimeInMonths = leaseTimeInMonths;
     }
+    */
 
     public String getCustomerName() {
         return customerName;

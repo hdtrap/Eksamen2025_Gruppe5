@@ -5,7 +5,9 @@
     <title>Tilføj skade</title>
 </head>
 <body>
-<h1>Hej Verden</h1>
+<h1>Bil ID <span th:text="${car.vehicleNumber}"></span></h1>
+<h1>Lease ID <span th:text="${lease.leaseId}"></span></h1>
+
 <p>Tilføj skade</p>
 <form th:action="@{/addDamage}" method="post" class="createForm">
 <div form-group>
@@ -17,7 +19,8 @@
         <div class form-group>
 <input type="number" id="price" name="price" placeholder="Pris">
         </div>
-<button type="submit">Tilføj</button>
+<input type="hidden" th:value="${lease.leaseId}" id="leaseId" name="leaseId" placeholder="Lease Id">
+    <button type="submit">Tilføj</button>
 </form>
 </body>
 </html>

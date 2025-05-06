@@ -69,8 +69,8 @@ public class LeaseController {
         }
         System.out.println("bliver vist");
         if (currentUser.isRepair()){
-            model.addAttribute("car", currentLease.getCar());
-            return "/showCar";
+            model.addAttribute("lease", currentLease);
+            return "redirect:/showCar?leaseId=" + currentLease.getLeaseId(); //?leaseId + currentLease.getLeaseId() sender en paramater med i url så jeg kan hente lease i CarControlleren
         }
         return "/showLease";
     }

@@ -9,7 +9,8 @@ public class Damage {
     private double price;
     private int category;
 
-    public Damage(String damageType, int category, double price) {
+    public Damage(int leaseId, String damageType, int category, double price) {
+        this.leaseId = leaseId;
         this.damageType = damageType;
         this.price = price;
         this.category = category;

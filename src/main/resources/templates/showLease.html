@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Lejeaftale</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/viewPage.css" th:href="@{/viewPage.css}">
 </head>
 <body>
-<h1>Lease Detaljer</h1>
-<div th:if="${lease != null}">
-    <p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
-    <p>Customer Name: <span th:text="${lease.customerName}"></span></p>
-    <p>Price to Start: <span th:text="${lease.priceToStart}"></span></p>
+<div class="mainContent">
+    <div class="header">
+        HEADER
+    </div>
+<div class="userOptions">
+
 </div>
 
-
+<div class="information">
+    <h1>LEASE DETALJER</h1>
+    <div th:if="${lease != null}">
+        <p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
+        <p>Customer Name: <span th:text="${lease.customerName}"></span></p>
+        <p>Price to Start: <span th:text="${lease.priceToStart}"></span></p>
+    </div>
+</div>
+</div>
 
 </body>
 </html>

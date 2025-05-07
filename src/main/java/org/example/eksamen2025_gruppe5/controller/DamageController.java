@@ -64,7 +64,6 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
         redirectAttributes.addFlashAttribute("message", "Der skete en fejl. Lejeaftale med "+ leaseId +" blev ikke fundet.");
         return "redirect:/showDamage?leaseId=" + leaseId;
     }
-
 }
 
 
@@ -72,8 +71,10 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
     public String editDamage( @RequestParam("damageType") String damageType,
                                  @RequestParam("category") int category,
                                  @RequestParam("price") double price,
-                                 @RequestParam("leaseId") int leaseId, Model model){
-    Damage updatedDamage = new Damage(leaseId, damageType, category, price);
+                                 @RequestParam("leaseId") int leaseId,
+                                 @RequestParam("damageId") int damageId,
+                                 Model model){
+    Damage updatedDamage = new Damage(damageId, leaseId, damageType, category, price);
     damageRepository.updateDamage(updatedDamage);
     System.out.println("damage er opdateret på lease id " + leaseId );
 

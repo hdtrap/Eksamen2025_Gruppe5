@@ -20,7 +20,8 @@
     <input type="hidden" th:value="${damage.damageId}"  name="damageId" placeholder="damageId">
     <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
     <button type="submit">Slet skade</button>
-    </form><form th:action="@{/getEditDamage}" method="get">
+    </form>
+    <form th:action="@{/getEditDamage}" method="get">
     <input type="hidden" th:value="${damage.damageId}"  name="damageId" placeholder="damageId">
     <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
     <button type="submit">Rediger skade</button>

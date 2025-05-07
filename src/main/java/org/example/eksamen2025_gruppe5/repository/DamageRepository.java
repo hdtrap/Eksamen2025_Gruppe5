@@ -45,15 +45,18 @@ public class DamageRepository {
 
     }
     public void updateDamage(Damage damage) {
-        String sql = "UPDATE damages WHERE damage_id = ? SET damage_type = ? Set category = ? Set price = ?";
+        String sql = "UPDATE damages SET damage_type = ?, category = ?, price = ? WHERE damage_id = ?";
         try (Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.setInt(1, damage.getDamageId());
-            statement.setString(2, damage.getDamageType());
-            statement.setInt(3, damage.getCategory());
-            statement.setDouble(4, damage.getPrice());
-
+            System.out.println("der sker noget i update damage");
+            System.out.println("damageid = " + damage.getDamageId());
+            statement.setInt(4, damage.getDamageId());
+            System.out.println(damage.getDamageType());
+            statement.setString(1, damage.getDamageType());
+            statement.setInt(2, damage.getCategory());
+            statement.setDouble(3, damage.getPrice());
+            System.out.println("update damage burde have været kørt");
+            statement.executeUpdate();
         } catch (SQLException e) {
 
 

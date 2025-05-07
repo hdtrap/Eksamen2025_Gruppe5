@@ -16,22 +16,23 @@
 
 
             <div class="formContainer">
-                    <div form-group>
+                    <div class="form-group">
                         <input type="text" id="damageType" name="damageType" th:value="${damage.damageType}" placeholder="Skade type">
                     </div>
-                    <div form-group>
+                    <div class="form-group">
                         <input type="number" id="category" name="category" th:value="${damage.category}" placeholder="Kategori">
                     </div>
-                    <div class form-group>
+                    <div class="form-group">
                         <input type="number" id="price" name="price" th:value="${damage.price}" placeholder="Pris">
                     </div>
-                    <input type="hidden" th:value="${lease.leaseId}" id="leaseId" name="leaseId" placeholder="Lease Id">
+                    <input type="hidden" th:value="${damage.leaseId}" id="leaseId" name="leaseId" placeholder="Lease Id">
+                    <input type="hidden" th:value="${damage.damageId}" name="damageId" placeholder="Lease Id">
                     <button type="submit">Rediger</button>
             </div>
 
         </form>
 
-        div th:if="${damage != null}">
+        <div th:if="${damage != null}">
         <p>Lease ID: <span th:text="${damage.leaseId}"></span></p>
 
     </div>

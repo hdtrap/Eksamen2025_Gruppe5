@@ -62,6 +62,7 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
     catch (LeaseNotFoundException e){
         e.printStackTrace();
         redirectAttributes.addFlashAttribute("message", "Der skete en fejl. Lejeaftale med "+ leaseId +" blev ikke fundet.");
+        return "redirect:/showDamage?leaseId=" + leaseId;
     }
 
 }
@@ -79,14 +80,26 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
 
     return "redirect:/showDamage?leaseId=" + leaseId;
 }
+
 @GetMapping("/showDamage")
-    public String showDamage(@RequestParam("leaseId") int leaseId, Model damageList, Model lease){
+    public String showDamage(@RequestParam("leaseId") int leaseId, Model damageList,
+                             Model lease,
+                             RedirectAttributes redirectAttributes){
     System.out.println("leaseid i showDamage = " + leaseId);
-            lease.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
-            ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
-            damageList.addAttribute("damages", damages);
+
+    try {
+        lease.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
+        ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
+        damageList.addAttribute("damages", damages);
         return "showDamage";
+    }
+    catch (LeaseNotFoundException e) {
+        e.printStackTrace();
+        redirectAttributes.addFlashAttribute("message", "Der skete en fejl. Lejeaftale med "+ leaseId +" blev ikke fundet.");
+        return "showCar";
+    }
 }
+
 @PostMapping("/deleteDamage")
     public String deleteDamage(@RequestParam("damageId") int damageId,
                                @RequestParam("leaseId") int leaseId, Model model){
@@ -97,6 +110,7 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
 
         return "redirect:/showDamage?leaseId=" + leaseId;
 }
+
 @GetMapping("/getShowDamage")
     public String getShowDamage(@RequestParam("leaseId") int leaseId){
         return "redirect:/showDamage?leaseId=" + leaseId;

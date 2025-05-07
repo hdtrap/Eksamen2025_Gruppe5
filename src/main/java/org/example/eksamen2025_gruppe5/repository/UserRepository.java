@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 @Repository
@@ -27,7 +28,7 @@ public class UserRepository {
     @Autowired
     HttpSession httpSession;
 
-    public void saveUser(User createdUser){
+    public void saveUser(User createdUser) throws SQLException{
         System.out.println("AT this point the user will be saved");
 
         String sql = "INSERT INTO users (username, first_name, last_name, password, role) VALUES (?,?,?,?,?);";
@@ -45,6 +46,7 @@ public class UserRepository {
         }
         catch (SQLException e){
             e.printStackTrace();
+            throw e;
         }
     }
 
@@ -80,7 +82,7 @@ public class UserRepository {
         return loggedInUsers.get(httpSession.getId());
     }
 
-    public String findNumberForUsername(String firstLetters){
+    public String findNumberForUsername2(String firstLetters){
 
         String sql = "SELECT COUNT(*) FROM users WHERE username LIKE ?";
 
@@ -100,12 +102,71 @@ public class UserRepository {
             }
         }
         catch (SQLException e){
-            System.out.println("Whoops");
             e.printStackTrace();
         }
 
 
         return 0+"";
+    }
+
+    public String findNumberForUsername(String firstLetters){
+        String sql = "SELECT * FROM users WHERE username LIKE ?";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, firstLetters + "____");
+
+            //Add all users with those first letters to a resultset
+            ResultSet res = preparedStatement.executeQuery();
+
+            //Create a list to hold all the usernames
+            ArrayList<String> userNamesFound = new ArrayList<>();
+
+            //Loop through the users with the relevant names and add them to a list.
+            while(res.next()){
+                userNamesFound.add(res.getString("username"));
+                System.out.println("Found: " + res.getString("username"));
+            }
+
+            //Find a way to isolate the user with the highest number attatched to their name
+            ArrayList<Integer> listOfNumbers = new ArrayList<>();
+            //For each user
+            for (String username:userNamesFound){
+                System.out.println("Username: " + username);
+                //Check if the username is of such a type, that the last four symbols are numbers
+                if (isUsernameUserXXXX(username)){
+                    //Then, seperate those numbers and find the highest number
+                    listOfNumbers.add(Integer.parseInt(username.substring(5,8)));
+                    System.out.println("Tal fundet: " + username.substring(5,8));
+                }
+            }
+
+            Integer highestNumber = 0000;
+            for (Integer i:listOfNumbers){
+                System.out.println("Number to check: " + i);
+                if(i > highestNumber){
+                    highestNumber = i;
+                    System.out.println("Inde i IF: " + highestNumber);
+                }
+            }
+
+            highestNumber++;
+            System.out.println(highestNumber);
+
+            String lastnumbers = String.format("%04d", highestNumber);
+            System.out.println(lastnumbers);
+
+            return lastnumbers;
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+            return "ERROR";
+        }
+    }
+
+    boolean isUsernameUserXXXX(String username){
+        System.out.println("Username follows format? Answer: " + username.matches("[a-z,A-Z]{4}[0-9]{4}"));
+        return username.matches("[a-z,A-Z]{4}[0-9]{4}");
     }
 
     public User findUserByUserName(String username) throws UserNotFoundException{

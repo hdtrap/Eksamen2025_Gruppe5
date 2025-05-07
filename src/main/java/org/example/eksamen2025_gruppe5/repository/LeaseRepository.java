@@ -1,5 +1,6 @@
 package org.example.eksamen2025_gruppe5.repository;
 
+import org.example.eksamen2025_gruppe5.exceptions.LeaseNotFoundException;
 import org.example.eksamen2025_gruppe5.model.Car;
 import org.example.eksamen2025_gruppe5.model.Lease;
 import org.example.eksamen2025_gruppe5.model.TypeOfLease;
@@ -44,7 +45,7 @@ CarRepository carRepository;
     }
 
     //Metode til at finde biler ved deres lease ID
-    public Lease findLeaseById(int leaseId){
+    public Lease findLeaseById(int leaseId) throws LeaseNotFoundException{
         Lease lease = new Lease();
         String sql = "SELECT * FROM leases WHERE lease_id = ?";
 
@@ -74,6 +75,7 @@ CarRepository carRepository;
 
             } catch (SQLException e) {
                 e.printStackTrace();
+                throw new LeaseNotFoundException();
         }
 
         return lease;

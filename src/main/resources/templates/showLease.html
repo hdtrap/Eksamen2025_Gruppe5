@@ -12,7 +12,11 @@
         HEADER
     </div>
 <div class="userOptions">
-    <a th:href="@{/getUpdateLease(id=${lease.leaseId})}" class="btn">Rediger lease</a>
+    <a th:href="@{/getUpdateLease(id=${lease.leaseId})}" class="btn">Rediger lejeaftale</a>
+    <form th:action="@{/deleteLease}" method="post">
+        <input type="hidden" name="id" th:value="${lease.leaseId}" />
+        <button type="submit" class="deleteButton">Slet lejeaftale</button>
+    </form>
 </div>
 
 <div class="information">

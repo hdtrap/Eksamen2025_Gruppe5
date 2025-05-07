@@ -36,4 +36,6 @@ html, body {
     outline: black solid 1px;
 }
 
-
+button, label, .btn {
+    cursor: pointer;
+}

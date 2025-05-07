@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+
 @Controller
 public class DamageController {
 
@@ -35,7 +37,6 @@ public String addDamage(
 {
     System.out.println("leaseid i addDamage = " + leaseId);
     Damage newDamage = new Damage(leaseId, damageType, category, price);
-    //newDamage.setLeaseId(currentLease.getId);
     //newDamage.setDamageId()
     System.out.println("newDamage oprettet");
     damageRepository.saveDamage(newDamage);
@@ -43,17 +44,52 @@ public String addDamage(
 
     return "redirect:/showDamage?leaseId=" + leaseId;
 }
-@GetMapping("getEditDamage")
-    public String getEditDamage(Model damage){
+@GetMapping("/getEditDamage")
+public String getEditDamage(@RequestParam("damageId") int damageId,
+                            @RequestParam("leaseId") int leaseId,
+                            Model model){
 
-    return "editDamage";
+        model.addAttribute("damage", damageRepository.getDamageWithDamageId(damageId));
+        model.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
+    System.out.println("leaseid i editDamage = " + leaseId);
+
+        return "editDamage";
+}
+
+
+@PostMapping("/doEditDamage")
+    public String editDamage( @RequestParam("damageType") String damageType,
+                                 @RequestParam("category") int category,
+                                 @RequestParam("price") double price,
+                                 @RequestParam("leaseId") int leaseId, Model model){
+    Damage updatedDamage = new Damage(leaseId, damageType, category, price);
+    damageRepository.updateDamage(updatedDamage);
+    System.out.println("damage er opdateret på lease id " + leaseId );
+
+
+    return "redirect:/showDamage?leaseId=" + leaseId;
 }
 @GetMapping("/showDamage")
     public String showDamage(@RequestParam("leaseId") int leaseId, Model damageList, Model lease){
     System.out.println("leaseid i showDamage = " + leaseId);
             lease.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
-            damageList.addAttribute("damages", damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId));
+            ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
+            damageList.addAttribute("damages", damages);
         return "showDamage";
+}
+@PostMapping("/deleteDamage")
+    public String deleteDamage(@RequestParam("damageId") int damageId,
+                               @RequestParam("leaseId") int leaseId, Model model){
+    System.out.println("damageId = " + damageId);
+
+    damageRepository.deleteDamageWithDamageId(damageId);
+    System.out.println("Damage deleted");
+
+        return "redirect:/showDamage?leaseId=" + leaseId;
+}
+@GetMapping("/getShowDamage")
+    public String getShowDamage(@RequestParam("leaseId") int leaseId){
+        return "redirect:/showDamage?leaseId=" + leaseId;
 }
 
 

@@ -33,11 +33,11 @@ public class DamageRepository {
         }
     }
 
-    private void deleteDamage(Damage damage) {
-        String sql = "DELETE FROM damages WHERE id = ?";
+    public void deleteDamageWithDamageId(int damageId) {
+        String sql = "DELETE FROM damages WHERE damage_id = ?";
         try (Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, damage.getDamageId());
+            statement.setInt(1, damageId);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -78,20 +78,38 @@ public class DamageRepository {
             int category = resultSet.getInt("category");
             double price = resultSet.getDouble("price");
 
-            Damage damage = new Damage(damageId, damageType, category, price);
+            Damage damage = new Damage(damageId, leaseId, damageType, category, price);
             damages.add(damage);
         }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return damages;
+    }
+    public Damage getDamageWithDamageId(int damageId) {
+        String sql = "SELECT * FROM damages WHERE damage_id = ?";
 
+        Damage damage = null;
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
+            statement.setInt(1, damageId);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int leaseId = resultSet.getInt("lease_id");
+                String damageType = resultSet.getString("damage_type");
+                int category = resultSet.getInt("category");
+                double price = resultSet.getDouble("price");
+
+                damage = new Damage(damageId, leaseId, damageType, category, price);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-
-        return damages;
+        return damage;
     }
 
 

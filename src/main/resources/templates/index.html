@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/registrationPage.css" th:href="@{/registrationPage.css}">
 </head>
 <body>
-    Hello world
+<div class="mainContent">
+<div class="header">
+    HEADER
+</div>
+    <div class="formContainer">
     <form th:action="@{/loginUser}" method="post" class="formBox">
+        <div class="form-group">
+        <label for="userName">Brugernavn:</label>
         <input type="text" id="userName" name="userName">
+        </div>
+        <div class="form-group">
+        <label for="userName">Kodeord:</label>
         <input type="password" id="passWord" name="passWord">
+        </div>
+
         <button type="submit">Log ind</button>
     </form>
+    </div>
+</div>
 </body>
 </html>

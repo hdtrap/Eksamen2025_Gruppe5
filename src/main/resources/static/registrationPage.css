@@ -4,13 +4,13 @@ form{
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 100%;
+    height: auto;
     box-sizing: border-box;
 
     overflow-y: scroll;
     overflow-x: hidden;
 
-    outline: black solid 1px;
+    outline: yellow solid 1px;
 
     label, input, select {
         font-size: 5dvh;
@@ -30,7 +30,7 @@ form{
 
 
 
-    outline: black solid 1px;
+    outline: red solid 1px;
 }
 
 .form-group {

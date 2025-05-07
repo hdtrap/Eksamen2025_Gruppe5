@@ -51,7 +51,7 @@ public String addDamage(
 @GetMapping("/showDamage")
     public String showDamage(@RequestParam("leaseId") int leaseId, Model damageList, Model lease){
     System.out.println("leaseid i showDamage = " + leaseId);
-            lease.addAttribute("lease", leaseRepository.findById(leaseId));
+            lease.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
             damageList.addAttribute("damages", damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId));
         return "showDamage";
 }

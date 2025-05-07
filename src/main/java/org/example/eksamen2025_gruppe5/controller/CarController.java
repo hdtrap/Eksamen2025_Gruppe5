@@ -21,7 +21,7 @@ public class CarController {
 
 @GetMapping("/showCar") // Jeg requester leaseId tilføjer både lease og car
     public String showCar(@RequestParam("leaseId") int leaseId, Model model) {
-    Lease lease = leaseRepository.findById(leaseId);
+    Lease lease = leaseRepository.findLeaseById(leaseId);
         model.addAttribute("car", lease.getCar());
         model.addAttribute("lease", lease);
     return "showCar";
@@ -33,7 +33,7 @@ public class CarController {
     if (model != null) {
         Car car = carRepository.findCarByVehicleNumber(vehicleNumber);
         model.addAttribute("car", car);
-        model.addAttribute("lease", leaseRepository.findById(leaseId));
+        model.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
     }
     System.out.println("model: " + model);
 

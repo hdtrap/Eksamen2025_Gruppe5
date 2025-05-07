@@ -13,23 +13,13 @@ public class UserService {
     }
 
     public String generateUserName(String firstname, String lastName){
-        char[] firstNameLetters = firstname.toCharArray();
-        char[] lastNameLetters = lastName.toCharArray();
 
         String firstLetters = firstname.substring(0,2) + lastName.substring(0,2);
         firstLetters = firstLetters.toLowerCase();
-
-        System.out.println(firstNameLetters);
-        System.out.println(lastNameLetters);
 
         String fullUserName = firstLetters + userRepository.findNumberForUsername(firstLetters);
         return fullUserName;
     }
 
-    int generateAvailableNumber(String letters){
 
-        //Write code to see who the latest created user with those four letters was
-
-        return 0001; //PLACEHOLDER
-    }
 }

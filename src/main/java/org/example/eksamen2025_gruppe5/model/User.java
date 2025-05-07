@@ -32,6 +32,10 @@ public class User {
         this.role = Role.valueOf(res.getString("role"));
     }
 
+    public User(){
+
+    }
+
     public String getFirstName() {
         return firstName;
     }

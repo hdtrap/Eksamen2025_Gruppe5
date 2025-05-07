@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.SQLException;
+
 @Controller
 public class UserController {
 
@@ -23,13 +25,26 @@ public class UserController {
    @Autowired
     UserRepository userRepository;
 
+    @GetMapping("getCreateUser")
+    public String getCreateUserPage(Model model){
+        if (!model.containsAttribute("userInfo")){
+            System.out.println("Der er ikke noget UserInfo, så vi tilføjer en userInfo");
+            model.addAttribute("userInfo", new User());
+        }
+        else{
+            System.out.println("Der var Userinfo, så vi tilføjer ikke ny userInfo");
+        }
+        return "createUserPage";
+    }
+
     @PostMapping("/saveCreateUser")
-    public String saveCreateUser(@RequestParam("firstName") String firstName,
+    public String saveCreateUser (@RequestParam("firstName") String firstName,
                                  @RequestParam("lastName") String lastname,
                                  @RequestParam("passWord") String password,
                                  @RequestParam("confirmPassWord") String confirmpassword,
                                  @RequestParam("role") String role,
-                                 RedirectAttributes redirectAttributes){
+                                 RedirectAttributes redirectAttributes,
+                                  Model model){
         System.out.println("information recieved - username: " + userService.generateUserName(firstName, lastname));
         System.out.println("information recieved - first name:: " + firstName);
         System.out.println("information recieved - last name: " + lastname);
@@ -37,16 +52,26 @@ public class UserController {
         System.out.println("information recieved - password: " + password);
         System.out.println("information recieved - verify password: " + confirmpassword);
 
-        if (password != confirmpassword){
-            System.out.println("WRONG PASSWORD");
-            //Redirect to try again page with redirect attributes
+        //Check if password inputs match. If not, redirect with appropriate message
+        try {
+            userRepository.checkPassWordMatch(password, confirmpassword);
+        }
+        catch (PassWordMismatchException e){
+            redirectAttributes.addFlashAttribute("message", "Bruger blev ikke oprettet: Passwords matchede ikke");
+            redirectAttributes.addFlashAttribute("userInfo", new User(firstName, lastname, null, null, role.toUpperCase()));
+            return "redirect:/getCreateUser";
         }
 
-        //Create the user with the inputs from the page
+        //Create the user with the inputs from the page, using the userName generator for the username
         User createdUser = new User(firstName, lastname, userService.generateUserName(firstName, lastname), password, role);
 
-        userRepository.saveUser(createdUser);
-
+        try {
+            userRepository.saveUser(createdUser);
+        }
+        catch (SQLException e){
+            redirectAttributes.addFlashAttribute("message", "Bruger blev ikke oprettet af en ukendt årsag. Prøv igen med andre parametre. fejlKode: " + e.getErrorCode());
+            return "redirect:/getCreateUser";
+        }
 
         redirectAttributes.addFlashAttribute("message", "Bruger oprettet med brugernavnet: " + createdUser.getUserName());
         return "redirect:/getUserPage";
@@ -65,29 +90,7 @@ public class UserController {
         }
     }
 
-    @GetMapping("/getUserPage")
-    public String getUserPage(Model model){
-        if(userRepository.getcurrentUser().isAdmin()){
-            model.addAttribute("isAdmin", "this user is admin");
-            return "adminPage";
-        }
-        if(userRepository.getcurrentUser().isDataReg()){
-            model.addAttribute("Data", "this user is data registration");
-            return "dataregPage";
-        }
-        if(userRepository.getcurrentUser().isRepair()){
-            model.addAttribute("isRepair", "this user is repair");
-            return "damagePage";
-        }
-        if(userRepository.getcurrentUser().isBusiness()){
-            model.addAttribute("isBusiness", "this user is business");
-            return "businessPage";
-        }
-        else{
-            model.addAttribute("message", "Could not log in: User has no usertype");
-            return "/";
-        }
-    }
+
 
     @PostMapping("/getShowUserPage")
     public String getShowUserPage(

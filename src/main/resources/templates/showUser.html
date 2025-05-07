@@ -14,21 +14,22 @@
 
     <div class="userOptions">
 
-        <input type="radio" name="confirmation" id="needConfirm" hidden>
-
-        <div class="confirmationBox">
-            <p>Bekræft at du vil slette brugeren</p>
-            <div class="choices">
-                <!-- the actual method -->
-                <form th:action="@{/deleteUser}" method="post">
-                    <input type="hidden" th:value="${user.getUserName()}" name="usernameDelete" id="usernameDelete">
-                    <button type="submit">Bekræft</button>
-                </form>
-                <input type="radio" name="confirmation" id="denyConfirmation" hidden>
-                <label for="denyConfirmation" class="button">Annuller</label>
-            </div> <!-- div choices ends -->
-        </div> <!-- div confirmationBox ends -->
-        <label for="needConfirm" class="button">Slet denne bruger</label>
+        <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
+        <label for="needConfirm" >Slet denne bruger</label>
+        <div class="confirmationBoxFull">
+            <div class="confirmationBox">
+                <p>Bekræft at du vil slette brugeren</p>
+                <div class="choices">
+                    <!-- the actual method -->
+                    <form th:action="@{/deleteUser}" method="post">
+                        <input type="hidden" th:value="${user.getUserName()}" name="usernameDelete" id="usernameDelete">
+                        <button type="submit">Bekræft</button>
+                    </form>
+                    <label for="needConfirm" class="button">Annuller</label>
+                </div> <!-- div choices ends -->
+            </div>
+        </div><!-- div confirmationBox ends -->
+        <!--<label for="needConfirm" class="button">Slet denne bruger</label>-->
 
 
         <form th:action="@{/getEditUser}" method="post">

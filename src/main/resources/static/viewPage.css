@@ -53,25 +53,37 @@ form {
     outline: orange solid 1px;
 }
 
+.confirmationBoxFull{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
 .confirmationBox {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
 
     width: 25dvw;
     height: 25dvh;
     box-sizing: border-box;
 
-    background-color: palevioletred;
-
-    outline: blue solid 1px;
-
-    z-index: -10;
+    background-color: white;
+    border-radius: 10px;
 
     .choices {
         display: flex;
@@ -99,13 +111,20 @@ form {
         position: relative;
         box-sizing: border-box;
 
-
         font-family: Arial;
 
     }
 }
 
-#needConfirm:checked + .confirmationBox{
-    background-color: red;
-    z-index: 10;
+.hiddenToggle:checked + label + .confirmationBoxFull{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hiddenToggle:checked + label + .confirmationBoxFull .confirmationBox{
+    transform: translateY(0);
+}
+
+.hiddenToggle{
+    display: none;
 }

@@ -63,7 +63,7 @@ CarRepository carRepository;
                 lease.setCustomerNumber(resultSet.getString("customer_number"));
                 lease.setPriceToStart(resultSet.getDouble("price_to_start"));
                 lease.setPricePrMonth(resultSet.getDouble("price_pr_month"));
-                lease.setTypeOfLease(TypeOfLease.valueOf("type_of_lease"));
+                lease.setTypeOfLease(TypeOfLease.valueOf(resultSet.getString("type_of_lease")));
 
                 //Sætter bilen ind på lease ved hjælp carRepository.findCarByVehicleNumber
                 int vehicleNumber = resultSet.getInt("vehicle_no");
@@ -81,7 +81,7 @@ CarRepository carRepository;
 
     // Opdater en lejeaftale
     public void updateLease(Lease lease){
-        String sqlRequest = "UPDATE leases SET vehicle_no = ?, start_date = ?, end_date = ?, customer_number = ?," +
+        String sqlRequest = "UPDATE leases SET vehicle_no = ?, start_date = ?, end_date = ?, customer_name = ?," +
                 " customer_email = ?, customer_number = ?, price_to_start = ?, price_pr_month = ?, type_of_lease = ? WHERE lease_id = ?";
 
         try (Connection connection = dataSource.getConnection();
@@ -96,7 +96,20 @@ CarRepository carRepository;
             statement.setDouble(7, lease.getPriceToStart());
             statement.setDouble(8, lease.getPricePrMonth());
             statement.setString(9, String.valueOf(lease.getTypeOfLease()));
+            statement.setInt(10, lease.getLeaseId());
 
+            statement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteLease(int id){
+        String sql = "DELETE FROM leases WHERE lease_id = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException e){
             e.printStackTrace();

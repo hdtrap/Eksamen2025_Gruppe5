@@ -67,11 +67,11 @@ INSERT INTO cars (chassis_no, brand, model, production_year, price, fuel_type, a
 
 -- Insert Leases
 INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES
-                               (1, '2025-05-01', '2026-05-01', 'Anna Jensen', 'anna.jensen@email.com', '12345678', 10000, 2500, 'Privatleasing', true),             -- lease_id 1
-                               (2, '2025-04-15', '2026-04-15', 'Mark Sørensen', 'mark.sorensen@email.com', '23456789', 8000, 2200, 'Erhvervsleasing', false),       -- lease_id 2
-                               (3, '2025-03-10', '2026-03-10', 'Lise Hansen', 'lise.hansen@email.com', '34567890', 12000, 2800, 'Privatleasing', true),             -- lease_id 3
-                               (4, '2025-05-02', '2026-05-02', 'Thomas Nielsen', 'thomas.nielsen@email.com', '45678901', 9000, 2400, 'Erhvervsleasing', false),     -- lease_id 4
-                               (5, '2025-01-20', '2026-01-20', 'Mette Larsen', 'mette.larsen@email.com', '56789012', 11000, 2600, 'Privatleasing', true);           -- lease_id 5
+                               (1, '2025-05-01', '2026-05-01', 'Anna Jensen', 'anna.jensen@email.com', '12345678', 10000, 2500, 'ABONNEMENT', true),             -- lease_id 1
+                               (2, '2025-04-15', '2026-04-15', 'Mark Sørensen', 'mark.sorensen@email.com', '23456789', 8000, 2200, 'VAREBIL', false),       -- lease_id 2
+                               (3, '2025-03-10', '2026-03-10', 'Lise Hansen', 'lise.hansen@email.com', '34567890', 12000, 2800, 'ABONNEMENT', true),             -- lease_id 3
+                               (4, '2025-05-02', '2026-05-02', 'Thomas Nielsen', 'thomas.nielsen@email.com', '45678901', 9000, 2400, 'VAREBIL', false),     -- lease_id 4
+                               (5, '2025-01-20', '2026-01-20', 'Mette Larsen', 'mette.larsen@email.com', '56789012', 11000, 2600, 'ABONNEMENT', true);           -- lease_id 5
 
 -- Insert Damages
 INSERT INTO damages (lease_id, damage_type, category, price) VALUES

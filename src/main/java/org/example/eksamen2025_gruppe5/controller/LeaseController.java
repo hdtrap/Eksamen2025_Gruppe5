@@ -108,6 +108,12 @@ public class LeaseController {
         lease.setPricePrMonth(pricePrMonth);
         lease.setTypeOfLease(TypeOfLease.valueOf(typeOfLease));
         leaseRepository.updateLease(lease);
-        return "redirect:/showLease";
+        return "redirect:/showLease/" + id;
+    }
+
+    @PostMapping
+    public String deleteLease(@RequestParam("lease_id") int id){
+        leaseRepository.deleteLease(id);
+        return "redirect:/dataregPage";
     }
 }

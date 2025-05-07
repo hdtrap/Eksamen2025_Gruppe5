@@ -1,3 +1,33 @@
+.userOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    left: 0;
+    width: 50dvw;
+    height: 88dvh;
+    box-sizing: border-box;
+
+    outline: blue solid 1px;
+
+    button, .btn, label {
+        font-size: 10dvh;
+        width: 40dvw;
+        background-color: var(--btnColor);
+        outline: black solid 1px;
+
+        padding: 2%;
+    }
+    .btn, label {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        box-sizing: border-box;
+    }
+}
 
 .information {
     display: flex;
@@ -13,22 +43,49 @@
     outline: red solid 1px;
 }
 
-.userOptions {
+form {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    outline: orange solid 1px;
+}
+
+.confirmationBox {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    position: relative;
-    left: 0;
-    width: 50dvw;
-    height: 88dvh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: 25dvw;
+    height: 25dvh;
     box-sizing: border-box;
+
+    background-color: palevioletred;
 
     outline: blue solid 1px;
 
-    button, .btn {
-        font-size: 10dvh;
-        width: 40dvw;
+    z-index: -10;
+
+    .choices {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        width: 100%;
+    }
+
+    button, label, .btn{
+        font-size: 2dvh;
+        height: 5dvh;
+        width: 5dvw;
         background-color: var(--btnColor);
         outline: black solid 1px;
 
@@ -48,12 +105,7 @@
     }
 }
 
-form {
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    justify-content: center;
-    align-items: center;
-
-    outline: orange solid 1px;
+#needConfirm:checked + .confirmationBox{
+    background-color: red;
+    z-index: 10;
 }

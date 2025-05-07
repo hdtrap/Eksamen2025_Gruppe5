@@ -15,6 +15,13 @@ public class Damage {
         this.price = price;
         this.category = category;
     }
+    public Damage(int damageId,int leaseId, String damageType, int category, double price) {
+        this.damageId = damageId;
+        this.leaseId = leaseId;
+        this.damageType = damageType;
+        this.price = price;
+        this.category = category;
+    }
 
     public int getDamageId() {
         return damageId;

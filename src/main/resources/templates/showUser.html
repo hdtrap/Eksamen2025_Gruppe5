@@ -2,22 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Se bruger</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/viewPage.css" th:href="@{/viewPage.css}">
 </head>
 <body>
-<div class="infoBox">
-    <p th:text="${user.getUserName()}"></p>
-    <p th:text="${user.getFirstName()}"></p>
-    <p th:text="${user.getLastName()}"></p>
-    <p th:text="${user.getRoleAsString()}"></p>
+<div class="mainContent">
+    <div class="header">
+        HEADER
+    </div>
+
+    <div class="userOptions">
+
+        <input type="radio" name="confirmation" id="needConfirm" hidden>
+
+        <div class="confirmationBox">
+            <p>Bekræft at du vil slette brugeren</p>
+            <div class="choices">
+                <!-- the actual method -->
+                <form th:action="@{/deleteUser}" method="post">
+                    <input type="hidden" th:value="${user.getUserName()}" name="usernameDelete" id="usernameDelete">
+                    <button type="submit">Bekræft</button>
+                </form>
+                <input type="radio" name="confirmation" id="denyConfirmation" hidden>
+                <label for="denyConfirmation" class="button">Annuller</label>
+            </div> <!-- div choices ends -->
+        </div> <!-- div confirmationBox ends -->
+        <label for="needConfirm" class="button">Slet denne bruger</label>
+
+
+        <form th:action="@{/getEditUser}" method="post">
+            <input type="hidden" th:value="${user.getUserName()}" name="usernameEdit" id="usernameEdit">
+            <button type="submit">Rediger denne bruger</button>
+        </form>
+    </div>
+    <div class="information">
+        <p th:text="${user.getUserName()}"></p>
+        <p th:text="${user.getFirstName()}"></p>
+        <p th:text="${user.getLastName()}"></p>
+        <p th:text="${user.getRoleAsString()}"></p>
+    </div>
+
 </div>
-<form th:action="@{/deleteUser}" method="post">
-    <input type="hidden" th:value="${user.getUserName()}" name="usernameDelete" id="usernameDelete">
-    <button type="submit">Slet denne bruger</button>
-</form>
-<form th:action="@{/getEditUser}" method="post">
-    <input type="hidden" th:value="${user.getUserName()}" name="usernameEdit" id="usernameEdit">
-    <button type="submit">Rediger denne bruger</button>
-</form>
+
+
+
 </body>
 </html>

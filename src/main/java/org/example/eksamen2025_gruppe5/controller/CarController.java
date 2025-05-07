@@ -1,5 +1,6 @@
 package org.example.eksamen2025_gruppe5.controller;
 
+import org.example.eksamen2025_gruppe5.exceptions.LeaseNotFoundException;
 import org.example.eksamen2025_gruppe5.model.Car;
 import org.example.eksamen2025_gruppe5.model.Lease;
 import org.example.eksamen2025_gruppe5.repository.CarRepository;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class CarController {
@@ -20,24 +22,40 @@ public class CarController {
 
 
 @GetMapping("/showCar") // Jeg requester leaseId tilføjer både lease og car
-    public String showCar(@RequestParam("leaseId") int leaseId, Model model) {
-    Lease lease = leaseRepository.findLeaseById(leaseId);
+    public String showCar(@RequestParam("leaseId") int leaseId, Model model,
+                          RedirectAttributes redirectAttributes) {
+
+    try {
+        Lease lease = leaseRepository.findLeaseById(leaseId);
         model.addAttribute("car", lease.getCar());
         model.addAttribute("lease", lease);
-    return "showCar";
+        return "showCar";
+    } catch (LeaseNotFoundException e) {
+        e.printStackTrace();
+        redirectAttributes.addFlashAttribute("message", "Der skete en fejl. Lejeaftale med "+ leaseId +" blev ikke fundet.");
+        return "redirect:/showLease";
+    }
 }
+
 @GetMapping("/getAddDamage")
     public String addDamage(@RequestParam("vehicleNumber") int vehicleNumber,
-                            @RequestParam("leaseId") int leaseId, Model model){
+                            @RequestParam("leaseId") int leaseId, Model model,
+                            RedirectAttributes redirectAttributes){
     System.out.println("vehicleNumber: " + vehicleNumber);
-    if (model != null) {
+
+    try {
         Car car = carRepository.findCarByVehicleNumber(vehicleNumber);
         model.addAttribute("car", car);
         model.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
-    }
-    System.out.println("model: " + model);
+        System.out.println("model: " + model);
 
-    return "addDamage";
+        return "addDamage";
+    }
+    catch (LeaseNotFoundException e){
+        e.printStackTrace();
+        redirectAttributes.addFlashAttribute("message", "Der skete en fejl. Lejeaftale med "+ leaseId +" blev ikke fundet.");
+        return "redirect:/showCar";
+    }
 }
 
 

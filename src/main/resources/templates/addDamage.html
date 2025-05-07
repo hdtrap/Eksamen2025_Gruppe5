@@ -3,24 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Tilføj skade</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/registrationPage.css" th:href="@{/registrationPage.css}">
 </head>
 <body>
-<h1>Bil ID <span th:text="${car.vehicleNumber}"></span></h1>
-<h1>Lease ID <span th:text="${lease.leaseId}"></span></h1>
-
-<p>Tilføj skade</p>
-<form th:action="@{/addDamage}" method="post" class="createForm">
-<div form-group>
-<input type="text" id="damageType" name="damageType" placeholder="Skade type">
-</div>
-    <div form-group>
-<input type="number" id="category" name="category" placeholder="Kategori">
+<div class="mainContent">
+    <div class="header">
+        HEADER
     </div>
-        <div class form-group>
-<input type="number" id="price" name="price" placeholder="Pris">
-        </div>
-<input type="hidden" th:value="${lease.leaseId}" id="leaseId" name="leaseId" placeholder="Lease Id">
-    <button type="submit">Tilføj</button>
-</form>
+    <div class="formContainer">
+        <h1>Bil ID <span th:text="${car.vehicleNumber}"></span></h1>
+        <h1>Lease ID <span th:text="${lease.leaseId}"></span></h1>
+        <p>Tilføj skade</p>
+        <form th:action="@{/addDamage}" method="post" class="createForm">
+            <div class="form-group">
+                <input type="text" id="damageType" name="damageType" placeholder="Skade type">
+            </div>
+            <div class="form-group">
+                <input type="number" id="category" name="category" placeholder="Kategori">
+            </div>
+            <div class="form-group">
+                <input type="number" id="price" name="price" placeholder="Pris">
+            </div>
+            <input type="hidden" th:value="${lease.leaseId}" id="leaseId" name="leaseId" placeholder="Lease Id">
+            <button type="submit">Tilføj</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

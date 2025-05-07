@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Forretningsudvikling</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
 </head>
 <body>
-    <p th:if="${message}" th:text="${message}"></p>
+<div class="mainContent">
+    <div class="header">
+        <p>HEADER</p>
+    </div>
 
+    <div class="userOptions">
+
+    </div>
+
+    <div class="notifications">
+        NOTIFICATIONS
+        <p th:if="${message}" th:text="${message}"></p>
+    </div> <!-- div notifications ends -->
+
+</div> <!-- mainContent ends -->
 </body>
 </html>

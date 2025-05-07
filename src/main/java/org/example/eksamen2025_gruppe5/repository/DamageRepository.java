@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 @Repository
 public class DamageRepository {
@@ -17,15 +15,19 @@ public class DamageRepository {
     DataSource dataSource;
 
     public void saveDamage(Damage damage) {
-        String sql = "INSERT INTO damages (damage_type, category, price) VALUES (?, ?, ?)";
+        System.out.println("Vi prøver save Damage");
+        System.out.println("lease id i saveDamage = " + damage.getLeaseId());
+        String sql = "INSERT INTO damages (lease_id, damage_type, category, price) VALUES (?, ?, ?,?)";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) { //
 
-            statement.setString(1, damage.getDamageType());
-            statement.setInt(2, damage.getCategory());
-            statement.setDouble(3, damage.getPrice());
+            statement.setInt(1, damage.getLeaseId());
+            statement.setString(2, damage.getDamageType());
+            statement.setInt(3, damage.getCategory());
+            statement.setDouble(4, damage.getPrice());
 
             statement.executeUpdate(); // eksekverer dit statement
+            System.out.println("Damage gemt");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -53,12 +55,44 @@ public class DamageRepository {
             statement.setDouble(4, damage.getPrice());
 
         } catch (SQLException e) {
+
+
+
             e.printStackTrace();
         }
 
     }
 
+    public ArrayList<Damage> getAllDamagesForALeaseWithLeaseId(int leaseId){
+        ArrayList<Damage> damages = new ArrayList<>();
+        String sql = "SELECT * FROM damages WHERE lease_id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
+            statement.setInt(1, leaseId);
+            // Jeg gemmer alt hvad jeg har hentet i SQL i mit result set
+            ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            int damageId = resultSet.getInt("damage_id");
+            String damageType = resultSet.getString("damage_type");
+            int category = resultSet.getInt("category");
+            double price = resultSet.getDouble("price");
+
+            Damage damage = new Damage(damageId, damageType, category, price);
+            damages.add(damage);
+        }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+        return damages;
+    }
 
 
 

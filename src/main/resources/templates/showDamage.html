@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Damage</title>
+</head>
+<body>
+<h1>Alle skader for lease id : <span th:text="${lease.leaseId}"></span></h1>
+
+<div th:each="damage : ${damages}">
+
+    <p th:text="${damage.leaseId}"> Lease Id</p>
+    <p th:text="${damage.damageId}"> Skade Id</p>
+    <p th:text="${damage.category}"> Kategori</p>
+    <p th:text="${damage.damageType}"> Skade type</p>
+    <p th:text="${damage.price}"> Pris</p>
+
+
+
+</div>
+
+
+
+
+</body>
+</html>

@@ -5,10 +5,11 @@ USE bilabonnement;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS add_ons;
 DROP TABLE IF EXISTS addon_types;
+DROP TABLE IF EXISTS damages;
 DROP TABLE IF EXISTS leases;
 DROP TABLE IF EXISTS cars;
 DROP TABLE IF EXISTS car_models;
-DROP TABLE IF EXISTS damages;
+
 
 CREATE TABLE users (
                        username VARCHAR(50)UNIQUE PRIMARY KEY,
@@ -24,6 +25,13 @@ CREATE TABLE car_models  (
          model varchar(100),
          production_year int,
          fuel_type varchar(50)
+);
+
+CREATE TABLE addon_types(
+                            id int PRIMARY KEY AUTO_INCREMENT,
+                            type varchar(50),
+                            description LONGTEXT,
+                            price double
 );
 
 CREATE TABLE cars (
@@ -51,12 +59,6 @@ CREATE TABLE leases (
                         CONSTRAINT fk_vehicle_no FOREIGN KEY (vehicle_no) REFERENCES cars(vehicle_no)
 );
 
-CREATE TABLE addon_types(
-     id int PRIMARY KEY AUTO_INCREMENT,
-     type varchar(50),
-     description LONGTEXT,
-     price double
-);
 
 CREATE TABLE add_ons(
     id int PRIMARY KEY AUTO_INCREMENT UNIQUE,
@@ -73,7 +75,7 @@ CREATE TABLE damages (
                          damage_type VARCHAR(50),
                          category INT,
                          price DOUBLE,
-                         CONSTRAINT fk_lease_id FOREIGN KEY (lease_id) REFERENCES leases(lease_id)
+                         CONSTRAINT fk_lease_id FOREIGN KEY (lease_id) REFERENCES leases(lease_id) ON DELETE CASCADE
 );
 
 -- Insert Car Models
@@ -88,14 +90,6 @@ INSERT INTO addon_types (type, description, price) VALUES
                   ('Ekstra forrude', 'Eftermonteret forrude uden på bilens forrude. Det er ret smart faktisk', 200),
                   ('Kølerhjelm i guld', 'Du har mange penge, du vil gerne have en tung bil, vi har hvad du vil have', 1500),
                   ('Offroad pakke', 'Al forsikring og udstyr nødvendigt for at have gode offroad oplevelser', 699.95);
-
-INSERT INTO add_ons (addon_type, lease_id) VALUES
-                  (1,1),
-                  (2,5),
-                  (3,3),
-                  (4,1),
-                  (1,4);
-
 
 
 -- Insert Users
@@ -120,6 +114,13 @@ INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_em
                  (3, '2025-03-10', '2026-03-10', 'Lise Hansen', 'lise.hansen@email.com', '34567890', 12000, 2800, 'ABONNEMENT', true),             -- lease_id 3
                  (4, '2025-05-02', '2026-05-02', 'Thomas Nielsen', 'thomas.nielsen@email.com', '45678901', 9000, 2400, 'VAREBIL', false),     -- lease_id 4
                  (5, '2025-01-20', '2026-01-20', 'Mette Larsen', 'mette.larsen@email.com', '56789012', 11000, 2600, 'ABONNEMENT', true);           -- lease_id 5
+
+INSERT INTO add_ons (addon_type, lease_id) VALUES
+                                               (1,1),
+                                               (2,5),
+                                               (3,3),
+                                               (4,1),
+                                               (1,4);
 
 -- Insert Damages
 INSERT INTO damages (lease_id, damage_type, category, price) VALUES

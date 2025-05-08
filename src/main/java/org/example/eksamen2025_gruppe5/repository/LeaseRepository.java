@@ -71,7 +71,7 @@ CarRepository carRepository;
                 Car car = carRepository.findCarByVehicleNumber(vehicleNumber);
                 lease.setCar(car);
 
-            }
+            } else throw new LeaseNotFoundException();
 
             } catch (SQLException e) {
                 e.printStackTrace();

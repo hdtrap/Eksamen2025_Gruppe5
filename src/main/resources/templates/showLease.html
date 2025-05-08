@@ -20,11 +20,17 @@
 </div>
 
 <div class="information">
-    <h1>LEASE DETALJER</h1>
+    <h1>Detaljer</h1>
     <div th:if="${lease != null}">
-        <p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
-        <p>Customer Name: <span th:text="${lease.customerName}"></span></p>
-        <p>Price to Start: <span th:text="${lease.priceToStart}"></span></p>
+        <p>Lejeaftale ID: <span th:text="${lease.leaseId}"></span></p>
+        <p>Tilknyttet bil ID: <span th:text="${lease.car.getVehicleNumber()}"></span></p>
+        <h2>Kunde oplysninger</h2>
+        <p>Navn: <span th:text="${lease.customerName}"></span></p>
+        <p>Email: <span th:text="${lease.customerEmail}"></span></p>
+        <p>Nummer: <span th:text="${lease.customerNumber}"></span></p>
+        <h2>Pris</h2>
+        <p>Udbetaling pris: <span th:text="${lease.priceToStart}"></span>kr.</p>
+        <p>Pris per måned: <span th:text="${lease.pricePrMonth}"></span>kr.</p>
     </div>
 </div>
 </div>

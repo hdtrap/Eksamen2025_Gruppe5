@@ -65,7 +65,7 @@ CREATE TABLE add_ons(
     addon_type int,
     lease_id int,
     CONSTRAINT fk_addon_type FOREIGN KEY (addon_type) REFERENCES addon_types(id),
-    CONSTRAINT fk_add_ons_lease_id FOREIGN KEY (lease_id) REFERENCES leases(lease_id)
+    CONSTRAINT fk_add_ons_lease_id FOREIGN KEY (lease_id) REFERENCES leases(lease_id) ON DELETE CASCADE
 );
 
 

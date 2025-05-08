@@ -9,22 +9,22 @@
 <body>
 <div class="mainContent">
     <div class="header">
-        HEADER
+        Admin Startside
     </div>
 
     <div class="userOptions">
-    <div th:if="${isAdmin}">
-        <a th:href="@{/getCreateUser}" class="btn">Opret en ny bruger</a>
-        <br>
+
+        <a th:href="@{/getCreateUser}" class="btn">Opret ny bruger</a>
         <form th:action="@{/getShowUserPage}" method="post">
             <input type="text" name="usernameBox" id="usernameBox" placeholder="indtast navn på den bruger du vil vise">
-            <button type="submit">find bruger</button>
+            <button type="submit">Find bruger</button>
         </form>
-    </div>
+
     </div>
 
     <div class="notifications">
         <p th:if="${message}" th:text="${message}"></p>
+        Notifikationer
     </div>
 
 </div>

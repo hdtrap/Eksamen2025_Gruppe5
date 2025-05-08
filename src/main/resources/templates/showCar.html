@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>showCar</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/viewPage.css" th:href="@{/viewPage.css}">
 </head>
 <body>
-<h2>Information</h2>
-<h1> <span th:text="${lease.customerName}"></span></h1>
+<div class="mainContent">
+<div class="header">Vis bil</div>
 
-<p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
-<p>Kundens navn: <span th:text="${lease.customerName}"></span></p>
-<p>Bil ID: <span th:text="${car.vehicleNumber}"></span></p>
-<p>Nummerplade: <span th:text="${car.chassisNumber}"></span></p>
-<p>Model: <span th:text="${car.model}"></span></p>
 
+<div class="userOptions">
 
 <form th:action="@{/getAddDamage}">
     <input type="hidden" th:value="${car.vehicleNumber}" id="vehicleNumber" name="vehicleNumber" placeholder="Bil Nummer">
@@ -24,13 +22,21 @@
 <form th:action="@{/getShowDamage}" method="get">
     <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
     <button type="submit">Se skader</button>
-
 </form>
-<p>Se skader</p>
+<p>Se skader</p> <!-- ???? -->
+</div>
 
+<div class="information">
+    <h2>Information</h2>
+    <h1> <span th:text="${lease.customerName}"></span></h1>
 
+    <p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
+    <p>Kundens navn: <span th:text="${lease.customerName}"></span></p>
+    <p>Bil ID: <span th:text="${car.vehicleNumber}"></span></p>
+    <p>Nummerplade: <span th:text="${car.chassisNumber}"></span></p>
+    <p>Model: <span th:text="${car.model}"></span></p>
+</div>
 
-
-
+</div>
 </body>
 </html>

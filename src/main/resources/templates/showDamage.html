@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Show Damage</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/viewPage.css" th:href="@{/viewPage.css}">
 </head>
 <body>
-<h1>Alle skader for lease id : <span th:text="${lease.leaseId}"></span></h1>
+<div class="mainContent">
+    <div class="header">Se skader</div>
 
-<div th:each="damage : ${damages}">
+        <div class="userOptions">
+            <form th:action="@{/deleteDamage}" method="post">
+                <input type="hidden" th:value="${damage.damageId}"  name="damageId" placeholder="damageId">
+                <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
+                <button type="submit">Slet skade</button>
+            </form>
+            <form th:action="@{/getEditDamage}" method="get">
+                <input type="hidden" th:value="${damage.damageId}"  name="damageId" placeholder="damageId">
+                <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
+                <button type="submit">Rediger skade</button>
+            </form>
+        </div>
 
-<div class="formContainer">
-    <p th:text="'Lease Id: ' + ${damage.leaseId}">Lease Id</p>
-    <p th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</p>
-    <p th:text="'Kategori: ' + ${damage.category}">Kategori</p>
-    <p th:text="'Skade type: ' + ${damage.damageType}">Skade type</p>
-    <p th:text="'Pris: ' + ${damage.price}">Pris</p>
+    <div class="information">
+        <h1>Alle skader for lease id : <span th:text="${lease.leaseId}"></span></h1>
+        <div th:each="damage : ${damages}">
+            <div class="formContainer">
+                <p th:text="'Lease Id: ' + ${damage.leaseId}">Lease Id</p>
+                <p th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</p>
+                <p th:text="'Kategori: ' + ${damage.category}">Kategori</p>
+                <p th:text="'Skade type: ' + ${damage.damageType}">Skade type</p>
+                <p th:text="'Pris: ' + ${damage.price}">Pris</p>
+            </div>
+        </div>
+    </div>
 
-    <form th:action="@{/deleteDamage}" method="post">
-    <input type="hidden" th:value="${damage.damageId}"  name="damageId" placeholder="damageId">
-    <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-    <button type="submit">Slet skade</button>
-    </form>
-    <form th:action="@{/getEditDamage}" method="get">
-    <input type="hidden" th:value="${damage.damageId}"  name="damageId" placeholder="damageId">
-    <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-    <button type="submit">Rediger skade</button>
-    </form>
 </div>
-</div>
-
-
-
-
 </body>
 </html>

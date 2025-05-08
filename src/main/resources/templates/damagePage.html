@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Skade og udredning</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
 </head>
 <body>
-
-    <p th:if="${message}" th:text="${message}"></p>
-    <p>Dette er skade siden</p>
-
-    <form th:action="@{/showLease}"  method=get>
-        <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID">
-        <button type="submit">Find lease</button>
-    </form>
-
-
+<div class="mainContent">
+    <div class="header">
+        Skaderegistrering
+    </div>
+    <div class="userOptions">
+        <div class="formContainer">
+            <form th:action="@{/showLease}"  method=get>
+                <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID">
+                <button type="submit">Find lease</button>
+            </form>
+        </div>
+    </div>
+    <div class="notifications">
+        <p th:if="${message}" th:text="${message}"></p>
+        <p>Dette er skade siden</p>
+    </div>
+</div>
 </body>
 </html>

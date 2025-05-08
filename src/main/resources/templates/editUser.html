@@ -3,8 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Rediger bruger</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/registrationPage.css" th:href="@{/registrationPage.css}">
 </head>
 <body>
+<div class="mainContent">
+<div class="header">
+    Rediger bruger
+</div>
+
+<div class="formContainer">
 <form th:action="@{/saveUpdateUser}" method="post" class="loginForm">
     <input type="hidden" th:value="${user.getUserName()}" name="oldUserName" id="oldUserName">
     <input type="text" th:value="${user.getUserName()}" id="userName" name="userName" placeholder="Indtast dit username" required class="inputBox">
@@ -26,5 +34,7 @@
 
     <button type="submit" class="styledButton">submit</button>
 </form>
+</div>
+</div>
 </body>
 </html>

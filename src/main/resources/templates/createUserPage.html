@@ -2,11 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Opret bruger</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/registrationPage.css" th:href="@{/registrationPage.css}">
 </head>
 <body>
-Arrived at User page
+<div class="mainContent">
+<div class="header">Opret bruger</div>
 
+    <div class="formContainer">
 <p class="message" th:if="${message}" th:text="${message}" style="color: red;"></p>
 
 <form th:action="@{/saveCreateUser}" method="post" class="loginForm">
@@ -28,6 +32,7 @@ Arrived at User page
 
     <button type="submit" class="styledButton">submit</button>
 </form>
-
+    </div>
+</div>
 </body>
 </html>

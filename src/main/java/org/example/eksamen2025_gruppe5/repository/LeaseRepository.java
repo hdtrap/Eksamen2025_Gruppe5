@@ -117,5 +117,21 @@ CarRepository carRepository;
             e.printStackTrace();
         }
     }
+    public double monthlyRevenueFromActiveLeases() {
+        double revenue = 0;
+        String sql = "SELECT SUM(price_pr_month) AS total_expected_income FROM lease  WHERE start_date <= CURRENT_DATE AND end_date > CURRENT_DATE";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+                ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    revenue = resultSet.getDouble("total_expected_income");
+                }
+             } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return revenue;
+    }
 
 }

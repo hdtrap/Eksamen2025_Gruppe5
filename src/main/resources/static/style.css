@@ -45,6 +45,10 @@ html, body {
     box-sizing: border-box;
 
     outline: black solid 1px;
+
+    button {
+
+    }
 }
 
 .logo {

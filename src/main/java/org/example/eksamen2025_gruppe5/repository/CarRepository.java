@@ -31,9 +31,7 @@ public class CarRepository {
             if (resultSet.next()) {
                 car.setVehicleNumber(resultSet.getInt("vehicle_no"));
                 car.setChassisNumber(resultSet.getString("chassis_no"));
-                car.setBrand(resultSet.getString("brand"));
-                car.setModel(resultSet.getString("model"));
-                car.setProductionYear(resultSet.getInt("production_year"));
+                car.setModel(resultSet.getString("car_model"));
                 car.setPrice(resultSet.getDouble("price"));
                 //Mangler Fuel
                 //Mangler Available

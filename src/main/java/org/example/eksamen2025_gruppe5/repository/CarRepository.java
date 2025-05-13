@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @Repository
 public class CarRepository {
@@ -41,6 +42,32 @@ public class CarRepository {
         }
 
         return car;
+    }
+
+    public ArrayList<Car> getAvailableCars() {
+        ArrayList<Car> availableCars = new ArrayList<>();
+
+        String sqlRequest = "SELECT * FROM cars WHERE is_available = true";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlRequest);
+             ResultSet resultSet = statement.executeQuery();) {
+
+            while (resultSet.next()) {
+                Car car = new Car();
+                car.setVehicleNumber(resultSet.getInt("vehicle_no"));
+                car.setChassisNumber(resultSet.getString("chassis_no"));
+                car.setModel(resultSet.getString("car_model"));
+                car.setPrice(resultSet.getDouble("price"));
+                //Mangler Fuel
+                //Mangler Available
+                availableCars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return availableCars;
     }
 }
 

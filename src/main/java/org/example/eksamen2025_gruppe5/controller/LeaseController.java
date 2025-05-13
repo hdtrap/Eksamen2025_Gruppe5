@@ -1,13 +1,12 @@
 package org.example.eksamen2025_gruppe5.controller;
 
 import org.example.eksamen2025_gruppe5.exceptions.LeaseNotFoundException;
-import org.example.eksamen2025_gruppe5.model.Car;
-import org.example.eksamen2025_gruppe5.model.Lease;
-import org.example.eksamen2025_gruppe5.model.TypeOfLease;
-import org.example.eksamen2025_gruppe5.model.User;
+import org.example.eksamen2025_gruppe5.model.*;
+import org.example.eksamen2025_gruppe5.repository.AddOnTypeRepository;
 import org.example.eksamen2025_gruppe5.repository.CarRepository;
 import org.example.eksamen2025_gruppe5.repository.LeaseRepository;
 import org.example.eksamen2025_gruppe5.repository.UserRepository;
+import org.example.eksamen2025_gruppe5.service.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,20 +17,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class LeaseController {
 
     @Autowired
     LeaseRepository leaseRepository;
+
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
     CarRepository carRepository;
 
+    @Autowired
+    AddOnTypeRepository addOnTypeRepository;
+
+    @Autowired
+    LeaseService leaseService;
+
     @GetMapping("/createLease")
-    public String createLease(){
+    public String createLease(Model model){
+        ArrayList<AddOnType> addOnTypes = addOnTypeRepository.getAllAddOnTypes();
+        model.addAttribute("addOnTypes", addOnTypes);
         return "createLease";
     }
 
@@ -44,12 +54,17 @@ public class LeaseController {
                                   @RequestParam("customer_number") String customerNumber,
                                   @RequestParam("price_to_start") Double priceToStart,
                                   @RequestParam("price_pr_month") Double pricePrMonth,
-                                  @RequestParam("type_of_lease") String typeOfLease){
+                                  @RequestParam("type_of_lease") String typeOfLease,
+                                  @RequestParam("addons") ArrayList<Integer> selectedAddOns){
 
             Car car = carRepository.findCarByVehicleNumber(vehicleNo);
 
             Lease lease = new Lease(car, startDate, endDate, customerName, customerEmail, customerNumber, priceToStart, pricePrMonth, typeOfLease);
             leaseRepository.saveLease(lease);
+
+            if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
+                leaseService.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
+            }
         return "redirect:/dataregPage";
     }
 
@@ -82,7 +97,7 @@ public class LeaseController {
             e.printStackTrace();
             System.out.println("Lease ikke fundet " + leaseId);
             redirectAttributes.addFlashAttribute("message", "Kunne ikke finde en lejeaftale med id "+ leaseId +".");
-            return "redirect:/dataregPage";
+            return "redirect:/dataregPage"; // skal redirect til skadeside hvis isRepair
         }
 
     }

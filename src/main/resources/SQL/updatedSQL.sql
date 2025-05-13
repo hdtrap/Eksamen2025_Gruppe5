@@ -86,10 +86,10 @@ INSERT INTO car_models (brand, model, production_year, fuel_type) VALUES
                   ('BMW', 'M4', 2024, 'Benzin');
 
 INSERT INTO addon_types (type, description, price) VALUES
-                  ('Dækservice', 'Dæk skiftet på halvårlig basis, nemt og hurtigt ved dit hjem', 300),
-                  ('Ekstra forrude', 'Eftermonteret forrude uden på bilens forrude. Det er ret smart faktisk', 200),
-                  ('Kølerhjelm i guld', 'Du har mange penge, du vil gerne have en tung bil, vi har hvad du vil have', 1500),
-                  ('Offroad pakke', 'Al forsikring og udstyr nødvendigt for at have gode offroad oplevelser', 699.95);
+                  ('Afleveringsforsikring', 'Tilvalg af afleveringsforsikring er betinget af en aftale på minimum 12 måneder.', 119),
+                  ('Lav selvrisiko', 'Tilvalg af lav selvrisiko er betinget af at kunden minimum er fyldt 30 år.', 89),
+                  ('Dækleje', 'Vinterdæk inkl. montering kan tilkøbes, da bilen leveres på sommerdæk. Straks efter bestillingen kontaktes kunden af vores dækservicepartner Rubberduck, som vil foretage monteringen på deres hjemme- eller arbejdsadresse. Alle øvrige dækskift samt opbevaring af sommer- og vinterdæk i perioden er inkluderet i prisen. Vinterdæk monteres på bilens eksisterende fælge, men bilen skal tilbageleveres på sommerdæk. Prisen gælder ved binding i +12 måneder.', 275),
+                  ('Viking - Vejhjælp', 'I samarbejde med Viking tilbyder vi vejhjælp til kun 49 kr. pr. måned.', 49);
 
 
 -- Insert Users

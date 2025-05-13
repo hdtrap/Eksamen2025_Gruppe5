@@ -1,6 +1,5 @@
 package org.example.eksamen2025_gruppe5.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class Lease {

@@ -7,4 +7,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 class Eksamen2025Gruppe5ApplicationTests {
 
 
+
 }

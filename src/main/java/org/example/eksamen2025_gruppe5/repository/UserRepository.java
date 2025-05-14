@@ -5,6 +5,7 @@ import org.example.eksamen2025_gruppe5.exceptions.PassWordMismatchException;
 import org.example.eksamen2025_gruppe5.exceptions.UserNameTakenException;
 import org.example.eksamen2025_gruppe5.exceptions.UserNotFoundException;
 import org.example.eksamen2025_gruppe5.model.User;
+import org.example.eksamen2025_gruppe5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.SQL;
 import org.springframework.stereotype.Repository;
@@ -20,13 +21,19 @@ import java.util.HashMap;
 @Repository
 public class UserRepository {
 
-    @Autowired
-    DataSource dataSource;
+    private final DataSource dataSource;
 
     HashMap<String, User> loggedInUsers = new HashMap<>();
 
     @Autowired
     HttpSession httpSession;
+
+    @Autowired
+    UserService userService;
+
+    public UserRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     public void saveUser(User createdUser) throws SQLException{
         System.out.println("AT this point the user will be saved");
@@ -114,6 +121,7 @@ public class UserRepository {
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             preparedStatement.setString(1, firstLetters + "____");
 
             //Add all users with those first letters to a resultset
@@ -136,8 +144,8 @@ public class UserRepository {
                 //Check if the username is of such a type, that the last four symbols are numbers
                 if (isUsernameUserXXXX(username)){
                     //Then, seperate those numbers and find the highest number
-                    listOfNumbers.add(Integer.parseInt(username.substring(5,8)));
-                    System.out.println("Tal fundet: " + username.substring(5,8));
+                    listOfNumbers.add(Integer.parseInt(username.substring(4,8)));
+                    System.out.println("Tal fundet: " + username.substring(4,8));
                 }
             }
 
@@ -164,9 +172,11 @@ public class UserRepository {
         }
     }
 
-    boolean isUsernameUserXXXX(String username){
-        System.out.println("Username follows format? Answer: " + username.matches("[a-z,A-Z]{4}[0-9]{4}"));
-        return username.matches("[a-z,A-Z]{4}[0-9]{4}");
+
+
+    public boolean isUsernameUserXXXX(String username){
+        System.out.println("Username follows format? Answer: " + username.matches("[a-zA-Z]{4}[0-9]{4}"));
+        return username.matches("[a-zA-Z]{4}[0-9]{4}");
     }
 
     public User findUserByUserName(String username) throws UserNotFoundException{

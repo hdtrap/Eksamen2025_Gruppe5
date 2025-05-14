@@ -31,13 +31,13 @@
 <div class="mainContent">
 
         <div class="userOptions">
-            <form th:action="@{/deleteDamage}" method="post">
+            <form th:action="@{/showCar}" method="get">
                 <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-                <button type="submit">Slet skade</button>
+                <button type="submit">Tilbage</button>
             </form>
-            <form th:action="@{/getEditDamage}" method="get">
+            <form th:action="@{/getPrintDamageReport}" method="get">
                 <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-                <button type="submit">Rediger skade</button>
+                <button type="submit">Print skadesrapport</button>
             </form>
         </div>
 

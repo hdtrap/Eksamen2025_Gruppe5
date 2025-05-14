@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>printDamageReport</title>
+</head>
+<body>
+
+
+<div  th:if="${leaseId != null}">
+    <form th:action="@{/printDamageReport}" method="get">
+        <input type="hidden" th:value="${leaseId}" name="leaseId" placeholder="Lease Id">
+        <button type="submit">Lav skadesrapport</button>
+    </form>
+    <form th:action="@{/getShowDamage}" method="get">
+        <input type="hidden" th:value="${leaseId}" name="leaseId" placeholder="Lease Id">
+        <button type="submit">Tilbage til skadesiden</button>
+    </form>
+    <div th:if="${damages != null}">
+        <p>Din skader ser her ud for lease id : <span th:text="${leaseId}"></span></p>
+        <div th:each="damage : ${damages}">
+            <div class="formContainer">
+                <p>----------------------------------------------</p>
+                <p th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</p>
+                <p th:text="'Kategori: ' + ${damage.category}">Kategori</p>
+                <p th:text="'Skade type: ' + ${damage.damageType}">Skade type</p>
+                <p th:text="'Pris: ' + ${damage.price}">Pris</p>
+            </div>
+        </div>
+    </div>
+    <div th:if="${damages == null}">
+        <p>Filen er gemt i systemet</p>
+    </div>
+</div>
+</body>
+</html>

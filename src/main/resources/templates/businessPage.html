@@ -32,8 +32,14 @@
 <div class="mainContent">
     <div class="userOptions">
         <div class="allKpi">
-            <div class="kpi">
+            <div class="kpi"> <!-- Number of leased cars -->
+                <span th:text="${noOfLeasedCars}"></span>
+            </div>
+            <div class="kpi"> <!-- Monthly revenue -->
                 <span th:text="${revenueFromRentedCars}"></span>
+            </div>
+            <div class="kpi"> <!-- Value of leased cars -->
+                <span th:text="${priceOfLeasedCars}"></span>
             </div>
         </div>
     </div>

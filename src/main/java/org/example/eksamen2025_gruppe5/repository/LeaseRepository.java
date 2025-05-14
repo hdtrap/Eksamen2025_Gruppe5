@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 
 @Repository
 public class LeaseRepository {
@@ -25,7 +26,7 @@ CarRepository carRepository;
         String sqlRequest = "INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlRequest);){
+             PreparedStatement statement = connection.prepareStatement(sqlRequest)){
 
             statement.setInt(1, lease.getCar().getVehicleNumber());
             statement.setDate(2, Date.valueOf(lease.getStartDate()));
@@ -44,7 +45,7 @@ CarRepository carRepository;
         }
     }
 
-    //Metode til at finde biler ved deres lease ID
+    // Metode til at finde biler ved deres lease ID
     public Lease findLeaseById(int leaseId) throws LeaseNotFoundException{
         Lease lease = new Lease();
         String sql = "SELECT * FROM leases WHERE lease_id = ?";
@@ -87,7 +88,7 @@ CarRepository carRepository;
                 " customer_email = ?, customer_number = ?, price_to_start = ?, price_pr_month = ?, type_of_lease = ? WHERE lease_id = ?";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlRequest);){
+             PreparedStatement statement = connection.prepareStatement(sqlRequest)){
 
             statement.setInt(1, lease.getCar().getVehicleNumber());
             statement.setDate(2, Date.valueOf(lease.getStartDate()));
@@ -106,6 +107,7 @@ CarRepository carRepository;
         }
     }
 
+    // Slet en lejeaftale
     public void deleteLease(int id){
         String sql = "DELETE FROM leases WHERE lease_id = ?";
 
@@ -117,6 +119,8 @@ CarRepository carRepository;
             e.printStackTrace();
         }
     }
+
+    // Få månedlig indtjening
     public double monthlyRevenueFromActiveLeases() {
         double revenue = 0;
         String sql = "SELECT SUM(price_pr_month) AS total_expected_income FROM leases WHERE start_date <= CURRENT_DATE AND end_date > CURRENT_DATE";
@@ -132,6 +136,51 @@ CarRepository carRepository;
                 e.printStackTrace();
         }
         return revenue;
+    }
+
+    // Få samlet værdig af alle udlejede biler
+
+    // Find Id på biler som er lejet ud
+    // Find samlet pris på de biler
+    public double priceOfLeasedCars() {
+        double price = 0;
+        String sql = "SELECT SUM(c.price) AS vehicle_price FROM leases l JOIN cars c ON l.vehicle_no = c.vehicle_no " +
+                "WHERE start_date <= CURRENT_DATE AND end_date > CURRENT_DATE";
+
+        // Connect to datasource
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+
+                if (resultSet.next()) {
+                    price = resultSet.getDouble("vehicle_price");
+                }
+
+             } catch (SQLException e) {
+                e.printStackTrace();
+        }
+        return price;
+    }
+
+    // Få antal biler som bliver leaset ud
+    public int noOfLeasedCars() {
+        int noOfCars = 0;
+        String sql = "SELECT COUNT(*) AS no_of_cars FROM leases WHERE start_date <= CURRENT_DATE and end_date > CURRENT_DATE";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                noOfCars = resultSet.getInt("no_of_cars");
+            }
+
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        System.out.println(noOfCars);
+        return noOfCars;
     }
 
 }

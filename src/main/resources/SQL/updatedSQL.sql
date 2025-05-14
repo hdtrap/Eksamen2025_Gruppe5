@@ -39,7 +39,7 @@ CREATE TABLE cars (
                       chassis_no VARCHAR(50) UNIQUE,
                       car_model int,
                       price DOUBLE,
-                      available BOOL,
+                      status_of_car VARCHAR(50),
     CONSTRAINT fk_carmodel_id FOREIGN KEY (car_model) REFERENCES car_models(id)
 );
 
@@ -100,12 +100,12 @@ INSERT INTO users (username, first_name, last_name, password, role) VALUES
                   ('dade', 'Data', 'Demo', '1234', 'DATA');
 
 -- Insert Cars
-INSERT INTO cars (chassis_no, car_model, price, available) VALUES
-                 ('CHS123456789', 1, 20000.00, TRUE),      -- vehicle_no 1
-                 ('CHS987654321', 2, 35000.00, TRUE),      -- vehicle_no 2
-                 ('CHS567890123', 3, 18000.00, FALSE),     -- vehicle_no 3
-                 ('CHS112233445', 4, 22000.00, TRUE),      -- vehicle_no 4
-                 ('CHS998877665', 1, 21000.00, FALSE);     -- vehicle_no 5
+INSERT INTO cars (chassis_no, car_model, price, status_of_car) VALUES
+                 ('CHS123456789', 1, 20000.00, "AvailableToLease"),     -- vehicle_no 1
+                 ('CHS987654321', 2, 35000.00, "Leased"),               -- vehicle_no 2
+                 ('CHS567890123', 3, 18000.00, "GettingRepaired"),      -- vehicle_no 3
+                 ('CHS112233445', 4, 22000.00, "Sold"),                 -- vehicle_no 4
+                 ('CHS998877665', 1, 21000.00, "AvailableToLease");     -- vehicle_no 5
 
 -- Insert Leases
 INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES

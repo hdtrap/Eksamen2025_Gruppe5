@@ -38,6 +38,8 @@ public class LeaseController {
 
     @GetMapping("/createLease")
     public String createLease(Model model){
+        ArrayList<Car> availableCars = carRepository.getAvailableCars();
+        model.addAttribute("availableCars", availableCars);
         ArrayList<AddOnType> addOnTypes = addOnTypeRepository.getAllAddOnTypes();
         model.addAttribute("addOnTypes", addOnTypes);
         return "createLease";

@@ -1,6 +1,7 @@
 package org.example.eksamen2025_gruppe5.repository;
 
 import org.example.eksamen2025_gruppe5.model.Car;
+import org.example.eksamen2025_gruppe5.model.CarModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,9 @@ public class CarRepository {
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    CarModelRepository carModelRepository;
+
     //Finder en bil i Databasen som kan sættes på Lease objekter
     public Car findCarByVehicleNumber(int vehicleNumber) {
         System.out.println("CarRepository.findCarByVehicleNumber");
@@ -32,10 +36,11 @@ public class CarRepository {
             if (resultSet.next()) {
                 car.setVehicleNumber(resultSet.getInt("vehicle_no"));
                 car.setChassisNumber(resultSet.getString("chassis_no"));
-                car.setModel(resultSet.getString("car_model"));
-                car.setPrice(resultSet.getDouble("price"));
-                //Mangler Fuel
-                //Mangler Available
+
+                int carModelId = resultSet.getInt("car_model");
+                CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
+                car.setCarModel(carModel);
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,7 +52,7 @@ public class CarRepository {
     public ArrayList<Car> getAvailableCars() {
         ArrayList<Car> availableCars = new ArrayList<>();
 
-        String sqlRequest = "SELECT * FROM cars WHERE is_available = true";
+        String sqlRequest = "SELECT * FROM cars WHERE status_of_car = 'AvailableToLease'";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sqlRequest);
@@ -57,10 +62,12 @@ public class CarRepository {
                 Car car = new Car();
                 car.setVehicleNumber(resultSet.getInt("vehicle_no"));
                 car.setChassisNumber(resultSet.getString("chassis_no"));
-                car.setModel(resultSet.getString("car_model"));
                 car.setPrice(resultSet.getDouble("price"));
-                //Mangler Fuel
-                //Mangler Available
+
+                int carModelId = resultSet.getInt("car_model");
+                CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
+                car.setCarModel(carModel);
+
                 availableCars.add(car);
             }
         } catch (SQLException e) {

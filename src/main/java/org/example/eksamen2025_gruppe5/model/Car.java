@@ -1,22 +1,12 @@
 package org.example.eksamen2025_gruppe5.model;
-enum Fuel {diesel,benzin,electric,hybrid}
-public class Car {
 
+public class Car {
     private int vehicleNumber;
     private String chassisNumber;
-    private String brand;
-    private String model;
-    private int productionYear;
     private double price;
-    private Fuel fuel;
+    private CarModel carModel;
+    private StatusOfCar statusOfCar;
 
-    public String getBrand() {
-        return brand;
-    }
-
-    public int getProductionYear() {
-        return productionYear;
-    }
 
     public int getVehicleNumber() {
         return vehicleNumber;
@@ -26,24 +16,8 @@ public class Car {
         return chassisNumber;
     }
 
-    public String getModel() {
-        return model;
-    }
-
     public double getPrice() {
         return price;
-    }
-
-    public Fuel getFuel() {
-        return fuel;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public void setProductionYear(int productionYear) {
-        this.productionYear = productionYear;
     }
 
     public void setVehicleNumber(int vehicleNumber) {
@@ -54,16 +28,25 @@ public class Car {
         this.chassisNumber = chassisNumber;
     }
 
-    public void setModel(String model) {
-        this.model = model;
-    }
 
     public void setPrice(double price) {
         this.price = price;
     }
 
-    public void setFuel(Fuel fuel) {
-        this.fuel = fuel;
+    public CarModel getCarModel() {
+        return carModel;
+    }
+
+    public void setCarModel(CarModel carModel) {
+        this.carModel = carModel;
+    }
+
+    public StatusOfCar getStatusOfCar() {
+        return statusOfCar;
+    }
+
+    public void setStatusOfCar(StatusOfCar statusOfCar) {
+        this.statusOfCar = statusOfCar;
     }
 }
 

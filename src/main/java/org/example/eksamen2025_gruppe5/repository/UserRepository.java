@@ -28,9 +28,6 @@ public class UserRepository {
     @Autowired
     HttpSession httpSession;
 
-    @Autowired
-    UserService userService;
-
     public UserRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }

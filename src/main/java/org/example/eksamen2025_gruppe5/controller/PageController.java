@@ -33,7 +33,7 @@ public class PageController {
         }
         if(userRepository.getcurrentUser().isBusiness()){
             model.addAttribute("isBusiness", "this user is business");
-            return "businessPage";
+            return "redirect:/businessPage";
         }
         else{
             model.addAttribute("message", "Could not log in: User has no usertype");

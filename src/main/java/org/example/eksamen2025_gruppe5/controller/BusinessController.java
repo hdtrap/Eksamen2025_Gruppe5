@@ -14,8 +14,7 @@ public class BusinessController {
 
     @GetMapping("/businessPage")
         public String businessPage(Model model) {
-        model.addAttribute("revenueFromRentedCars", leaseRepository.monthlyRevenueFromActiveLeases());
-        System.out.println("revenueFromRentedCars");
+        model.addAttribute("revenueFromRentedCars", "Månedlig indtjening fra udlejede biler: " + leaseRepository.monthlyRevenueFromActiveLeases());
 
         return "businessPage";
         }

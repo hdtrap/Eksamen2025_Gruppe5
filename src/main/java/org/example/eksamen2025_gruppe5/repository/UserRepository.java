@@ -7,7 +7,6 @@ import org.example.eksamen2025_gruppe5.exceptions.UserNotFoundException;
 import org.example.eksamen2025_gruppe5.model.User;
 import org.example.eksamen2025_gruppe5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.relational.core.sql.SQL;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;

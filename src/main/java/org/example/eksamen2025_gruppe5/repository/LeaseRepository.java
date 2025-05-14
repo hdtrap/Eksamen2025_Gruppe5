@@ -6,7 +6,6 @@ import org.example.eksamen2025_gruppe5.model.Lease;
 import org.example.eksamen2025_gruppe5.model.TypeOfLease;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
 import javax.sql.DataSource;
 import java.sql.*;

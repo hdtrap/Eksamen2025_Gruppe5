@@ -1,9 +1,6 @@
 package org.example.eksamen2025_gruppe5.model;
 
 
-import org.example.eksamen2025_gruppe5.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 

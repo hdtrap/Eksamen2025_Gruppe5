@@ -55,6 +55,16 @@ html, body {
     padding: 0;
 }
 
+/*TEXTSTYLES*/
+.boldText{
+    font-weight: 700;
+}
+
+.lightText{
+    font-weight: 300;
+    color: gray;
+}
+/*TEXTSTYLES*/
 
 
 .mainContent {
@@ -68,9 +78,10 @@ html, body {
     width: 100vw;
     height: 100vh;
 
-    outline: green solid 1px;
 }
 
+
+/*HEADER*/
 .header {
     /*Text styling*/
     font-size: 20px;
@@ -85,6 +96,8 @@ html, body {
     width: 100%;
     height: 50px;
     min-width: 800px;
+    background-color: white;
+    box-shadow: 0px 0px 20px rgba(0,0,0,.2);
 
     padding: 3dvh;
 }
@@ -123,6 +136,15 @@ html, body {
 
     }
 }
+
+.logo {
+    height: 100%;
+    width: auto;
+}
+/*HEADER*/
+
+
+/*BUTTONS*/
 .textButton{
     transition: color .2s;
 }
@@ -131,23 +153,21 @@ html, body {
     color: #82cde6;
 }
 
-.logo {
-    height: 100%;
-    width: auto;
+.boxButton{
+
 }
+
+.boxButton:hover{
+
+}
+/*BUTTONS*/
+
 
 button, label, .btn {
     cursor: pointer;
 }
 
-.boldText{
-    font-weight: 700;
-}
 
-.lightText{
-    font-weight: 300;
-    color: gray;
-}
 
 .notification{
 

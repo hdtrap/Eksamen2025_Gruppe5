@@ -1,4 +1,4 @@
-form{
+.registerForm{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,8 +9,6 @@ form{
     height: 100%;
 
     outline: yellow solid 1px;
-
-    font-size: 30px;
 }
 
 .formContainer {
@@ -21,6 +19,7 @@ form{
     position: relative;
     margin: 30px;
     max-height: 70vh;
+    width: 400px;
 
     padding: 10px;
 

@@ -20,9 +20,9 @@
             </form>
         </div>
         <div class="headerOption">
-            <form th:action="@{/logOutUser}" method="get">
-                <label for="getUserPageButton" class="textButton">Log ud</label>
-                <button type="submit" hidden id="logOutuserButton">Startside</button>
+            <form th:action="@{/logOutUser}" method="post">
+                <label for="logOutuserButton" class="textButton">Log ud</label>
+                <button type="submit" hidden id="logOutuserButton">Log ud</button>
             </form>
         </div><div class="headerOption">
     </div>
@@ -31,7 +31,7 @@
 
 <div class="mainContent">
     <div class="formContainer">
-        <form th:action="@{/saveCreateLease}" method="post" class="createForm">
+        <form th:action="@{/saveCreateLease}" method="post" class="registerForm">
             <div class="form-group">
                 <label for="vehicle_no">Vogn Nummer:</label>
                 <select id="vehicle_no" name="vehicle_no" placeholder="Vælg bil" required>

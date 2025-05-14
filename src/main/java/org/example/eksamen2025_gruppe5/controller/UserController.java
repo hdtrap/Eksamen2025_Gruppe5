@@ -83,6 +83,7 @@ public class UserController {
                                RedirectAttributes redirectAttributes){
         if(userRepository.LogInUserSuccess(userName, passWord)){
             redirectAttributes.addFlashAttribute("message", "hej " + userRepository.getcurrentUser().getUserName());
+            System.out.println("User is logging in: " + userRepository.getcurrentUser().getUserName());
             return "redirect:/getUserPage";
         }
         else {
@@ -90,7 +91,12 @@ public class UserController {
         }
     }
 
-
+    @PostMapping("/logOutUser")
+    public String logOutUser(){
+        System.out.println("User is logging out: " + userRepository.getcurrentUser().getUserName());
+        userRepository.logOutSession();
+        return "redirect:/";
+    }
 
     @PostMapping("/getShowUserPage")
     public String getShowUserPage(

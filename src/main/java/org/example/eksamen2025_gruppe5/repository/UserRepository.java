@@ -81,6 +81,10 @@ public class UserRepository {
         }
     }
 
+    public void logOutSession(){
+        loggedInUsers.remove(httpSession.getId());
+    }
+
     public User getcurrentUser(){
         return loggedInUsers.get(httpSession.getId());
     }

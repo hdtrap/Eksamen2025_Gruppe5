@@ -7,20 +7,29 @@
     <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
 </head>
 <body>
-<div class="mainContent">
-    <div class="header">
-        <div class="headerObject">
-            <img th:src="@{'/img/logo.png'}" src="../static/img/logo.png" alt="Logo" class="logo">
-        </div>
-        <div class="headerObject">
+<div class="header">
+    <div class="logoBox">
+           <img th:src="@{'/img/logo.png'}" src="../static/img/logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="headerOptions">
+        <div class="headerOption">
             <form th:action="@{/getUserPage}" method="get">
-                <button type="submit">Startside</button>
+                <label for="getUserPageButton" class="textButton">Startside</label>
+                <button type="submit" hidden id="getUserPageButton">Startside</button>
             </form>
         </div>
-        <div class="headerObject">
-            Log ud
-        </div>
+        <div class="headerOption">
+            <form th:action="@{/logOutUser}" method="get">
+                <label for="getUserPageButton" class="textButton">Log ud</label>
+                <button type="submit" hidden id="logOutuserButton">Startside</button>
+            </form>
+        </div><div class="headerOption">
     </div>
+    </div>
+</div>
+
+<div class="mainContent">
     <div class="userOptions">
 
         <a th:href="@{/getCreateUser}" class="btn">Opret ny bruger</a>

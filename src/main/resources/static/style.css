@@ -1,13 +1,61 @@
 :root {
-    font-family: Arial;
+    font-family: montserrat, sans-serif;
 
     --btnColor: blue;
 }
+
+/* FONTS */
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/Montserrat-Italic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/Montserrat-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/Montserrat-Black.ttf') format('truetype');
+    font-weight: 1000;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'montserrat';
+    src: url('/fonts/Montserrat-BoldItalic.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+}
+/*FONTS*/
+
+
 html, body {
 /* html and body apparently has build-in margin and/or padding */
     margin: 0;
     padding: 0;
 }
+
+
 
 .mainContent {
     display: flex;
@@ -24,31 +72,63 @@ html, body {
 }
 
 .header {
+    /*Text styling*/
+    font-size: 20px;
+    font-weight: 700;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
+    justify-content: space-between;
+    align-items: center;
     top: 0;
     left: 0;
     width: 100%;
-    height: 12dvh;
+    height: 50px;
+    min-width: 800px;
 
-
+    padding: 3dvh;
 }
-.headerObject {
+
+.headerOptions{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding-right: 5%;
+}
+
+.logoBox{
+    width: 300px;
+    display: flex;
+    align-items: center;
+
+
+    img{
+        width: 100%;
+    }
+}
+
+.headerOption {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 33.3%;
+    width: auto;
+    margin-left: 5%;
+    cursor: pointer;
 
     box-sizing: border-box;
-
-    outline: black solid 1px;
 
     button {
 
     }
+}
+.textButton{
+    transition: color .2s;
+}
+
+.textButton:hover{
+    color: #82cde6;
 }
 
 .logo {
@@ -58,4 +138,25 @@ html, body {
 
 button, label, .btn {
     cursor: pointer;
+}
+
+.boldText{
+    font-weight: 700;
+}
+
+.lightText{
+    font-weight: 300;
+    color: gray;
+}
+
+.notification{
+
+}
+
+.positive{
+    background-color: green;
+}
+
+.negative{
+    background-color: red;
 }

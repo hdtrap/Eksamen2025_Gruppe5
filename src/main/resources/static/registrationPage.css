@@ -1,20 +1,16 @@
 form{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: relative;
-    height: auto;
-    box-sizing: border-box;
 
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-y: auto;
+    width: auto;
+    height: 100%;
 
     outline: yellow solid 1px;
 
-    label, input, select {
-        font-size: 5dvh;
-    }
+    font-size: 30px;
 }
 
 .formContainer {
@@ -23,12 +19,10 @@ form{
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 88dvh;
-    box-sizing: border-box;
+    margin: 30px;
+    max-height: 70vh;
 
-    padding: 2%;
-
-
+    padding: 10px;
 
     outline: red solid 1px;
 }

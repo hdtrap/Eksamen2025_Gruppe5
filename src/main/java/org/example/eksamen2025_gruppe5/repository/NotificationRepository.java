@@ -32,7 +32,7 @@ public class NotificationRepository {
         //First, look through the database to find the licenseplates for cars, that have pending damages
         //Join the damages table to the car table on LeaseID
 
-        String sql = "SELECT DISTINCT chassis_no FROM damages JOIN leases ON damages.lease_id = leases.lease_id JOIN cars ON leases.vehicle_no = cars.vehicle_no;";
+        String sql = "SELECT DISTINCT cars.chassis_no, leases.lease_id FROM damages JOIN leases ON damages.lease_id = leases.lease_id JOIN cars ON leases.vehicle_no = cars.vehicle_no;";
 
         try(Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
@@ -40,7 +40,7 @@ public class NotificationRepository {
             ResultSet res = preparedStatement.executeQuery();
 
             while(res.next()){
-                Notification notification = new Notification("negative", "Bil med stelnummer: " + res.getString("chassis_no") + " har skader som ikke er udbedrede endnu.");
+                Notification notification = new Notification("negative", "Bil med stelnummer: " + res.getString("chassis_no") + " har skader som ikke er udbedrede endnu.\n Lease ID = "+res.getString("lease_id"));
                 listToReturn.add(notification);
             }
         }

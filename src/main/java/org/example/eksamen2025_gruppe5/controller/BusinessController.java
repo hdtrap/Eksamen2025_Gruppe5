@@ -23,6 +23,7 @@ public class BusinessController {
         model.addAttribute("revenueFromRentedCars", "Månedlig indtjening fra udlejede biler: " + leaseRepository.monthlyRevenueFromActiveLeases() + " DKK");
         model.addAttribute("noOfLeasedCars", "Antal udlejede biler: " + leaseRepository.noOfLeasedCars());
         model.addAttribute("priceOfLeasedCars", "Samlet værdi af udlejede biler: " + leaseRepository.priceOfLeasedCars() +" DKK");
+        model.addAttribute("averageDamageSumPerLease", "Gennemsnitlig skadessum per lease: " + leaseRepository.avgDamageCost() + " DKK");
         return "businessPage";
         }
 

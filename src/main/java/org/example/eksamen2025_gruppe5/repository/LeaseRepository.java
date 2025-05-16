@@ -153,6 +153,8 @@ CarRepository carRepository;
     // Find samlet pris på de biler
     public double priceOfLeasedCars() {
         double price = 0;
+
+        // Could say cars.price and not make references for the tables (not say leases l and cars c)
         String sql = "SELECT SUM(c.price) AS vehicle_price FROM leases l JOIN cars c ON l.vehicle_no = c.vehicle_no " +
                 "WHERE start_date <= CURRENT_DATE AND end_date > CURRENT_DATE";
 
@@ -190,6 +192,28 @@ CarRepository carRepository;
         }
         System.out.println(noOfCars);
         return noOfCars;
+    }
+
+    //
+    public double avgDamageCost() {
+        double avgDamage = 0;
+
+        // Gets sum of damage.price divided by number of leases
+        String sql = "SELECT SUM(d.price) / COUNT(l.lease_id) AS avg_damage_cost " +
+                "FROM leases l LEFT JOIN damages d ON l.lease_id = d.lease_id WHERE l.fully_processed = 1";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                avgDamage = resultSet.getInt("avg_damage_cost");
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return avgDamage;
     }
 
 }

@@ -8,6 +8,8 @@ public class Damage {
     private String damageType;
     private double price;
     private int category;
+    private boolean isPaid;
+    private boolean isFixed;
 
     public Damage(int leaseId, String damageType, int category, double price) {
         this.leaseId = leaseId;
@@ -21,6 +23,22 @@ public class Damage {
         this.damageType = damageType;
         this.price = price;
         this.category = category;
+    }
+
+    public Damage(int damageId,int leaseId, String damageType, int category, double price, boolean isPaid, boolean isFixed) {
+        this.damageId = damageId;
+        this.leaseId = leaseId;
+        this.damageType = damageType;
+        this.price = price;
+        this.category = category;
+        this.isPaid = isPaid;
+        this.isFixed = isFixed;
+    }
+    public boolean isPaid() {
+        return isPaid;
+    }
+    public boolean isFixed() {
+        return isFixed;
     }
 
     public int getDamageId() {
@@ -41,6 +59,12 @@ public class Damage {
 
     public int getCategory() {
         return category;
+    }
+    public void setPaid(boolean paid) {
+        this.isPaid = paid;
+    }
+    public void setFixed(boolean fixed) {
+        this.isFixed = fixed;
     }
 
     public void setDamageId(int damageId) {

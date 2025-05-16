@@ -176,5 +176,34 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
         }
     return "printDamageReport";
     }
+
+    @GetMapping("/getFixDamage")
+    public String getFixDamage(@RequestParam("leaseId") int leaseId, Model model){
+
+
+        model.addAttribute("leaseId", leaseId);
+        ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
+        model.addAttribute("damages", damages);
+
+
+        return "fixDamage";
+    }
+    @PostMapping("/fixDamage")
+    public String fixDamage(@RequestParam("leaseId") int leaseId,
+                            @RequestParam("damageId") int damageID,
+                            @RequestParam("isFixed") boolean isFixed, Model model){
+        Damage damage = damageRepository.getDamageWithDamageId(damageID);
+        model.addAttribute("damage", damage);
+
+        boolean newFixedBoolean = !isFixed;
+
+        damageRepository.fixDamage(newFixedBoolean, damageID);
+        model.addAttribute("leaseId", leaseId);
+        ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
+        model.addAttribute("damages", damages);
+
+        return "fixDamage";
+    }
+
 }
 

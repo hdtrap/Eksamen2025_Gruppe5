@@ -59,8 +59,6 @@ public class DamageRepository {
             statement.executeUpdate();
         } catch (SQLException e) {
 
-
-
             e.printStackTrace();
         }
 
@@ -80,8 +78,10 @@ public class DamageRepository {
             String damageType = resultSet.getString("damage_type");
             int category = resultSet.getInt("category");
             double price = resultSet.getDouble("price");
+            boolean isPaid = resultSet.getBoolean("isPaid");
+            boolean isFixed = resultSet.getBoolean("isFixed");
 
-            Damage damage = new Damage(damageId, leaseId, damageType, category, price);
+            Damage damage = new Damage(damageId, leaseId, damageType, category, price, isPaid, isFixed);
             damages.add(damage);
         }
         } catch (SQLException e) {
@@ -113,6 +113,20 @@ public class DamageRepository {
             e.printStackTrace();
         }
         return damage;
+    }
+    public void fixDamage(boolean isFixed, int damage_id){
+        String sql = "UPDATE damages SET isFixed = ? WHERE damage_id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            System.out.println("der sker noget i fix damage");
+            statement.setBoolean(1, isFixed);
+            statement.setInt(2, damage_id);
+            System.out.println("damaged fixed");
+            statement.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
     }
 
 

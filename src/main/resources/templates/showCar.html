@@ -25,6 +25,10 @@
     <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
     <button type="submit">Se skader</button>
 </form>
+    <form th:action="@{/getFixDamage}" method="get">
+        <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
+        <button type="submit">Udbedrer skade</button>
+    </form>
 </div>
 
 <div class="information">

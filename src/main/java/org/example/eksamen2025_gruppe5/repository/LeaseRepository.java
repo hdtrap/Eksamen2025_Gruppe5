@@ -21,12 +21,12 @@ public class LeaseRepository {
 CarRepository carRepository;
 
     // Oprette en lejeaftale
-    public void saveLease(Lease lease){
+    public int saveLease(Lease lease){
         // SQL forespørgsel
         String sqlRequest = "INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlRequest)){
+             PreparedStatement statement = connection.prepareStatement(sqlRequest, Statement.RETURN_GENERATED_KEYS)){
 
             statement.setInt(1, lease.getCar().getVehicleNumber());
             statement.setDate(2, Date.valueOf(lease.getStartDate()));
@@ -40,9 +40,18 @@ CarRepository carRepository;
             statement.setBoolean(10, lease.isFullyProcessed());
 
             statement.executeUpdate();
+
+            try (ResultSet generatedId = statement.getGeneratedKeys()) {
+                if (generatedId.next()) {
+                    int leaseId = generatedId.getInt(1);
+                    lease.setLeaseId(leaseId);
+                    return leaseId;
+                }
+            }
         } catch (SQLException e){
             e.printStackTrace();
         }
+        return -1;
     }
 
     // Metode til at finde biler ved deres lease ID
@@ -144,6 +153,8 @@ CarRepository carRepository;
     // Find samlet pris på de biler
     public double priceOfLeasedCars() {
         double price = 0;
+
+        // Could say cars.price and not make references for the tables (not say leases l and cars c)
         String sql = "SELECT SUM(c.price) AS vehicle_price FROM leases l JOIN cars c ON l.vehicle_no = c.vehicle_no " +
                 "WHERE start_date <= CURRENT_DATE AND end_date > CURRENT_DATE";
 
@@ -181,6 +192,28 @@ CarRepository carRepository;
         }
         System.out.println(noOfCars);
         return noOfCars;
+    }
+
+    //
+    public double avgDamageCost() {
+        double avgDamage = 0;
+
+        // Gets sum of damage.price divided by number of leases
+        String sql = "SELECT SUM(d.price) / COUNT(l.lease_id) AS avg_damage_cost " +
+                "FROM leases l LEFT JOIN damages d ON l.lease_id = d.lease_id WHERE l.fully_processed = 1";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                avgDamage = resultSet.getInt("avg_damage_cost");
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return avgDamage;
     }
 
 }

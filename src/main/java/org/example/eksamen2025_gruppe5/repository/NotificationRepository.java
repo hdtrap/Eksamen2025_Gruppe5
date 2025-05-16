@@ -22,6 +22,7 @@ public class NotificationRepository {
     public ArrayList<Notification> getRepairNotifications(){
         ArrayList<Notification> listOfNotifications = new ArrayList<>();
 
+
         listOfNotifications.addAll(getCarNeedsRepairNotifications());
 
         return listOfNotifications;

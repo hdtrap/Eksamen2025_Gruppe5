@@ -88,32 +88,6 @@ public class UserRepository {
         return loggedInUsers.get(httpSession.getId());
     }
 
-    public String findNumberForUsername2(String firstLetters){
-
-        String sql = "SELECT COUNT(*) FROM users WHERE username LIKE ?";
-
-        try(Connection connection = dataSource.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
-            preparedStatement.setString(1, firstLetters + "%");
-
-            ResultSet res = preparedStatement.executeQuery();
-            if (res.next()) {
-                int amountOfUsers = res.getInt(1);
-
-                String lastnumbers = String.format("%04d", amountOfUsers+1);
-                return lastnumbers;
-            }
-            else{
-                return "0001";
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
-
-
-        return 0+"";
-    }
 
     public String findNumberForUsername(String firstLetters){
         String sql = "SELECT * FROM users WHERE username LIKE ?";
@@ -176,9 +150,12 @@ public class UserRepository {
             throw new UserNotLoggedInException();
         }
 
-        if (!userTypeThePageNeeds.equalsIgnoreCase(getcurrentUser().getRoleAsString())){
-            throw new WrongUserTypeException();
+        if(!getcurrentUser().isAdmin()){
+            if (!userTypeThePageNeeds.equalsIgnoreCase(getcurrentUser().getRoleAsString())){
+                throw new WrongUserTypeException();
+            }
         }
+
     }
 
     public boolean isUsernameUserXXXX(String username){

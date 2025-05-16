@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../static/businessPage.css" th:href="@{/businessPage.css}">
 </head>
 <body>
-<div th:insert="/fragments/header :: header"></div>
+<div th:insert="~{/fragments/header :: header}"></div>
 <div class="mainContent">
     <div class="userOptions">
         <div class="allKpi">
@@ -20,6 +20,9 @@
             </div>
             <div class="kpi"> <!-- Value of leased cars -->
                 <span th:text="${priceOfLeasedCars}"></span>
+            </div>
+            <div class="kpi"> <!-- Average damage sum per lease -->
+                <span th:text="${averageDamageSumPerLease}"></span>
             </div>
         </div>
     </div>

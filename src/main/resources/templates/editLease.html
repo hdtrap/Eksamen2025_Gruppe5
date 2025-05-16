@@ -55,6 +55,15 @@
             <option value="VAREBIL">Varebil</option>
         </select>
     </div>
+    <fieldset>
+        <legend>Tilvalg:</legend>
+        <div th:each="addon: ${addOnTypes}">
+            <label>
+                <input type="checkbox" name="selectedAddOns" th:value="${addon.addOnTypeId}">
+                <span th:utext="${addon.type} + ' - ' + ${addon.price} + 'kr./md. <br>Beskrivelse: ' + ${addon.description}"></span>
+            </label>
+        </div>
+    </fieldset>
     <button type="submit" class="styledButton">submit</button>
 </form>
     </div>

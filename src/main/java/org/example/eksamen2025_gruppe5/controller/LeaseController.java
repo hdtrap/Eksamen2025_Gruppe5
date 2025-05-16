@@ -118,6 +118,8 @@ public class LeaseController {
         try {
             Lease lease = leaseRepository.findLeaseById(id);
             model.addAttribute("lease", lease);
+            ArrayList<AddOnType> addOnTypes = addOnTypeRepository.getAllAddOnTypes();
+            model.addAttribute("addOnTypes", addOnTypes);
             return "editLease";
         }
         catch (LeaseNotFoundException e) {
@@ -140,6 +142,7 @@ public class LeaseController {
             @RequestParam("price_to_start") Double priceToStart,
             @RequestParam("price_pr_month") Double pricePrMonth,
             @RequestParam("type_of_lease") String typeOfLease,
+            @RequestParam("selectedAddOns") ArrayList<Integer> selectedAddOns,
             RedirectAttributes redirectAttributes){
 
         try {
@@ -154,6 +157,10 @@ public class LeaseController {
             lease.setPricePrMonth(pricePrMonth);
             lease.setTypeOfLease(TypeOfLease.valueOf(typeOfLease));
             leaseRepository.updateLease(lease);
+
+            if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
+                leaseService.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
+            }
             return "redirect:/showLease?leaseId=" + id;
         }
         catch (LeaseNotFoundException e) {

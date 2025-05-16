@@ -42,4 +42,8 @@ public class LeaseService {
             throw new RuntimeException(e);
         }
     }
+
+    public void showSelectedAddons() {
+
+    }
 }

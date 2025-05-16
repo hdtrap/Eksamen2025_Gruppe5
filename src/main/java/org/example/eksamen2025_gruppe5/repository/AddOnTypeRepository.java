@@ -27,6 +27,7 @@ public class AddOnTypeRepository {
 
             while (resultSet.next()) {
                 AddOnType addOnType = new AddOnType();
+                addOnType.setAddOnTypeId(resultSet.getInt("id"));
                 addOnType.setType(resultSet.getString("type"));
                 addOnType.setDescription(resultSet.getString("description"));
                 addOnType.setPrice(resultSet.getDouble("price"));

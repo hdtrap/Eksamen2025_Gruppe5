@@ -55,13 +55,18 @@ public class LeaseController {
                                   @RequestParam("price_to_start") Double priceToStart,
                                   @RequestParam("price_pr_month") Double pricePrMonth,
                                   @RequestParam("type_of_lease") String typeOfLease,
-                                  @RequestParam("addons") ArrayList<Integer> selectedAddOns){
+                                  @RequestParam("selectedAddOns") ArrayList<Integer> selectedAddOns,
+                                  RedirectAttributes redirectAttributes){
 
             Car car = carRepository.findCarByVehicleNumber(vehicleNo);
 
             Lease lease = new Lease(car, startDate, endDate, customerName, customerEmail, customerNumber, priceToStart, pricePrMonth, typeOfLease);
-            leaseRepository.saveLease(lease);
+            int leaseId = leaseRepository.saveLease(lease);
 
+            if (leaseId == -1) {
+                redirectAttributes.addFlashAttribute("message", "Der skete en fejl, din lejeaftale blev ikke gemt. Prøv igen.");
+                return "redirect:/dataregPage";
+            }
             if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
                 leaseService.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
             }

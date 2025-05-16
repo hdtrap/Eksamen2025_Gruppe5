@@ -21,12 +21,12 @@ public class LeaseRepository {
 CarRepository carRepository;
 
     // Oprette en lejeaftale
-    public void saveLease(Lease lease){
+    public int saveLease(Lease lease){
         // SQL forespørgsel
         String sqlRequest = "INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlRequest)){
+             PreparedStatement statement = connection.prepareStatement(sqlRequest, Statement.RETURN_GENERATED_KEYS)){
 
             statement.setInt(1, lease.getCar().getVehicleNumber());
             statement.setDate(2, Date.valueOf(lease.getStartDate()));
@@ -40,9 +40,18 @@ CarRepository carRepository;
             statement.setBoolean(10, lease.isFullyProcessed());
 
             statement.executeUpdate();
+
+            try (ResultSet generatedId = statement.getGeneratedKeys()) {
+                if (generatedId.next()) {
+                    int leaseId = generatedId.getInt(1);
+                    lease.setLeaseId(leaseId);
+                    return leaseId;
+                }
+            }
         } catch (SQLException e){
             e.printStackTrace();
         }
+        return -1;
     }
 
     // Metode til at finde biler ved deres lease ID

@@ -11,4 +11,9 @@ public class AdminController {
         return "dataregPage";
     }
 
+    @GetMapping("/adminGetRepair")
+    public String adminGetRepair(){
+        return "damagePage";
+    }
+
 }

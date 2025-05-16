@@ -1,6 +1,8 @@
 package org.example.eksamen2025_gruppe5.controller;
 
 import org.example.eksamen2025_gruppe5.exceptions.LeaseNotFoundException;
+import org.example.eksamen2025_gruppe5.exceptions.UserNotLoggedInException;
+import org.example.eksamen2025_gruppe5.exceptions.WrongUserTypeException;
 import org.example.eksamen2025_gruppe5.model.*;
 import org.example.eksamen2025_gruppe5.repository.AddOnTypeRepository;
 import org.example.eksamen2025_gruppe5.repository.CarRepository;
@@ -77,29 +79,41 @@ public class LeaseController {
     @GetMapping("/showLease")
     public String getLease(@RequestParam("leaseId") int leaseId,
                            Model model,
-                           RedirectAttributes redirectAttributes) {
+                           RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException {
+        userRepository.verifyLoggedInUser("DATA");
         System.out.println("showLease skal blive vist");
 
         try {
             Lease currentLease = leaseRepository.findLeaseById(leaseId);
             System.out.println("Fundet lease: " + currentLease);
-            User currentUser = userRepository.getcurrentUser();
 
-            if (currentUser.isDataReg()) {
-                model.addAttribute("lease", currentLease);
-                ArrayList<AddOnType> selectedAddons = leaseService.showSelectedAddons(leaseId);
-                model.addAttribute("selectedAddons", selectedAddons);
-                return "showLease";
-            }
+            model.addAttribute("lease", currentLease);
+            ArrayList<AddOnType> selectedAddons = leaseService.showSelectedAddons(leaseId);
+            model.addAttribute("selectedAddons", selectedAddons);
+            return "showLease";
 
-            System.out.println("bliver vist");
-            if (currentUser.isRepair()){
-                model.addAttribute("lease", currentLease);
-                return "redirect:/showCar?leaseId=" + currentLease.getLeaseId(); //?leaseId + currentLease.getLeaseId() sender en paramater med i url så jeg kan hente lease i CarControlleren
-            }
 
-            else redirectAttributes.addFlashAttribute("message", "Du har ikke adgang til denne side.");
-            return "redirect:/dataregPage";
+
+        }
+        catch (LeaseNotFoundException e){
+            e.printStackTrace();
+            System.out.println("Lease ikke fundet " + leaseId);
+            redirectAttributes.addFlashAttribute("message", "Kunne ikke finde en lejeaftale med id "+ leaseId +".");
+            return "redirect:/getUserPage"; // skal redirect til skadeside hvis isRepair
+        }
+
+    }
+
+    @GetMapping("/showCarWithLeaseID")
+    public String showCarWithLeaseID(@RequestParam("leaseId") int leaseId, Model model,
+                                     RedirectAttributes redirectAttributes){
+        try {
+            Lease currentLease = leaseRepository.findLeaseById(leaseId);
+            System.out.println("Fundet lease: " + currentLease);
+
+            model.addAttribute("lease", currentLease);
+            return "redirect:/showCar?leaseId=" + currentLease.getLeaseId(); //?leaseId + currentLease.getLeaseId() sender en paramater med i url så jeg kan hente lease i CarControlleren
+
         }
         catch (LeaseNotFoundException e){
             e.printStackTrace();

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:fragment="header">
+        <div class="header">
+            <div class="logoBox">
+                <img th:src="@{'/img/logo.png'}" src="../static/img/logo.png" alt="Logo" class="logo">
+            </div>
+
+            <div class="headerOptions">
+                <div class="headerOption">
+                    <form th:action="@{/getUserPage}" method="get">
+                        <label for="getUserPageButton" class="textButton">Startside</label>
+                        <button type="submit" hidden id="getUserPageButton">Startside</button>
+                    </form>
+                </div>
+                <div class="headerOption">
+                    <form th:action="@{/logOutUser}" method="post">
+                        <label for="logOutuserButton" class="textButton">Log ud</label>
+                        <button type="submit" hidden id="logOutuserButton">Startside</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

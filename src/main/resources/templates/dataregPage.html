@@ -7,30 +7,8 @@
     <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
 </head>
 <body>
-<div class="header">
-    <div class="logoBox">
-        <img th:src="@{'/img/logo.png'}" src="../static/img/logo.png" alt="Logo" class="logo">
-    </div>
-
-    <div class="headerOptions">
-        <div class="headerOption">
-            <form th:action="@{/getUserPage}" method="get">
-                <label for="getUserPageButton" class="textButton">Startside</label>
-                <button type="submit" hidden id="getUserPageButton">Startside</button>
-            </form>
-        </div>
-        <div class="headerOption">
-            <form th:action="@{/logOutUser}" method="post">
-                <label for="logOutuserButton" class="textButton">Log ud</label>
-                <button type="submit" hidden id="logOutuserButton">Startside</button>
-            </form>
-        </div><div class="headerOption">
-    </div>
-    </div>
-</div>
+<div th:insert="/fragments/header :: header"></div>
 <div class="mainContent">
-    <p th:if="${message}" th:text="${message}"></p>
-
 
     <div class="userOptions">
         <a th:href="@{/createLease}" class="btn">Opret ny lease</a>
@@ -39,6 +17,7 @@
             <button type="submit">Find lease</button>
         </form>
     </div> <!-- div userOptions ends -->
+    
     <div class="notifications">
         NOTIFICATIONS
         <p th:if="${message}" th:text="${message}"></p>

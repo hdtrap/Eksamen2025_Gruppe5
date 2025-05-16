@@ -63,6 +63,7 @@ html, body {
 .lightText{
     font-weight: 300;
     color: gray;
+    font-size: 14px;
 }
 /*TEXTSTYLES*/
 
@@ -76,10 +77,38 @@ html, body {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
-
 }
 
+.userOptions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+    left: 0;
+    width: 50dvw;
+    height: 88dvh;
+    box-sizing: border-box;
+
+    outline: blue solid 1px;
+
+    button, .btn {
+        font-size: 10dvh;
+        width: 40dvw;
+        background-color: var(--btnColor);
+        outline: black solid 1px;
+
+        padding: 2%;
+    }
+    .btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        position: relative;
+        box-sizing: border-box;
+    }
+}
 
 /*HEADER*/
 .header {
@@ -131,10 +160,6 @@ html, body {
     cursor: pointer;
 
     box-sizing: border-box;
-
-    button {
-
-    }
 }
 
 .logo {
@@ -154,29 +179,133 @@ html, body {
 }
 
 .boxButton{
+    padding: 10px;
+    max-width: 150px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    border: #acacac solid 1px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    position: relative;
+    transition: .2s;
+    box-shadow: 0px 0px 0px rgba(0,0,0,.3);
 }
 
 .boxButton:hover{
-
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 0px rgb(128, 128, 128);
 }
-/*BUTTONS*/
 
 
 button, label, .btn {
     cursor: pointer;
 }
+/*BUTTONS*/
 
 
+
+
+/*Notifications Panel*/
+
+.notifications {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    right: 0;
+    width: 50dvw;
+    height: 88dvh;
+    box-sizing: border-box;
+    padding: 50px 100px 50px;
+
+    outline: red solid 1px;
+}
+
+.notificationsPanel{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid gray 1px;
+    border-radius: 3px;
+    overflow-y: auto;
+}
 
 .notification{
-
+    padding: 20px;
+    width: 80%;
+    border: black solid 1px;
+    border-radius: 3px;
+    margin-bottom: 20px;
 }
 
 .positive{
-    background-color: green;
+    background-color: #e1ffe1;
+    border: green solid 1px;
 }
 
 .negative{
-    background-color: red;
+    background-color: #ffe0e0;
+    border: red solid 1px;
 }
+/*Notifications panel*/
+
+/*FORMS*/
+form {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.registerForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    overflow-y: auto;
+    width: auto;
+    height: 100%;
+
+    outline: yellow solid 1px;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 30px;
+    max-height: 70vh;
+    width: 400px;
+
+    padding: 10px;
+
+    outline: red solid 1px;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: relative;
+
+    width: 100%;
+    margin: 1%;
+
+    outline: orange solid 1px;
+
+    label, input, select {
+        width: 50%;
+    }
+}
+/*FORMS*/

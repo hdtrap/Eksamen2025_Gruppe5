@@ -1,13 +1,12 @@
 package org.example.eksamen2025_gruppe5.repository;
 
 import jakarta.servlet.http.HttpSession;
-import org.example.eksamen2025_gruppe5.exceptions.PassWordMismatchException;
-import org.example.eksamen2025_gruppe5.exceptions.UserNameTakenException;
-import org.example.eksamen2025_gruppe5.exceptions.UserNotFoundException;
+import org.example.eksamen2025_gruppe5.exceptions.*;
 import org.example.eksamen2025_gruppe5.model.User;
 import org.example.eksamen2025_gruppe5.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -172,7 +171,15 @@ public class UserRepository {
         }
     }
 
+    public void verifyLoggedInUser(String userTypeThePageNeeds) throws UserNotLoggedInException, WrongUserTypeException, NullPointerException{
+        if (getcurrentUser() == null){
+            throw new UserNotLoggedInException();
+        }
 
+        if (!userTypeThePageNeeds.equalsIgnoreCase(getcurrentUser().getRoleAsString())){
+            throw new WrongUserTypeException();
+        }
+    }
 
     public boolean isUsernameUserXXXX(String username){
         System.out.println("Username follows format? Answer: " + username.matches("[a-zA-Z]{4}[0-9]{4}"));

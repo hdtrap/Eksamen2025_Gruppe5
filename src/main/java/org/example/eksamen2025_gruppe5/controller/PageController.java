@@ -1,5 +1,6 @@
 package org.example.eksamen2025_gruppe5.controller;
 
+import org.example.eksamen2025_gruppe5.repository.NotificationRepository;
 import org.example.eksamen2025_gruppe5.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ public class PageController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     @GetMapping("/")
     public String getLoginpage(){
@@ -29,6 +32,7 @@ public class PageController {
         }
         if(userRepository.getcurrentUser().isRepair()){
             model.addAttribute("isRepair", "this user is repair");
+            model.addAttribute("notificationList", notificationRepository.getRepairNotifications());
             return "damagePage";
         }
         if(userRepository.getcurrentUser().isBusiness()){

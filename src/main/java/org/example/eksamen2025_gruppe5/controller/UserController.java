@@ -1,8 +1,6 @@
 package org.example.eksamen2025_gruppe5.controller;
 
-import org.example.eksamen2025_gruppe5.exceptions.PassWordMismatchException;
-import org.example.eksamen2025_gruppe5.exceptions.UserNameTakenException;
-import org.example.eksamen2025_gruppe5.exceptions.UserNotFoundException;
+import org.example.eksamen2025_gruppe5.exceptions.*;
 import org.example.eksamen2025_gruppe5.model.User;
 import org.example.eksamen2025_gruppe5.repository.UserRepository;
 import org.example.eksamen2025_gruppe5.service.UserService;
@@ -26,7 +24,9 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("getCreateUser")
-    public String getCreateUserPage(Model model){
+    public String getCreateUserPage(Model model) throws UserNotLoggedInException, WrongUserTypeException{
+        userRepository.verifyLoggedInUser("SYSADMIN");
+
         if (!model.containsAttribute("userInfo")){
             System.out.println("Der er ikke noget UserInfo, så vi tilføjer en userInfo");
             model.addAttribute("userInfo", new User());
@@ -140,7 +140,10 @@ public class UserController {
     @PostMapping("/getEditUser")
     public String editUser(@RequestParam("usernameEdit") String username,
                              Model model,
-                             RedirectAttributes redirectAttributes){
+                             RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
+
+        userRepository.verifyLoggedInUser("SYSADMIN");
+
         try {
             User userForEdit = userRepository.findUserByUserName(username);
             model.addAttribute("user", userForEdit);

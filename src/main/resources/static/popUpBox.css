@@ -1,0 +1,66 @@
+.popUpBoxFull{
+    /*Positioning*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    /*Styling*/
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+
+    /*interaction*/
+    pointer-events: none;
+
+    /*Animation*/
+    transition: opacity 0.3s;
+
+    /*Content*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.popUpBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    position: fixed;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+
+    width: 25dvw;
+    height: 25dvh;
+    box-sizing: border-box;
+
+    background-color: white;
+    border-radius: 3px;
+
+    .choices{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 200px;
+
+        .textButton:hover{
+            color: red;
+        }
+    }
+}
+
+.hiddenToggle:checked + label + .popUpBoxFull{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hiddenToggle:checked + label + .popUpBoxFull .popUpBox{
+    transform: translateY(0);
+}
+
+.hiddenToggle{
+    display: none;
+}

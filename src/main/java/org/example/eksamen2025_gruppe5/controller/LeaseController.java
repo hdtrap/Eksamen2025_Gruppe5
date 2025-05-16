@@ -75,7 +75,8 @@ public class LeaseController {
 
     // Viser en lejeaftale
     @GetMapping("/showLease")
-    public String getLease(@RequestParam("leaseId") int leaseId, Model model,
+    public String getLease(@RequestParam("leaseId") int leaseId,
+                           Model model,
                            RedirectAttributes redirectAttributes) {
         System.out.println("showLease skal blive vist");
 
@@ -86,6 +87,8 @@ public class LeaseController {
 
             if (currentUser.isDataReg()) {
                 model.addAttribute("lease", currentLease);
+                ArrayList<AddOnType> selectedAddons = leaseService.showSelectedAddons(leaseId);
+                model.addAttribute("selectedAddons", selectedAddons);
                 return "showLease";
             }
 

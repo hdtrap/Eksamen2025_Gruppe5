@@ -1,11 +1,14 @@
 package org.example.eksamen2025_gruppe5.service;
 
+import org.example.eksamen2025_gruppe5.model.AddOnType;
+import org.example.eksamen2025_gruppe5.model.CarModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -17,7 +20,7 @@ public class LeaseService {
     @Autowired
     DataSource dataSource;
 
-    public int monthCalculator(LocalDate startDate, LocalDate endDate){
+    public int monthCalculator(LocalDate startDate, LocalDate endDate) {
         return Period.between(startDate, endDate).getMonths();
     }
 
@@ -43,7 +46,27 @@ public class LeaseService {
         }
     }
 
-    public void showSelectedAddons() {
+    public ArrayList<AddOnType> showSelectedAddons(int leaseId) {
+        String sqlRequest = "SELECT add_ons.id, addon_types.type, addon_types.price FROM add_ons JOIN addon_types ON add_ons.addon_type = addon_types.id WHERE add_ons.lease_id = ?";
+        ArrayList<AddOnType> selectedAddons = new ArrayList<>();
 
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlRequest)) {
+
+            statement.setInt(1, leaseId);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                AddOnType addOnType = new AddOnType();
+                addOnType.setAddOnTypeId(resultSet.getInt("id"));
+                addOnType.setType(resultSet.getString("type"));
+                addOnType.setPrice(resultSet.getDouble("price"));
+                selectedAddons.add(addOnType);
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return selectedAddons;
     }
 }

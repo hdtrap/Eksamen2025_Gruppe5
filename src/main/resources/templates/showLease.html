@@ -31,6 +31,12 @@
         <h2>Pris</h2>
         <p>Udbetaling pris: <span th:text="${lease.priceToStart}"></span>kr.</p>
         <p>Pris per måned: <span th:text="${lease.pricePrMonth}"></span>kr.</p>
+        <h2>Tilvalg</h2>
+        <div th:each="addon: ${selectedAddons}">
+            <label>
+                <span th:utext="${addon.type} + ' - ' + ${addon.price} + 'kr./md.'"></span>
+            </label>
+        </div>
     </div>
 </div>
 </div>

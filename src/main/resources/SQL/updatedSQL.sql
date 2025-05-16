@@ -75,6 +75,8 @@ CREATE TABLE damages (
                          damage_type VARCHAR(50),
                          category INT,
                          price DOUBLE,
+                         isPaid bool,
+                         isFixed bool,
                          CONSTRAINT fk_lease_id FOREIGN KEY (lease_id) REFERENCES leases(lease_id) ON DELETE CASCADE
 );
 
@@ -101,11 +103,11 @@ INSERT INTO users (username, first_name, last_name, password, role) VALUES
 
 -- Insert Cars
 INSERT INTO cars (chassis_no, car_model, price, status_of_car) VALUES
-                 ('CHS123456789', 1, 20000.00, "AvailableToLease"),     -- vehicle_no 1
-                 ('CHS987654321', 2, 35000.00, "Leased"),               -- vehicle_no 2
-                 ('CHS567890123', 3, 18000.00, "GettingRepaired"),      -- vehicle_no 3
-                 ('CHS112233445', 4, 22000.00, "Sold"),                 -- vehicle_no 4
-                 ('CHS998877665', 1, 21000.00, "AvailableToLease");     -- vehicle_no 5
+                 ('CHS123456789', 1, 20000.00, 'AvailableToLease'),     -- vehicle_no 1
+                 ('CHS987654321', 2, 35000.00, 'Leased'),               -- vehicle_no 2
+                 ('CHS567890123', 3, 18000.00, 'GettingRepaired'),      -- vehicle_no 3
+                 ('CHS112233445', 4, 22000.00, 'Sold'),                 -- vehicle_no 4
+                 ('CHS998877665', 1, 21000.00, 'AvailableToLease');     -- vehicle_no 5
 
 -- Insert Leases
 INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES

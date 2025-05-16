@@ -1,5 +1,7 @@
 package org.example.eksamen2025_gruppe5.controller;
 
+import org.example.eksamen2025_gruppe5.exceptions.UserNotLoggedInException;
+import org.example.eksamen2025_gruppe5.exceptions.WrongUserTypeException;
 import org.example.eksamen2025_gruppe5.repository.NotificationRepository;
 import org.example.eksamen2025_gruppe5.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,8 @@ public class PageController {
     }
 
     @GetMapping("/getUserPage")
-    public String getUserPage(Model model){
+    public String getUserPage(Model model) throws UserNotLoggedInException, WrongUserTypeException {
+
         if(userRepository.getcurrentUser().isAdmin()){
             model.addAttribute("isAdmin", "this user is admin");
             return "adminPage";
@@ -37,6 +40,7 @@ public class PageController {
         }
         if(userRepository.getcurrentUser().isBusiness()){
             model.addAttribute("isBusiness", "this user is business");
+            model.addAttribute("notificationList", notificationRepository.getRepairNotifications());
             return "redirect:/businessPage";
         }
         else{

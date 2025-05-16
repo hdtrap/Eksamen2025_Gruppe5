@@ -9,6 +9,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotLoggedInException.class)
     public String handleNotLoggedIn(RedirectAttributes redirectAttributes){
+        System.out.println();
         redirectAttributes.addFlashAttribute("message", "du er ikke logget ind");
         return "redirect:/";
     }

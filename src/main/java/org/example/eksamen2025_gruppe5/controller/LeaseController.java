@@ -97,7 +97,7 @@ public class LeaseController {
             e.printStackTrace();
             System.out.println("Lease ikke fundet " + leaseId);
             redirectAttributes.addFlashAttribute("message", "Kunne ikke finde en lejeaftale med id "+ leaseId +".");
-            return "redirect:/dataregPage"; // skal redirect til skadeside hvis isRepair
+            return "redirect:/getUserPage"; // skal redirect til skadeside hvis isRepair
         }
 
     }

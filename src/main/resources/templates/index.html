@@ -19,6 +19,8 @@
 
 <div class="mainContent">
 
+    <p th:if="${message}" th:text="${message}"></p>
+
     <div class="formContainer">
     <form th:action="@{/loginUser}" method="post" class="formBox">
         <div class="form-group">

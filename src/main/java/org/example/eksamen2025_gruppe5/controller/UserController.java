@@ -24,8 +24,11 @@ public class UserController {
     UserRepository userRepository;
 
     @GetMapping("getCreateUser")
-    public String getCreateUserPage(Model model) throws UserNotLoggedInException, WrongUserTypeException{
+    public String getCreateUserPage(Model model)  throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
         userRepository.verifyLoggedInUser("SYSADMIN");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
 
         if (!model.containsAttribute("userInfo")){
             System.out.println("Der er ikke noget UserInfo, så vi tilføjer en userInfo");
@@ -44,7 +47,13 @@ public class UserController {
                                  @RequestParam("confirmPassWord") String confirmpassword,
                                  @RequestParam("role") String role,
                                  RedirectAttributes redirectAttributes,
-                                  Model model){
+                                  Model model) throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("SYSADMIN");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
+
         System.out.println("information recieved - username: " + userService.generateUserName(firstName, lastname));
         System.out.println("information recieved - first name:: " + firstName);
         System.out.println("information recieved - last name: " + lastname);
@@ -102,7 +111,13 @@ public class UserController {
     public String getShowUserPage(
             @RequestParam("usernameBox") String username,
             Model model,
-            RedirectAttributes redirectAttributes){
+            RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("SYSADMIN");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
+
         System.out.println("Prøver at finde en bruger");
 
         try{
@@ -140,9 +155,11 @@ public class UserController {
     @PostMapping("/getEditUser")
     public String editUser(@RequestParam("usernameEdit") String username,
                              Model model,
-                             RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
-
+                             RedirectAttributes redirectAttributes)  throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
         userRepository.verifyLoggedInUser("SYSADMIN");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
 
         try {
             User userForEdit = userRepository.findUserByUserName(username);

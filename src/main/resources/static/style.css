@@ -129,6 +129,8 @@ html, body {
     box-shadow: 0px 0px 20px rgba(0,0,0,.2);
 
     padding: 3dvh;
+
+    z-index: 50;
 }
 
 .headerOptions{
@@ -136,6 +138,7 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: right;
+    align-items: center;
     padding-right: 5%;
 }
 
@@ -157,7 +160,6 @@ html, body {
     height: 100%;
     width: auto;
     margin-left: 5%;
-    cursor: pointer;
 
     box-sizing: border-box;
 }
@@ -309,3 +311,86 @@ form {
     }
 }
 /*FORMS*/
+
+
+/*Drop Down Menu*/
+.dropDownMenuContainer{
+    height: 60px;
+    overflow: visible;
+    width: 270px;
+
+    display: flex;
+    flex-grow: 0;
+
+    align-self: flex-start;
+}
+
+.dropDownMenu{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+
+    border-radius: 3px;
+    border: #acacac solid 1px;
+
+    height: 59px;
+    width: 100%;
+
+    overflow: hidden;
+
+    transition: .4s ease;
+}
+
+.dropDownOption{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 58px;
+    flex: 0 0 58px;
+    background-color: #e6e6e6;
+
+    margin-top: 2px;
+
+    cursor: pointer;
+
+    padding-left: 20px;
+}
+
+.dropDownButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: black;
+    align-items: center;
+    height: 60px;
+    flex: 0 0 60px;
+    padding-left: 20px;
+}
+
+.dropDownMenu a,
+.dropDownMenu a:visited{
+    text-decoration: none;
+    color: inherit;
+}
+
+.dropDownOption:hover{
+    background-color: white;
+}
+
+.dropDownHiddenToggle:checked + .dropDownMenu{
+    height: 300px;
+    border-radius: 3px 3px 20px 20px;
+}
+
+.dropDownArrow{
+    font-size: 30px;
+    font-family: Webdings;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-left: #acacac solid 1px;
+}
+/* Drop Down Menu*/

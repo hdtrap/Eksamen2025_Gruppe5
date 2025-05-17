@@ -1,10 +1,13 @@
 package org.example.eksamen2025_gruppe5.controller;
 
 import org.example.eksamen2025_gruppe5.exceptions.LeaseNotFoundException;
+import org.example.eksamen2025_gruppe5.exceptions.UserNotLoggedInException;
+import org.example.eksamen2025_gruppe5.exceptions.WrongUserTypeException;
 import org.example.eksamen2025_gruppe5.model.Car;
 import org.example.eksamen2025_gruppe5.model.Lease;
 import org.example.eksamen2025_gruppe5.repository.CarRepository;
 import org.example.eksamen2025_gruppe5.repository.LeaseRepository;
+import org.example.eksamen2025_gruppe5.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,11 +22,18 @@ public class CarController {
     LeaseRepository leaseRepository;
     @Autowired
     CarRepository carRepository;
+    @Autowired
+    UserRepository userRepository;
 
 
 @GetMapping("/showCar") // Jeg requester leaseId tilføjer både lease og car
     public String showCar(@RequestParam("leaseId") int leaseId, Model model,
-                          RedirectAttributes redirectAttributes) {
+                          RedirectAttributes redirectAttributes)  throws UserNotLoggedInException, WrongUserTypeException {
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
+
 
     try {
         Lease lease = leaseRepository.findLeaseById(leaseId);
@@ -40,7 +50,12 @@ public class CarController {
 @GetMapping("/getAddDamage")
     public String addDamage(@RequestParam("vehicleNumber") int vehicleNumber,
                             @RequestParam("leaseId") int leaseId, Model model,
-                            RedirectAttributes redirectAttributes){
+                            RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
+
     System.out.println("vehicleNumber: " + vehicleNumber);
 
     try {

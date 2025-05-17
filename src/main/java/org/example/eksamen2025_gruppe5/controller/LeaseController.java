@@ -39,7 +39,12 @@ public class LeaseController {
     LeaseService leaseService;
 
     @GetMapping("/createLease")
-    public String createLease(Model model){
+    public String createLease(Model model) throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("DATA");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
         ArrayList<Car> availableCars = carRepository.getAvailableCars();
         model.addAttribute("availableCars", availableCars);
         ArrayList<AddOnType> addOnTypes = addOnTypeRepository.getAllAddOnTypes();
@@ -79,8 +84,12 @@ public class LeaseController {
     @GetMapping("/showLease")
     public String getLease(@RequestParam("leaseId") int leaseId,
                            Model model,
-                           RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException {
+                           RedirectAttributes redirectAttributes)  throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
         userRepository.verifyLoggedInUser("DATA");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
         System.out.println("showLease skal blive vist");
 
         try {
@@ -106,7 +115,12 @@ public class LeaseController {
 
     @GetMapping("/showCarWithLeaseID")
     public String showCarWithLeaseID(@RequestParam("leaseId") int leaseId, Model model,
-                                     RedirectAttributes redirectAttributes){
+                                     RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("DATA");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
         try {
             Lease currentLease = leaseRepository.findLeaseById(leaseId);
             System.out.println("Fundet lease: " + currentLease);
@@ -127,7 +141,11 @@ public class LeaseController {
     // Viser siden til at redigere en lejeaftale
     @GetMapping("/getUpdateLease")
     public String updateLease(@RequestParam("id") int id, Model model,
-                              RedirectAttributes redirectAttributes){
+                              RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("DATA");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
 
         try {
             Lease lease = leaseRepository.findLeaseById(id);

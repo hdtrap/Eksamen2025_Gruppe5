@@ -18,8 +18,12 @@ public class BusinessController {
     private UserRepository userRepository;
 
     @GetMapping("/businessPage")
-        public String businessPage(Model model) throws UserNotLoggedInException, WrongUserTypeException {
+        public String businessPage(Model model)  throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
         userRepository.verifyLoggedInUser("BUSINESS");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
         model.addAttribute("revenueFromRentedCars", "Månedlig indtjening fra udlejede biler: " + leaseRepository.monthlyRevenueFromActiveLeases() + " DKK");
         model.addAttribute("noOfLeasedCars", "Antal udlejede biler: " + leaseRepository.noOfLeasedCars());
         model.addAttribute("priceOfLeasedCars", "Samlet værdi af udlejede biler: " + leaseRepository.priceOfLeasedCars() +" DKK");
@@ -28,7 +32,12 @@ public class BusinessController {
         }
 
     @GetMapping("/getKpi")
-    public String getKpi(Model model) {
+    public String getKpi(Model model)  throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("BUSINESS");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
         model.addAttribute("revenueFromRentedCars", leaseRepository.monthlyRevenueFromActiveLeases());
         return "showKpi";
     }

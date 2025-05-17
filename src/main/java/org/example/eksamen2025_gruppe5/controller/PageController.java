@@ -23,7 +23,10 @@ public class PageController {
     }
 
     @GetMapping("/getUserPage")
-    public String getUserPage(Model model) throws UserNotLoggedInException, WrongUserTypeException {
+    public String getUserPage(Model model)  throws UserNotLoggedInException, WrongUserTypeException{
+
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
 
         if(userRepository.getcurrentUser().isAdmin()){
             model.addAttribute("isAdmin", "this user is admin");
@@ -49,7 +52,8 @@ public class PageController {
         }
     }
     @GetMapping("/dataregPage")
-    public String showDataRegPage(){
+    public String showDataRegPage(Model model){
+        model.addAttribute(userRepository.getcurrentUser());
         return "dataregPage";
     }
 }

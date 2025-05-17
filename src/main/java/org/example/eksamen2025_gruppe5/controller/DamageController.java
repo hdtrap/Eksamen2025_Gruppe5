@@ -1,10 +1,13 @@
 package org.example.eksamen2025_gruppe5.controller;
 
 import org.example.eksamen2025_gruppe5.exceptions.LeaseNotFoundException;
+import org.example.eksamen2025_gruppe5.exceptions.UserNotLoggedInException;
+import org.example.eksamen2025_gruppe5.exceptions.WrongUserTypeException;
 import org.example.eksamen2025_gruppe5.model.Damage;
 import org.example.eksamen2025_gruppe5.model.Lease;
 import org.example.eksamen2025_gruppe5.repository.DamageRepository;
 import org.example.eksamen2025_gruppe5.repository.LeaseRepository;
+import org.example.eksamen2025_gruppe5.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,8 @@ public class DamageController {
     private DamageRepository damageRepository;
     @Autowired
     private LeaseRepository leaseRepository;
+    @Autowired
+    UserRepository userRepository;
 
 
     @GetMapping("/addDamage")
@@ -57,6 +62,8 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
                             @RequestParam("leaseId") int leaseId,
                             Model model,
                             RedirectAttributes redirectAttributes){
+    model.addAttribute(userRepository.getcurrentUser());
+
 
     try{
         model.addAttribute("damage", damageRepository.getDamageWithDamageId(damageId));
@@ -89,12 +96,13 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
 
 @GetMapping("/showDamage")
     public String showDamage(@RequestParam("leaseId") int leaseId, Model damageList,
-                             Model lease,
+                             Model model,
                              RedirectAttributes redirectAttributes){
+    model.addAttribute(userRepository.getcurrentUser());
     System.out.println("leaseid i showDamage = " + leaseId);
 
     try {
-        lease.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
+        model.addAttribute("lease", leaseRepository.findLeaseById(leaseId));
         ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
         damageList.addAttribute("damages", damages);
         return "showDamage";
@@ -178,8 +186,11 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
     }
 
     @GetMapping("/getFixDamage")
-    public String getFixDamage(@RequestParam("leaseId") int leaseId, Model model){
-
+    public String getFixDamage(@RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("SYSADMIN");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
 
         model.addAttribute("leaseId", leaseId);
         ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);

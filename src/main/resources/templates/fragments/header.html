@@ -12,6 +12,40 @@
             </div>
 
             <div class="headerOptions">
+                <div class="headerOption" th:if="${user.isAdmin}">
+                    <div class="dropDownMenuContainer">
+
+                        <input type="checkbox" id="expandDropDownCheckBox" class="dropDownHiddenToggle" hidden>
+                        <div class="dropDownMenu boldText">
+                            <div class="dropDownButton">
+                                <div class="currentDropDownOption">
+                                    Skift bruger type
+                                </div>
+                                <div class="expandDropDownButton">
+                                    <label for="expandDropDownCheckBox" class="dropDownArrow">
+                                        6
+                                    </label>
+                                </div>
+                            </div>
+                            <a th:href="@{/adminGetData}" class="dropDownOption">
+                                Dataregistrering
+                            </a>
+
+                            <a th:href="@{/adminGetRepair}" class="dropDownOption">
+                                Skaderegistrering
+                            </a>
+
+                            <a th:href="@{/businessPage}" class="dropDownOption">
+                                Forretningsudvikling
+                            </a>
+
+                            <a th:href="@{/getUserPage}" class="dropDownOption">
+                                Systemadministrator
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="headerOption">
                     <form th:action="@{/getUserPage}" method="get">
                         <label for="getUserPageButton" class="textButton">Startside</label>
@@ -24,6 +58,7 @@
                         <button type="submit" hidden id="logOutuserButton">Startside</button>
                     </form>
                 </div>
+
             </div>
         </div>
     </div>

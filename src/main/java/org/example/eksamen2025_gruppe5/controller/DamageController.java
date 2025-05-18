@@ -188,7 +188,7 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
     @GetMapping("/getFixDamage")
     public String getFixDamage(@RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
         //Verify User is logged in/logged in as the correct type:
-        userRepository.verifyLoggedInUser("SYSADMIN");
+        userRepository.verifyLoggedInUser("REPAIR");
         //Add the user to the model, to display user relevant items
         model.addAttribute(userRepository.getcurrentUser());
 
@@ -215,6 +215,26 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
 
         return "fixDamage";
     }
+    @GetMapping("/getPayDamages")
+    public String getPayDamages(@RequestParam("leaseId") int leaseId, Model model){
+
+        model.addAttribute("leaseId", leaseId);
+        model.addAttribute("damages", damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId));
+
+        return "payDamages";
+    }
+    @PostMapping("/payDamages")
+    public String payDamages(@RequestParam("leaseId") int leaseId, Model model){
+
+        model.addAttribute("leaseId", leaseId);
+        System.out.println(leaseId + "leaseId i payDamage");
+        damageRepository.payAllDamagesOnALease(leaseId);
+        model.addAttribute("damages", damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId));
+
+
+        return "payDamages";
+    }
+
 
 }
 

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>payDamages</title>
+</head>
+<body>
+<form th:action="@{/showLease}" method="get">
+    <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
+    <button type="submit">Tilbage</button>
+</form>
+<p>Skader for lease id : <span th:text="${leaseId}"></span></p>
+<div th:each="damage : ${damages}">
+    <div class="formContainer">
+        <p th:text="'Er skaden betalt? : ' + ${damage.isPaid()}">Er skaden betalt</p>
+    </div>
+</div>
+    <form th:action="@{/payDamages}" method="post">
+        <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
+        <button type="submit">Marker alle skader som betalt</button>
+    </form>
+
+
+
+
+</body>
+</html>

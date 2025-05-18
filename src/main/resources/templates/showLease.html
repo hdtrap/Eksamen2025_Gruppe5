@@ -17,6 +17,11 @@
         <input type="hidden" name="id" th:value="${lease.leaseId}" />
         <button type="submit" class="deleteButton">Slet lejeaftale</button>
     </form>
+    <form th:action="@{/getPayDamages}" method="get">
+        <input type="hidden" name="leaseId" th:value="${lease.leaseId}" />
+        <button type="submit" class="deleteButton">Betal for skaderne</button>
+    </form>
+
 </div>
 
 <div class="information">

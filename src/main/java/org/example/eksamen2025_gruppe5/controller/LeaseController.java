@@ -117,7 +117,7 @@ public class LeaseController {
     public String showCarWithLeaseID(@RequestParam("leaseId") int leaseId, Model model,
                                      RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:
-        userRepository.verifyLoggedInUser("DATA");
+        userRepository.verifyLoggedInUser("REPAIR");
         //Add the user to the model, to display user relevant items
         model.addAttribute(userRepository.getcurrentUser());
 

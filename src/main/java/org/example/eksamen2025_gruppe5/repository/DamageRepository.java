@@ -128,7 +128,18 @@ public class DamageRepository {
             e.printStackTrace();
         }
     }
+public void payAllDamagesOnALease(int leaseId){
+    System.out.println("payAllDamagesOnALease leaseId : " + leaseId);
+    String sql = "UPDATE damages SET isPaid = CASE WHEN isPaid IS NULL THEN true ELSE NOT isPaid END WHERE lease_id = ?"; //NOT isPaid betyder at den sætter boolean værdien til det modsatte af hvad en i forvejen, CASE WHEN isPaid IS NULL THEN true, betyder at når isPaid er null bliver den til true
+    try (Connection connection = dataSource.getConnection();
+         PreparedStatement statement = connection.prepareStatement(sql)) {
 
+        statement.setInt(1, leaseId);
+        statement.executeUpdate();
+
+    } catch (SQLException e) { e.printStackTrace();
+         }
+}
 
 
 

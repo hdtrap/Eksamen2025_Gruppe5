@@ -11,12 +11,13 @@
 <div class="mainContent">
 
     <div class="userOptions">
-        <a th:href="@{/createLease}" class="btn">Opret ny lease</a>
-        <a th:href="@{/getShowListsOfCars}" class="btn">Vis biler</a>
+        <a th:href="@{/createLease}" class="boxButton">Opret ny lease</a>
+        <a th:href="@{/getShowListsOfCars}" class="boxButton">Vis biler</a>
         <form th:action="@{/showLease}"  method=get>
             <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
-            <button type="submit">Find lease</button>
+            <button type="submit" class="boxButton">Find lease</button>
         </form>
+        <a th:href="@{/getShowAllLeases}" class="boxButton">Vis alle leases</a>
     </div> <!-- div userOptions ends -->
     <div class = notifications>
     <div class="notificationsPanel">

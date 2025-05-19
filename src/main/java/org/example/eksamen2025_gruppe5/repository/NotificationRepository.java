@@ -60,4 +60,35 @@ public class NotificationRepository {
 
         return listToReturn;
     }
+
+    ArrayList<Notification> getLeaseNeedsPaymentNotifications(){
+        ArrayList<Notification> listToReturn = new ArrayList<>();
+        String sql = "SELECT DISTINCT cars.chassis_no, leases.lease_id FROM damages JOIN leases ON damages.lease_id = leases.lease_id JOIN cars ON leases.vehicle_no = cars.vehicle_no WHERE isFixed = true AND isPaid = false OR isPaid IS NULL;\n";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            ResultSet res = preparedStatement.executeQuery();
+
+            while(res.next()){
+                Notification notification = new Notification("negative", "Bil med stelnummer: " + res.getString("chassis_no") + " har skader som ikke er fikset men ikke betalt.  Lease ID = "+res.getString("lease_id"));
+                listToReturn.add(notification);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+
+        return listToReturn;
+    }
+
+    public ArrayList<Notification> getDataRegNotifications(){
+        ArrayList<Notification> listOfNotifications = new ArrayList<>();
+
+        listOfNotifications.addAll(getGlobalNotifications());
+        listOfNotifications.addAll(getLeaseNeedsPaymentNotifications());
+
+        return listOfNotifications;
+    }
+
 }

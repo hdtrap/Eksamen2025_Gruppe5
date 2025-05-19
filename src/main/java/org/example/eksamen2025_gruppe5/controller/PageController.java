@@ -40,6 +40,7 @@ public class PageController {
         }
         if(userRepository.getcurrentUser().isDataReg()){
             model.addAttribute("Data", "this user is data registration");
+            model.addAttribute("notificationList", notificationRepository.getDataRegNotifications());
             return "dataregPage";
         }
         if(userRepository.getcurrentUser().isRepair()){

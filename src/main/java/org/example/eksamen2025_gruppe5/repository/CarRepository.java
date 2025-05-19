@@ -2,6 +2,7 @@ package org.example.eksamen2025_gruppe5.repository;
 
 import org.example.eksamen2025_gruppe5.model.Car;
 import org.example.eksamen2025_gruppe5.model.CarModel;
+import org.example.eksamen2025_gruppe5.model.StatusOfCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -95,6 +96,35 @@ public class CarRepository {
         }
         return totalCars;
     }
+
+    public ArrayList<Car> getLeasedCars() {
+        ArrayList<Car> leasedCars = new ArrayList<>();
+
+        String sqlRequest = "SELECT * FROM cars WHERE status_of_car = 'Leased'";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlRequest);
+             ResultSet resultSet = statement.executeQuery();) {
+
+            while (resultSet.next()) {
+                Car car = new Car();
+                car.setVehicleNumber(resultSet.getInt("vehicle_no"));
+                car.setChassisNumber(resultSet.getString("chassis_no"));
+                int carModelId = resultSet.getInt("car_model");
+                CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
+                car.setCarModel(carModel);
+                car.setPrice(resultSet.getDouble("price"));
+                car.setStatusOfCar(StatusOfCar.Leased);
+
+                leasedCars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println(leasedCars);
+        return leasedCars;
+    }
+
 }
 
 

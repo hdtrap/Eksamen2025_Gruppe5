@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>showListsOfCars</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+</head>
+<body>
+<div th:insert="~{/fragments/header :: header}"></div>
+<div class="mainContent">
+
+    <table>
+        <tr th:each="car : ${listOfLeasedCars}">
+            <td><p th:text="${car.vehicleNumber}"></p></td>
+            <td><p th:text="${car.chassisNumber}"></p></td>
+            <td><p th:text="${car.carModel}"></p></td>
+            <td><p th:text="${car.price}"></p></td>
+            <td><p th:text="${car.statusOfCar}"></p></td>
+            <td></td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

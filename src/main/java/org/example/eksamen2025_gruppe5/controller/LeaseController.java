@@ -62,7 +62,7 @@ public class LeaseController {
                                   @RequestParam("price_to_start") Double priceToStart,
                                   @RequestParam("price_pr_month") Double pricePrMonth,
                                   @RequestParam("type_of_lease") String typeOfLease,
-                                  @RequestParam("selectedAddOns") ArrayList<Integer> selectedAddOns,
+                                  @RequestParam(value = "selectedAddOns", required = false) ArrayList<Integer> selectedAddOns,
                                   RedirectAttributes redirectAttributes){
 
             Car car = carRepository.findCarByVehicleNumber(vehicleNo);
@@ -191,7 +191,7 @@ public class LeaseController {
             leaseRepository.updateLease(lease);
 
             if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
-                leaseService.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
+                leaseService.updateSelectedAddonsOnLease(lease.getLeaseId(), selectedAddOns);
             }
             return "redirect:/showLease?leaseId=" + id;
         }

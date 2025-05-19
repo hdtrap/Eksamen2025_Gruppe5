@@ -23,32 +23,41 @@ CarRepository carRepository;
     // Oprette en lejeaftale
     public int saveLease(Lease lease){
         // SQL forespørgsel
-        String sqlRequest = "INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlLeaseRequest = "INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlCarRequest = "UPDATE cars SET status_of_car = 'Leased' WHERE vehicle_no = ?";
 
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlRequest, Statement.RETURN_GENERATED_KEYS)){
+        try (Connection connection = dataSource.getConnection()) {
+            connection.setAutoCommit(false);
 
-            statement.setInt(1, lease.getCar().getVehicleNumber());
-            statement.setDate(2, Date.valueOf(lease.getStartDate()));
-            statement.setDate(3, Date.valueOf(lease.getEndDate()));
-            statement.setString(4, lease.getCustomerName());
-            statement.setString(5, lease.getCustomerEmail());
-            statement.setString(6, lease.getCustomerNumber());
-            statement.setDouble(7, lease.getPriceToStart());
-            statement.setDouble(8, lease.getPricePrMonth());
-            statement.setString(9, String.valueOf(lease.getTypeOfLease()));
-            statement.setBoolean(10, lease.isFullyProcessed());
+            try (PreparedStatement leaseStatement = connection.prepareStatement(sqlLeaseRequest, Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement carStatement = connection.prepareStatement(sqlCarRequest)) {
 
-            statement.executeUpdate();
+                leaseStatement.setInt(1, lease.getCar().getVehicleNumber());
+                leaseStatement.setDate(2, Date.valueOf(lease.getStartDate()));
+                leaseStatement.setDate(3, Date.valueOf(lease.getEndDate()));
+                leaseStatement.setString(4, lease.getCustomerName());
+                leaseStatement.setString(5, lease.getCustomerEmail());
+                leaseStatement.setString(6, lease.getCustomerNumber());
+                leaseStatement.setDouble(7, lease.getPriceToStart());
+                leaseStatement.setDouble(8, lease.getPricePrMonth());
+                leaseStatement.setString(9, String.valueOf(lease.getTypeOfLease()));
+                leaseStatement.setBoolean(10, lease.isFullyProcessed());
+                leaseStatement.executeUpdate();
 
-            try (ResultSet generatedId = statement.getGeneratedKeys()) {
-                if (generatedId.next()) {
-                    int leaseId = generatedId.getInt(1);
-                    lease.setLeaseId(leaseId);
-                    return leaseId;
+                carStatement.setInt(1, lease.getCar().getVehicleNumber());
+                carStatement.executeUpdate();
+
+                connection.commit();
+
+                try (ResultSet generatedId = leaseStatement.getGeneratedKeys()) {
+                    if (generatedId.next()) {
+                        int leaseId = generatedId.getInt(1);
+                        lease.setLeaseId(leaseId);
+                        return leaseId;
+                    }
                 }
             }
-        } catch (SQLException e){
+        }catch (SQLException e){
             e.printStackTrace();
         }
         return -1;

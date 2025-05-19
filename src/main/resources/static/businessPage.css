@@ -44,3 +44,18 @@
     transparent);
     pointer-events: none;
 }
+
+.kpi:hover::before {
+    opacity: 0;
+}
+
+.kpi:hover {
+    flex-wrap: wrap;
+    white-space: normal;
+
+    height: auto;
+
+    line-height: 1.5;
+
+    padding: 2%;
+}

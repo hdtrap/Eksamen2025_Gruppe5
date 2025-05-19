@@ -55,7 +55,7 @@ public class LeaseController {
     @PostMapping("/saveCreateLease")
     public String postCreateLease(@RequestParam("vehicle_no") int vehicleNo,
                                   @RequestParam("start_date") LocalDate startDate,
-                                  @RequestParam("end_date") LocalDate endDate,
+                                  @RequestParam(value = "end_date", required = false) LocalDate endDate,
                                   @RequestParam("customer_name") String customerName,
                                   @RequestParam("customer_email") String customerEmail,
                                   @RequestParam("customer_number") String customerNumber,
@@ -66,8 +66,14 @@ public class LeaseController {
                                   RedirectAttributes redirectAttributes){
 
             Car car = carRepository.findCarByVehicleNumber(vehicleNo);
-
-            Lease lease = new Lease(car, startDate, endDate, customerName, customerEmail, customerNumber, priceToStart, pricePrMonth, typeOfLease);
+            Lease lease;
+            if (typeOfLease.equalsIgnoreCase("Limited")){
+                endDate = startDate.plusMonths(5);
+                lease = new Lease(car, startDate, endDate, customerName, customerEmail, customerNumber, priceToStart, pricePrMonth, typeOfLease);
+            }
+            else {
+                lease = new Lease(car, startDate, endDate, customerName, customerEmail, customerNumber, priceToStart, pricePrMonth, typeOfLease);
+            }
             int leaseId = leaseRepository.saveLease(lease);
 
             if (leaseId == -1) {
@@ -207,5 +213,17 @@ public class LeaseController {
     public String deleteLease(@RequestParam("id") int id){
         leaseRepository.deleteLease(id);
         return "redirect:/getUserPage";
+    }
+
+    @GetMapping("/getShowAllLeases")
+    public String getShowAllLeases(Model model)throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("ANY");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
+        model.addAttribute("listOfLeases", leaseRepository.getAllLeases());
+
+        return "allLeases";
     }
 }

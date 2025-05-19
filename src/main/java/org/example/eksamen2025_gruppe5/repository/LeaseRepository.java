@@ -225,4 +225,34 @@ CarRepository carRepository;
         return avgDamage;
     }
 
+    public ArrayList<Lease> getAllLeases(){
+        ArrayList<Lease> listToReturn = new ArrayList<>();
+        String sql = "SELECT * FROM leases";
+
+        //Get all leases from SQL statement
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                Car car = carRepository.findCarByVehicleNumber(resultSet.getInt("vehicle_no"));
+                Lease leaseToAdd = new Lease(
+                        car,
+                        resultSet.getDate("start_date").toLocalDate(),
+                        resultSet.getDate("end_date").toLocalDate(),
+                        resultSet.getString("customer_name"),
+                        resultSet.getString("customer_email"),
+                        resultSet.getString("customer_number"),
+                        resultSet.getDouble("price_to_start"),
+                        resultSet.getDouble("price_pr_month"),
+                        resultSet.getString("type_of_lease"));
+
+                listToReturn.add(leaseToAdd);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listToReturn;
+    }
 }

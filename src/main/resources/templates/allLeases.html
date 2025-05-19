@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+</head>
+<body>
+<div th:insert="~{/fragments/header :: header}"></div>
+
+<div class="mainContent">
+
+    <table>
+        <tr th:each="lease : ${listOfLeases}">
+            <td><p th:text="${lease.getCar().getChassisNumber()}"></p></td>
+            <td><p th:text="${lease.getCustomerName()}"></p></td>
+            <td><p th:text="${lease.getCustomerEmail()}"></p></td>
+            <td><p th:text="${lease.getCustomerNumber()}"></p></td>
+            <td><p th:text="${lease.getStartDate()}"></p></td>
+            <td><p th:text="${lease.getPriceToStart()}"></p></td>
+            <td><p th:text="${lease.getPricePrMonth()}"></p></td>
+            <td><p th:text="${lease.getTypeOfLease()}"></p></td>
+            <td></td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>

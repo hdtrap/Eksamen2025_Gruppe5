@@ -149,10 +149,11 @@ public class UserRepository {
         if (getcurrentUser() == null){
             throw new UserNotLoggedInException();
         }
-
-        if(!getcurrentUser().isAdmin()){
-            if (!userTypeThePageNeeds.equalsIgnoreCase(getcurrentUser().getRoleAsString())){
-                throw new WrongUserTypeException();
+        if (!userTypeThePageNeeds.equalsIgnoreCase("any")) {
+            if (!getcurrentUser().isAdmin()) {
+                if (!userTypeThePageNeeds.equalsIgnoreCase(getcurrentUser().getRoleAsString())) {
+                    throw new WrongUserTypeException();
+                }
             }
         }
 

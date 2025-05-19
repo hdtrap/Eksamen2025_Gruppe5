@@ -72,12 +72,12 @@ public class LeaseController {
 
             if (leaseId == -1) {
                 redirectAttributes.addFlashAttribute("message", "Der skete en fejl, din lejeaftale blev ikke gemt. Prøv igen.");
-                return "redirect:/dataregPage";
+                return "redirect:/getUserPage";
             }
             if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
                 leaseService.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
             }
-        return "redirect:/dataregPage";
+        return "redirect:/getUserPage";
     }
 
     // Viser en lejeaftale
@@ -206,6 +206,6 @@ public class LeaseController {
     @PostMapping("/deleteLease")
     public String deleteLease(@RequestParam("id") int id){
         leaseRepository.deleteLease(id);
-        return "redirect:/dataregPage";
+        return "redirect:/getUserPage";
     }
 }

@@ -76,5 +76,25 @@ public class CarRepository {
 
         return availableCars;
     }
+
+    public int totalCars() {
+        int totalCars = 0;
+
+        String sql = "SELECT COUNT(*) AS total_cars FROM cars";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                totalCars = resultSet.getInt("total_cars");
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return totalCars;
+    }
 }
+
 

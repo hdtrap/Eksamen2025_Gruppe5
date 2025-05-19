@@ -20,6 +20,8 @@ public class BusinessController {
     @Autowired
     private CarRepository carRepository;
 
+
+    /*
     @GetMapping("/businessPage")
         public String businessPage(Model model)  throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:
@@ -34,6 +36,7 @@ public class BusinessController {
         model.addAttribute("averageDamageSumPerLease", "Gennemsnitlig skadessum per lease: " + leaseRepository.avgDamageCost() + " DKK");
         return "businessPage";
         }
+     */
 
     @GetMapping("/getKpi")
     public String getKpi(Model model)  throws UserNotLoggedInException, WrongUserTypeException{

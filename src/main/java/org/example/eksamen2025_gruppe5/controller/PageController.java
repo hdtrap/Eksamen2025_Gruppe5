@@ -2,6 +2,8 @@ package org.example.eksamen2025_gruppe5.controller;
 
 import org.example.eksamen2025_gruppe5.exceptions.UserNotLoggedInException;
 import org.example.eksamen2025_gruppe5.exceptions.WrongUserTypeException;
+import org.example.eksamen2025_gruppe5.repository.CarRepository;
+import org.example.eksamen2025_gruppe5.repository.LeaseRepository;
 import org.example.eksamen2025_gruppe5.repository.NotificationRepository;
 import org.example.eksamen2025_gruppe5.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,10 @@ public class PageController {
     UserRepository userRepository;
     @Autowired
     private NotificationRepository notificationRepository;
+    @Autowired
+    private CarRepository carRepository;
+    @Autowired
+    private LeaseRepository leaseRepository;
 
     @GetMapping("/")
     public String getLoginpage(){
@@ -34,6 +40,7 @@ public class PageController {
         }
         if(userRepository.getcurrentUser().isDataReg()){
             model.addAttribute("Data", "this user is data registration");
+            model.addAttribute("notificationList", notificationRepository.getDataRegNotifications());
             return "dataregPage";
         }
         if(userRepository.getcurrentUser().isRepair()){
@@ -44,7 +51,14 @@ public class PageController {
         if(userRepository.getcurrentUser().isBusiness()){
             model.addAttribute("isBusiness", "this user is business");
             model.addAttribute("notificationList", notificationRepository.getRepairNotifications());
-            return "redirect:/businessPage";
+
+            // Add KPIs
+            model.addAttribute("revenueFromRentedCars", "Månedlig indtjening fra udlejede biler: " + leaseRepository.monthlyRevenueFromActiveLeases() + " DKK");
+            model.addAttribute("noOfLeasedCars", "Antal udlejede biler: " + leaseRepository.noOfLeasedCars());
+            model.addAttribute("totalCars", "Antal biler i alt: " + carRepository.totalCars());
+            model.addAttribute("priceOfLeasedCars", "Samlet værdi af udlejede biler: " + leaseRepository.priceOfLeasedCars() +" DKK");
+            model.addAttribute("averageDamageSumPerLease", "Gennemsnitlig skadessum per lease: " + leaseRepository.avgDamageCost() + " DKK");
+            return "businessPage";
         }
         else{
             model.addAttribute("message", "Could not log in: User has no usertype");

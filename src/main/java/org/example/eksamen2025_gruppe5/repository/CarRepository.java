@@ -122,8 +122,35 @@ public class CarRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(leasedCars);
         return leasedCars;
+    }
+
+    public ArrayList<Car> getNonLeasedCars() {
+        ArrayList<Car> nonLeasedCars = new ArrayList<>();
+
+        String sqlRequest = "SELECT * FROM cars JOIN leases ON cars.vehicle_no = leases.vehicle_no " +
+                "WHERE NOT leases.start_date <= CURRENT_DATE AND NOT leases.end_date > CURRENT_DATE";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlRequest);
+             ResultSet resultSet = statement.executeQuery();) {
+
+            while (resultSet.next()) {
+                Car car = new Car();
+                car.setVehicleNumber(resultSet.getInt("vehicle_no"));
+                car.setChassisNumber(resultSet.getString("chassis_no"));
+                int carModelId = resultSet.getInt("car_model");
+                CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
+                car.setCarModel(carModel);
+                car.setPrice(resultSet.getDouble("price"));
+                car.setStatusOfCar(StatusOfCar.Leased);
+
+                nonLeasedCars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nonLeasedCars;
     }
 
 }

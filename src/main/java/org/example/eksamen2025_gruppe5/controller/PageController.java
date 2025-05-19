@@ -76,6 +76,7 @@ public class PageController {
         model.addAttribute(userRepository.getcurrentUser());
         System.out.println("Registreret prøver at vise biler");
         model.addAttribute("listOfLeasedCars", carRepository.getLeasedCars());
+        model.addAttribute("listOfNonLeasedCars", carRepository.getNonLeasedCars());
 
         return "showListsOfCars";
     }

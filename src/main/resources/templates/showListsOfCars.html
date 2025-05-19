@@ -10,10 +10,25 @@
 <div class="mainContent">
 
     <table>
+        <h1>Udlejede biler</h1>
+        <tr>
+            <td><p>Vognnummer</p></td>
+            <td><p>Stelnummer</p></td>
+            <td><p>Mærke</p></td>
+            <td><p>Model</p></td>
+            <td><p>Produktionsår</p></td>
+            <td><p></p>Brændstof</td>
+            <td><p>Indkøbspris</p></td>
+            <td><p>Udlejet</p></td>
+            <td></td>
+        </tr>
         <tr th:each="car : ${listOfLeasedCars}">
             <td><p th:text="${car.vehicleNumber}"></p></td>
             <td><p th:text="${car.chassisNumber}"></p></td>
-            <td><p th:text="${car.carModel}"></p></td>
+            <td><p th:text="${car.carModel.getBrand()}"></p></td>
+            <td><p th:text="${car.carModel.getModel()}"></p></td>
+            <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
+            <td><p th:text="${car.carModel.getFuelType()}"></p></td>
             <td><p th:text="${car.price}"></p></td>
             <td><p th:text="${car.statusOfCar}"></p></td>
             <td></td>

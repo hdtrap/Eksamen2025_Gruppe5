@@ -1,7 +1,6 @@
 package org.example.eksamen2025_gruppe5.service;
 
 import org.example.eksamen2025_gruppe5.model.AddOnType;
-import org.example.eksamen2025_gruppe5.model.CarModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,5 +67,33 @@ public class LeaseService {
             throw new RuntimeException(e);
         }
         return selectedAddons;
+    }
+
+    public void updateSelectedAddonsOnLease(int leaseId, ArrayList<Integer> selectedAddons) {
+        String sqlDelete = "DELETE FROM add_ons WHERE lease_id = ?";
+        String sqlInsert = "INSERT INTO add_ons (addon_type, lease_id) VALUES (?, ?)";
+
+        try (Connection connection = dataSource.getConnection()) {
+            connection.setAutoCommit(false); // starter transaction
+
+        try (PreparedStatement deleteStatement = connection.prepareStatement(sqlDelete);
+             PreparedStatement insertStatement = connection.prepareStatement(sqlInsert)) {
+
+            deleteStatement.setInt(1, leaseId);
+            deleteStatement.executeUpdate();
+
+            for (Integer addonTypeId : selectedAddons) {
+                insertStatement.setInt(1, addonTypeId);
+                insertStatement.setInt(2, leaseId);
+                insertStatement.addBatch();
+            }
+
+            insertStatement.executeBatch();
+            connection.commit();
+
+        }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

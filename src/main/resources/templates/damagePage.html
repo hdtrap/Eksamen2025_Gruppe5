@@ -13,7 +13,7 @@
     <div class="userOptions">
         <div class="formContainer">
             <form th:action="@{/showCarWithLeaseID}"  method=get>
-                <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID">
+                <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
                 <button type="submit">Find lease</button>
             </form>
         </div>

@@ -10,6 +10,7 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 
 <div class="mainContent">
+    <a th:href="@{/dataregPage}" class="">Tilbage</a>
     <div class="formContainer">
         <form th:action="@{/saveCreateLease}" method="post" class="registerForm">
             <div class="form-group">
@@ -26,8 +27,8 @@
                 <input type="date" id="start_date" name="start_date" required>
             </div>
             <div class="form-group">
-                <label for="end_date">Slut Dato:</label>
-                <input type="date" id="end_date" name="end_date" required>
+                <label for="end_date">Slut Dato (Undlad ved limited):</label>
+                <input type="date" id="end_date" name="end_date">
             </div>
             <div class="form-group">
                 <label for="customer_name">Kunde Navn:</label>
@@ -53,6 +54,7 @@
                 <label for="type_of_lease">Type Abonnement:</label>
                 <select id="type_of_lease" name="type_of_lease" placeholder="Vælg abonnement" required>
                     <option value="ABONNEMENT">Abonnement (3-36 mdr.)</option>
+                    <option value="LIMITED">Limited (Altid 5 mdr.)</option>
                     <option value="MINILEASING">Minileasing</option>
                     <option value="VAREBIL">Varebil</option>
                 </select>

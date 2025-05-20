@@ -10,9 +10,15 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 
 <div class="mainContent">
-    <a th:href="@{/getUserPage}" class="">Tilbage</a>
+    <div class="backButton">
+        <a th:href="@{/getUserPage}" class="textButton">Tilbage</a>
+    </div>
+
+
     <div class="formContainer">
         <form th:action="@{/saveCreateLease}" method="post" class="registerForm">
+            <div class="boldText">Opret Lease</div>
+
             <div class="form-group">
                 <label for="vehicle_no">Vogn Nummer:</label>
                 <select id="vehicle_no" name="vehicle_no" placeholder="Vælg bil" required>
@@ -68,7 +74,9 @@
                     </label>
                 </div>
             </fieldset>
-            <button type="submit" class="styledButton">submit</button>
+
+            <label for="submitButton" class="boxButton">Opret lease</label>
+            <button type="submit" id="submitButton" hidden class="styledButton">submit</button>
         </form>
     </div> <!-- div formContainer ends -->
 </div> <!-- div mainContent ends -->

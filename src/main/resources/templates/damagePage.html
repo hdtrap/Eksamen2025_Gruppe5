@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Skade og udredning</title>
+    <link rel="stylesheet" href="../static/popUpBox.css" th:href="@{/popUpBox.css}">
+
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
     <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
 </head>
@@ -11,12 +13,29 @@
 <div class="mainContent">
 
     <div class="userOptions">
-        <div class="formContainer">
-            <form th:action="@{/showCarWithLeaseID}"  method=get>
-                <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
-                <button type="submit">Find lease</button>
-            </form>
-        </div>
+
+        <div class="boldText">Vælg funktion:</div>
+
+
+        <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
+            <label for="needConfirm" class="boxButton">Find en lease</label>
+            <div class="popUpBoxFull">
+                <div class="popUpBox">
+                    <div class="boldText">Indtast et Lease ID</div>
+                    <div class="inputFields">
+                        <form th:action="@{/showCarWithLeaseID}"  method=get>
+                            <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
+                            <button type="submit" hidden id="submitButton">Find lease</button>
+                        </form>
+                    </div>
+                    <div class="choices">
+                        <!-- the actual method -->
+                        <label for="submitButton" class="textButton">Find Lease</label>
+                        <label for="needConfirm" class="textButton">Annuller</label>
+                    </div> <!-- div choices ends -->
+                </div>
+            </div><!-- div confirmationBox ends -->
+
     </div>
     <div class="notifications">
 

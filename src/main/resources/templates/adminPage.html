@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Admin</title>
     <link rel="stylesheet" href="../static/dropDownMenu.css" th:href="@{/dropDownMenu.css}">
+    <link rel="stylesheet" href="../static/popUpBox.css" th:href="@{/popUpBox.css}">
 
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
     <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
@@ -14,11 +15,29 @@
 <div class="mainContent">
     <div class="userOptions">
 
-        <a th:href="@{/getCreateUser}" class="btn">Opret ny bruger</a>
-        <form th:action="@{/getShowUserPage}" method="post">
-            <input type="text" name="usernameBox" id="usernameBox" placeholder="indtast navn på den bruger du vil vise">
-            <button type="submit">Find bruger</button>
-        </form>
+        <div class="boldText">Vælg funktion:</div>
+
+        <a th:href="@{/getCreateUser}" class="boxButton">Opret ny bruger</a>
+
+
+        <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
+        <label for="needConfirm" class="boxButton">Find en bruger</label>
+        <div class="popUpBoxFull">
+            <div class="popUpBox">
+                <div class="boldText">Indtast brugernavn for den bruger du vil finde</div>
+                <div class="inputFields">
+                    <form th:action="@{/getShowUserPage}" method="post">
+                        <input type="text" name="usernameBox" id="usernameBox" placeholder=Brugernavn>
+                        <button id="submitButton" hidden type="submit">Find bruger</button>
+                    </form>
+                </div>
+                <div class="choices">
+                    <!-- the actual method -->
+                    <label for="submitButton" class="textButton">Find bruger</label>
+                    <label for="needConfirm" class="textButton">Annuller</label>
+                </div> <!-- div choices ends -->
+            </div>
+        </div><!-- div confirmationBox ends -->
 
 
 
@@ -26,10 +45,15 @@
 
     </div>
 
-    <div class="notifications">
-        <p th:if="${message}" th:text="${message}"></p>
-        Notifikationer
-    </div>
+    <div class = notifications>
+        <div class="notificationsPanel">
+            Notifikationer
+            <p th:if="${message}" th:text="${message}" class="notification"></p>
+            <div th:each="notification : ${notificationList}" class="notification"  th:classappend="${notification.getType()}">
+                <p th:text="${notification.getMessage()}"></p>
+            </div>
+        </div>
+    </div><!-- div notifications ends -->
 
 </div>
 </body>

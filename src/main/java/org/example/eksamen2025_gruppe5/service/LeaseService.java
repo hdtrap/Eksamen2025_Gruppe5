@@ -1,7 +1,6 @@
 package org.example.eksamen2025_gruppe5.service;
 
 import org.example.eksamen2025_gruppe5.model.AddOnType;
-import org.example.eksamen2025_gruppe5.model.CarModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

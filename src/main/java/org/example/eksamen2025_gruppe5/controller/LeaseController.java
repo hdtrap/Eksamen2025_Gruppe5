@@ -108,7 +108,6 @@ public class LeaseController {
             return "showLease";
 
 
-
         }
         catch (LeaseNotFoundException e){
             e.printStackTrace();

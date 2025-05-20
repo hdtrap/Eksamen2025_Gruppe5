@@ -107,7 +107,8 @@ INSERT INTO cars (chassis_no, car_model, price, status_of_car) VALUES
                  ('CHS987654321', 2, 35000.00, 'Leased'),               -- vehicle_no 2
                  ('CHS567890123', 3, 18000.00, 'GettingRepaired'),      -- vehicle_no 3
                  ('CHS112233445', 4, 22000.00, 'Sold'),                 -- vehicle_no 4
-                 ('CHS998877665', 1, 21000.00, 'AvailableToLease');     -- vehicle_no 5
+                 ('CHS998877665', 1, 21000.00, 'AvailableToLease'),     -- vehicle_no 5
+                 ('CHS998877245', 4, 21000.00, 'Leased');               -- vehicle_no 6
 
 -- Insert Leases
 INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES
@@ -115,7 +116,8 @@ INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_em
                  (2, '2025-04-15', '2026-04-15', 'Mark Sørensen', 'mark.sorensen@email.com', '23456789', 8000, 2200, 'VAREBIL', false),       -- lease_id 2
                  (3, '2025-03-10', '2026-03-10', 'Lise Hansen', 'lise.hansen@email.com', '34567890', 12000, 2800, 'ABONNEMENT', true),             -- lease_id 3
                  (4, '2025-05-02', '2026-05-02', 'Thomas Nielsen', 'thomas.nielsen@email.com', '45678901', 9000, 2400, 'VAREBIL', false),     -- lease_id 4
-                 (5, '2025-01-20', '2026-01-20', 'Mette Larsen', 'mette.larsen@email.com', '56789012', 11000, 2600, 'ABONNEMENT', true);           -- lease_id 5
+                 (5, '2025-01-20', '2026-01-20', 'Mette Larsen', 'mette.larsen@email.com', '56789012', 11000, 2600, 'ABONNEMENT', true),           -- lease_id 5
+                (6, '2025-01-20', '2025-01-20', 'Henning Larsen', 'henning.larsen@email.com', '56789012', 11000, 2600, 'ABONNEMENT', true);           -- lease_id 5
 
 INSERT INTO add_ons (addon_type, lease_id) VALUES
                                                (1,1),

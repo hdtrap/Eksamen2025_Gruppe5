@@ -84,9 +84,22 @@ public class NotificationRepository {
 
     public ArrayList<Notification> getDataRegNotifications(){
         ArrayList<Notification> listOfNotifications = new ArrayList<>();
+        String sqlRequest = "SELECT cars.chassis_no, leases.lease_id, leases.end_date FROM leases JOIN cars ON cars.vehicle_no = leases.vehicle_no WHERE CURRENT_DATE > leases.end_date AND cars.status_of_car = 'Leased'";
 
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest)){
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                Notification notification = new Notification("negative", "Lease ID = "+resultSet.getString("lease_id")+" udløb d. "+resultSet.getDate("end_date")+". Bil med stelnummer: " + resultSet.getString("chassis_no") + " er stadig ikke blevet afleveret.");
+                listOfNotifications.add(notification);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
         listOfNotifications.addAll(getGlobalNotifications());
-        listOfNotifications.addAll(getLeaseNeedsPaymentNotifications());
 
         return listOfNotifications;
     }

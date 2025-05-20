@@ -514,8 +514,9 @@ td, th {
     overflow-y: auto;
 }
 
-
-
+.fixedButtonWidth {
+    width: 150px;
+}
 
 .tilbageknap {
     z-index: 51;

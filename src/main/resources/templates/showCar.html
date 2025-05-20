@@ -19,23 +19,23 @@
     <input type="hidden" th:value="${car.vehicleNumber}" id="vehicleNumber" name="vehicleNumber" placeholder="Bil Nummer">
     <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
 
-    <button type="submit">Tilføj skade</button>
+    <button type="submit" class="boxButton fixedButtonWidth">Tilføj skade</button>
 </form>
 <form th:action="@{/getShowDamage}" method="get">
     <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
-    <button type="submit">Se skader</button>
+    <button type="submit" class="boxButton fixedButtonWidth">Se skader</button>
 </form>
     <form th:action="@{/getFixDamage}" method="get">
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber" placeholder="Bil Nummer">
-        <button type="submit">Udbedrer skade</button>
+        <button type="submit" class="boxButton fixedButtonWidth">Udbedrer skade</button>
     </form>
     <form th:action="@{/changeCarStatusPendingEvaluation}" method="post">
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-        <button type="submit">Registrer bil som modtaget</button>
+        <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som modtaget</button>
     </form>
-    <a th:href="@{/getUserPage}" class="">Tilbage</a>
+    <a th:href="@{/getUserPage}" class="boxButton fixedButtonWidth">Tilbage</a>
 </div>
 
 <div class="information">

@@ -35,9 +35,6 @@ public class LeaseController {
     @Autowired
     AddOnTypeRepository addOnTypeRepository;
 
-    @Autowired
-    LeaseService leaseService;
-
     @GetMapping("/createLease")
     public String createLease(Model model) throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:
@@ -81,7 +78,7 @@ public class LeaseController {
                 return "redirect:/getUserPage";
             }
             if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
-                leaseService.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
+                addOnTypeRepository.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
             }
         return "redirect:/getUserPage";
     }
@@ -103,7 +100,7 @@ public class LeaseController {
             System.out.println("Fundet lease: " + currentLease);
 
             model.addAttribute("lease", currentLease);
-            ArrayList<AddOnType> selectedAddons = leaseService.showSelectedAddons(leaseId);
+            ArrayList<AddOnType> selectedAddons = addOnTypeRepository.showSelectedAddons(leaseId);
             model.addAttribute("selectedAddons", selectedAddons);
             return "showLease";
 
@@ -196,7 +193,7 @@ public class LeaseController {
             leaseRepository.updateLease(lease);
 
             if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
-                leaseService.updateSelectedAddonsOnLease(lease.getLeaseId(), selectedAddOns);
+                addOnTypeRepository.updateSelectedAddonsOnLease(lease.getLeaseId(), selectedAddOns);
             }
             return "redirect:/showLease?leaseId=" + id;
         }

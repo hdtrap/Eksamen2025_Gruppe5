@@ -58,6 +58,7 @@ public class PageController {
             model.addAttribute("totalCars", "Antal biler i alt: " + carRepository.totalCars());
             model.addAttribute("priceOfLeasedCars", "Samlet værdi af udlejede biler: " + leaseRepository.priceOfLeasedCars() +" DKK");
             model.addAttribute("averageDamageSumPerLease", "Gennemsnitlig skadessum per lease: " + leaseRepository.avgDamageCost() + " DKK");
+            model.addAttribute("mostCommonCarModel", "Mest populære bilmodel: " + carRepository.mostCommonModel().toString());
             return "businessPage";
         }
         else{

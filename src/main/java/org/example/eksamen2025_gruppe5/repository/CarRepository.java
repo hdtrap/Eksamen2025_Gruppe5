@@ -221,6 +221,34 @@ public class CarRepository {
         return nonLeasedCars;
     }
 
+    public CarModel mostCommonModel() {
+        CarModel mostCommon = new CarModel();
+
+        // Count the car models from active leases, group by car models, arrange groups so the biggest group is on top, select top value
+        String sqlRequest = "SELECT car_models.*, COUNT(*) AS most_common " +
+                "FROM cars JOIN leases ON cars.vehicle_no = leases.vehicle_no " +
+                "JOIN car_models ON cars.car_model = car_models.id " +
+                "WHERE leases.start_date <= CURRENT_DATE AND leases.end_date > CURRENT_DATE " +
+                "GROUP BY car_models.id " +
+                "ORDER BY most_common DESC LIMIT 1";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlRequest);
+             ResultSet resultSet = statement.executeQuery();) {
+
+            while (resultSet.next()) {
+                mostCommon.setCarModelId(resultSet.getInt("id"));
+                mostCommon.setBrand(resultSet.getString("brand"));
+                mostCommon.setModel(resultSet.getString("model"));
+                mostCommon.setProductionYear(resultSet.getInt("production_year"));
+                mostCommon.setFuelType(resultSet.getString("fuel_type"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mostCommon;
+    }
+
 }
 
 

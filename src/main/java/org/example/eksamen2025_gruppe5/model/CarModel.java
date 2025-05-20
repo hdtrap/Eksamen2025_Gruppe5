@@ -55,4 +55,8 @@ public class CarModel {
     public void setFuelType(String fuelType) {
         this.fuelType = fuelType;
     }
+
+    public String toString() {
+        return brand + " " + model + " " + productionYear + " " + fuelType;
+    }
 }

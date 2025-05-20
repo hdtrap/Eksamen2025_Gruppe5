@@ -97,7 +97,7 @@ public class CarRepository {
         }
         return totalCars;
     }
-    public void makeCarAvailable(Car car){
+    public void makeCarStatusAvailable(Car car){
         String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -110,9 +110,34 @@ public class CarRepository {
 
             e.printStackTrace();
         }
-
-
     }
+    public void makeCarStatusGettingRepaired(Car car){
+        String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "GettingRepaired");
+            statement.setInt(2, car.getVehicleNumber() );
+            System.out.println("Bilen er GettingRepaired");
+            statement.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+    public void makeCarStatusPendingEvaluation(Car car){
+        String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "PendingEvaluation");
+            statement.setInt(2, car.getVehicleNumber() );
+            System.out.println("Bilen er PendingEvaluation");
+            statement.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
 
     public ArrayList<Car> getLeasedCars() {
         ArrayList<Car> leasedCars = new ArrayList<>();

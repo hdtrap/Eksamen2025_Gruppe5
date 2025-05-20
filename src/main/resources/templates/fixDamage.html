@@ -15,19 +15,27 @@
             <input type="hidden" th:value="${leaseId}" name="leaseId">
             <button type="submit">Tilbage</button>
         </form>
-        <form th:action="@{/changeCarStatus}" method="post">
+        <form th:action="@{/changeCarStatusAvailable}" method="post">
             <input type="hidden" th:value="${leaseId}" name="leaseId">
             <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-            <button type="submit">Gør status tilgængelig</button>
-            <br>
+            <button type="submit">Gør status klar</button>
         </form>
+    <form th:action="@{/changeCarStatusGettingRepaired}" method="post">
+        <input type="hidden" th:value="${leaseId}" name="leaseId">
+        <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
+        <button type="submit">Gør status til reparation</button>
+    </form>
 </div>
 
 <div class="notifications">
-<p>Bilens status : <span th:text="${car.statusOfCar} ?: 'Ingen status'"></span></p> <!--?: betyder at hvis den er null printer den det bagefter-->
+
+    <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease}">Bilens status: Klar til lease</h1><!--T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease Er stien til enum klassen i java, thymeleaf siger at hvis car.StatusOfCar er den enum så skal den printe det der står ved siden af-->
+    <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Leased}">Bilens status: Leaset ud</h1>
+    <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).GettingRepaired}">Bilens status: Til reparation</h1>
+    <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Sold}">Bilens status: Solgt</h1>
+    <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).PendingEvaluation}">Bilens status: Modtaget, venter på evaluering</h1>
 
 <div th:if="${damages != null}">
-    <p>Din skader ser her ud for lease id : <span th:text="${leaseId}"></span></p>
     <div th:each="damage : ${damages}">
         <div class="formContainer">
             <p th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</p>
@@ -42,8 +50,6 @@
                 <input type="hidden" th:value="${damage.damageId}" name="damageId">
                 <input type="hidden" th:value="${damage.isFixed}" name="isFixed">
                 <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber" placeholder="Bil Nummer">
-
-
                 <button type="submit">Udbedrer skade</button>
             </form>
 

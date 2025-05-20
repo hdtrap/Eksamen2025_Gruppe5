@@ -79,8 +79,8 @@ public class CarController {
         return "redirect:/showCar";
     }
 }
-    @PostMapping("/changeCarStatus") // Kaldet i fixDamage.html
-    public String changeCarStatus(@RequestParam("leaseId") int leaseId,
+    @PostMapping("/changeCarStatusAvailable") // Kaldet i fixDamage.html
+    public String changeCarStatusAvailable(@RequestParam("leaseId") int leaseId,
                                   @RequestParam("vehicleNo") int vehicleNo, Model model) throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {
 
         //Verify User is logged in/logged in as the correct type:
@@ -89,7 +89,7 @@ public class CarController {
         model.addAttribute(userRepository.getcurrentUser());
 
     Car car = carRepository.findCarByVehicleNumber(vehicleNo);
-    carRepository.makeCarAvailable(car);
+    carRepository.makeCarStatusAvailable(car);
     model.addAttribute("leaseId", leaseId);
     model.addAttribute("car", carRepository.findCarByVehicleNumber(vehicleNo));
     ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
@@ -98,5 +98,39 @@ public class CarController {
 
         return "fixDamage";
     }
+    @PostMapping("/changeCarStatusGettingRepaired") // Kaldet i fixDamage.html
+    public String changeCarStatusGettingRepaired(@RequestParam("leaseId") int leaseId,
+                                           @RequestParam("vehicleNo") int vehicleNo, Model model) throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {
 
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("REPAIR");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
+        Car car = carRepository.findCarByVehicleNumber(vehicleNo);
+        carRepository.makeCarStatusGettingRepaired(car);
+        model.addAttribute("leaseId", leaseId);
+        model.addAttribute("car", carRepository.findCarByVehicleNumber(vehicleNo));
+        ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
+        model.addAttribute("damages", damages);
+
+        return "fixDamage";
+    }
+    @PostMapping("/changeCarStatusPendingEvaluation") // Kaldet i fixDamage.html
+    public String changeCarStatusPendingEvaluation(@RequestParam("leaseId") int leaseId,
+                                                 @RequestParam("vehicleNo") int vehicleNo, Model model) throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {
+
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("REPAIR");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
+        Car car = carRepository.findCarByVehicleNumber(vehicleNo);
+        carRepository.makeCarStatusPendingEvaluation(car);
+        Lease lease = leaseRepository.findLeaseById(leaseId);
+        model.addAttribute("car", lease.getCar());
+        model.addAttribute("lease", lease);
+
+        return "showCar";
+    }
 }

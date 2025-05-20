@@ -392,3 +392,50 @@ form {
     border-left: #acacac solid 1px;
 }
 /* Drop Down Menu*/
+
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 30px;
+
+    height: 100%;
+    width: 80%;
+
+    border-radius: 3px;
+
+    padding: 10px;
+
+    outline: #acacac solid 1px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tableContainerItem {
+    position: relative;
+}
+
+
+table, td, th {
+
+    width: 100%;
+    outline: #acacac solid 1px;
+    border-collapse: collapse;
+}
+
+table {
+    height: auto;
+    table-layout: fixed;
+}
+
+td, th {
+    height: 100%;
+    padding: 0.5%;
+
+    text-align: center;
+}
+
+.scrollable {
+    overflow-y: auto;
+}

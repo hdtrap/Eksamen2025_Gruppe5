@@ -97,6 +97,32 @@ public class CarRepository {
         return totalCars;
     }
 
+    public ArrayList<Car> getAllCars() {
+        ArrayList<Car> allCars = new ArrayList<>();
+
+        String sqlRequest = "SELECT * FROM cars";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlRequest);
+             ResultSet resultSet = statement.executeQuery();) {
+
+            while (resultSet.next()) {
+                Car car = new Car();
+                car.setVehicleNumber(resultSet.getInt("vehicle_no"));
+                car.setChassisNumber(resultSet.getString("chassis_no"));
+                int carModelId = resultSet.getInt("car_model");
+                CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
+                car.setCarModel(carModel);
+                car.setPrice(resultSet.getDouble("price"));
+
+                allCars.add(car);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allCars;
+    }
+
     public ArrayList<Car> getLeasedCars() {
         ArrayList<Car> leasedCars = new ArrayList<>();
 

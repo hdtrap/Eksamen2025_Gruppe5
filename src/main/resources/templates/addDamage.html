@@ -10,6 +10,11 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 
 <div class="mainContent">
+
+    <div class="backButton">
+        <a th:href="@{/getUserPage}" class="textButton">Tilbage</a>
+    </div>
+
     <div class="formContainer">
         <div class="lightText">Tilføj skade</div>
         <div class="boldText">Bil ID: <span th:text="${car.vehicleNumber}"></span></div>

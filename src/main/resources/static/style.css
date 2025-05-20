@@ -430,7 +430,7 @@ button, label, .btn {
 
 .dropDownArrow{
     font-size: 30px;
-    font-family: Webdings;
+    font-family: Webdings, serif;
     display: flex;
     align-items: center;
     justify-content: center;

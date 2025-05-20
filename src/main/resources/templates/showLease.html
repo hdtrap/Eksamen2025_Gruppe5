@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Lejeaftale</title>
+    <link rel="stylesheet" href="../static/popUpBox.css" th:href="@{/popUpBox.css}">
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
     <link rel="stylesheet" href="../static/viewPage.css" th:href="@{/viewPage.css}">
 </head>
@@ -13,14 +14,31 @@
 <div class="mainContent">
 <div class="userOptions">
     <a th:href="@{/getUpdateLease(id=${lease.leaseId})}" class="btn">Rediger lejeaftale</a>
-    <form th:action="@{/deleteLease}" method="post">
-        <input type="hidden" name="id" th:value="${lease.leaseId}" />
-        <button type="submit" class="deleteButton">Slet lejeaftale</button>
-    </form>
+
+    <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
+    <label for="needConfirm" class="boxButton">Slet denne lejeaftale</label>
+    <div class="popUpBoxFull">
+        <div class="popUpBox">
+            <p class="boldText">Bekræft at du vil slette lejeaftalen</p>
+            <p class="lightText">Denne handling er permanent, og kan ikke gøres om</p>
+            <div class="choices">
+                <!-- the actual method -->
+                <form th:action="@{/deleteLease}" method="post">
+                    <input type="hidden" name="id" th:value="${lease.leaseId}"/>
+                    <button type="submit" id="submitDeleteButton" hidden>Bekræft</button>
+                    <label for="submitDeleteButton" class="textButton">Bekræft</label>
+                </form>
+                <label for="needConfirm" class="textButton">Annuller</label>
+            </div> <!-- div choices ends -->
+        </div>
+    </div><!-- div confirmationBox ends -->
+    <!--<label for="needConfirm" class="button">Slet denne lejeaftale</label>-->
+
     <form th:action="@{/getPayDamages}" method="get">
         <input type="hidden" name="leaseId" th:value="${lease.leaseId}" />
         <button type="submit" class="deleteButton">Betal for skaderne</button>
     </form>
+    <a th:href="@{/getUserPage}" class="">Tilbage</a>
 
 </div>
 

@@ -39,71 +39,11 @@
             <button type="submit" id="submitEditButton" hidden>Rediger denne bruger</button>
             <label for="submitEditButton" class="boxButton">Rediger denne bruger</label>
         </form>
+        <a th:href="@{/getUserPage}" class="">Tilbage</a>
     </div>
     <div class="notifications">
         <div class="notificationsPanel">
-            <p>Notifikationer</p>
 
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification negative">
-                Mock notification
-            </div>
-            <div class="notification">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification negative">
-                Mock notification
-            </div>
-            <div class="notification">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification negative">
-                Mock notification
-            </div>
-            <div class="notification">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
-            <div class="notification negative">
-                Mock notification
-            </div>
-            <div class="notification">
-                Mock notification
-            </div>
-            <div class="notification positive">
-                Mock notification
-            </div>
         <p th:text="${user.getUserName()}"></p>
         <p th:text="${user.getFirstName()}"></p>
         <p th:text="${user.getLastName()}"></p>

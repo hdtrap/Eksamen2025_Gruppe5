@@ -3,20 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>fixDamage</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+    <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
 </head>
 <body>
-<form th:action="@{/showCar}" method="get">
-    <input type="hidden" th:value="${leaseId}" name="leaseId">
-    <button type="submit">Tilbage</button>
-</form>
+<div th:insert="~{/fragments/header :: header}"></div>
+<div class="mainContent">
 
+<div class="userOptions">
+        <form th:action="@{/showCar}" method="get">
+            <input type="hidden" th:value="${leaseId}" name="leaseId">
+            <button type="submit">Tilbage</button>
+        </form>
+        <form th:action="@{/changeCarStatus}" method="post">
+            <input type="hidden" th:value="${leaseId}" name="leaseId">
+            <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
+            <button type="submit">Gør status tilgængelig</button>
+            <br>
+        </form>
+</div>
+
+<div class="notifications">
+<p>Bilens status : <span th:text="${car.statusOfCar} ?: 'Ingen status'"></span></p> <!--?: betyder at hvis den er null printer den det bagefter-->
 
 <div th:if="${damages != null}">
     <p>Din skader ser her ud for lease id : <span th:text="${leaseId}"></span></p>
     <div th:each="damage : ${damages}">
         <div class="formContainer">
-            <p>----------------------------------------------</p>
             <p th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</p>
+
+            <p>----------------------------------------------</p>
             <p th:text="'Kategori: ' + ${damage.category}">Kategori</p>
             <p th:text="'Skade type: ' + ${damage.damageType}">Skade type</p>
             <p th:text="'Pris: ' + ${damage.price}">Pris</p>
@@ -25,6 +41,8 @@
                 <input type="hidden" th:value="${damage.leaseId}" name="leaseId">
                 <input type="hidden" th:value="${damage.damageId}" name="damageId">
                 <input type="hidden" th:value="${damage.isFixed}" name="isFixed">
+                <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber" placeholder="Bil Nummer">
+
 
                 <button type="submit">Udbedrer skade</button>
             </form>
@@ -32,9 +50,10 @@
         </div>
     </div>
 </div>
+</div>
 <div th:if="${damages == null}">
     <p>Der er ingen skader på bilen</p>
 </div>
-
+</div>
 </body>
 </html>

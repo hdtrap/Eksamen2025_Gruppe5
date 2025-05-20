@@ -5,6 +5,7 @@ import org.example.eksamen2025_gruppe5.exceptions.UserNotLoggedInException;
 import org.example.eksamen2025_gruppe5.exceptions.WrongUserTypeException;
 import org.example.eksamen2025_gruppe5.model.Damage;
 import org.example.eksamen2025_gruppe5.model.Lease;
+import org.example.eksamen2025_gruppe5.repository.CarRepository;
 import org.example.eksamen2025_gruppe5.repository.DamageRepository;
 import org.example.eksamen2025_gruppe5.repository.LeaseRepository;
 import org.example.eksamen2025_gruppe5.repository.UserRepository;
@@ -32,6 +33,8 @@ public class DamageController {
     private LeaseRepository leaseRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    private CarRepository carRepository;
 
 
     @GetMapping("/addDamage")
@@ -186,15 +189,17 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
     }
 
     @GetMapping("/getFixDamage")
-    public String getFixDamage(@RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
+    public String getFixDamage(@RequestParam("leaseId") int leaseId,
+                               @RequestParam("vehicleNumber") int vehicleNumber, Model model) throws UserNotLoggedInException, WrongUserTypeException {
         //Verify User is logged in/logged in as the correct type:
         userRepository.verifyLoggedInUser("REPAIR");
         //Add the user to the model, to display user relevant items
         model.addAttribute(userRepository.getcurrentUser());
-
         model.addAttribute("leaseId", leaseId);
         ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
         model.addAttribute("damages", damages);
+        model.addAttribute("car", carRepository.findCarByVehicleNumber(vehicleNumber));
+
 
 
         return "fixDamage";
@@ -202,7 +207,14 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
     @PostMapping("/fixDamage")
     public String fixDamage(@RequestParam("leaseId") int leaseId,
                             @RequestParam("damageId") int damageID,
-                            @RequestParam("isFixed") boolean isFixed, Model model){
+                            @RequestParam("isFixed") boolean isFixed,
+                            @RequestParam("vehicleNumber") int vehicleNumber, Model model) throws UserNotLoggedInException, WrongUserTypeException {
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("REPAIR");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
+
         Damage damage = damageRepository.getDamageWithDamageId(damageID);
         model.addAttribute("damage", damage);
 
@@ -212,6 +224,7 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
         model.addAttribute("leaseId", leaseId);
         ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
         model.addAttribute("damages", damages);
+        model.addAttribute("car", carRepository.findCarByVehicleNumber(vehicleNumber));
 
         return "fixDamage";
     }

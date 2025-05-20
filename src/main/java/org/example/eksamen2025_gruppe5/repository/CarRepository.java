@@ -2,6 +2,7 @@ package org.example.eksamen2025_gruppe5.repository;
 
 import org.example.eksamen2025_gruppe5.model.Car;
 import org.example.eksamen2025_gruppe5.model.CarModel;
+import org.example.eksamen2025_gruppe5.model.StatusOfCar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -36,6 +37,7 @@ public class CarRepository {
             if (resultSet.next()) {
                 car.setVehicleNumber(resultSet.getInt("vehicle_no"));
                 car.setChassisNumber(resultSet.getString("chassis_no"));
+                car.setStatusOfCar(StatusOfCar.valueOf(resultSet.getString("status_of_car")));
 
                 int carModelId = resultSet.getInt("car_model");
                 CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
@@ -94,6 +96,22 @@ public class CarRepository {
             e.printStackTrace();
         }
         return totalCars;
+    }
+    public void makeCarAvailable(Car car){
+        String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            System.out.println("der sker noget i fmakeCarAvailabe");
+            statement.setString(1, "AvailableToLease");
+            statement.setInt(2, car.getVehicleNumber() );
+            System.out.println("Bilen er tilgængelig");
+            statement.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+
+
     }
 }
 

@@ -48,8 +48,11 @@ public String addDamage(
         @RequestParam("damageType") String damageType,
         @RequestParam("category") int category,
         @RequestParam("price") double price,
-        @RequestParam("leaseId") int leaseId, Model model)
-{
+        @RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
     System.out.println("leaseid i addDamage = " + leaseId);
     Damage newDamage = new Damage(leaseId, damageType, category, price);
     //newDamage.setDamageId()
@@ -64,7 +67,11 @@ public String addDamage(
 public String getEditDamage(@RequestParam("damageId") int damageId,
                             @RequestParam("leaseId") int leaseId,
                             Model model,
-                            RedirectAttributes redirectAttributes){
+                            RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException {
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
     model.addAttribute(userRepository.getcurrentUser());
 
 
@@ -88,7 +95,11 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
                                  @RequestParam("price") double price,
                                  @RequestParam("leaseId") int leaseId,
                                  @RequestParam("damageId") int damageId,
-                                 Model model){
+                                 Model model) throws UserNotLoggedInException, WrongUserTypeException {
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
     Damage updatedDamage = new Damage(damageId, leaseId, damageType, category, price);
     damageRepository.updateDamage(updatedDamage);
     System.out.println("damage er opdateret på lease id " + leaseId );
@@ -100,7 +111,11 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
 @GetMapping("/showDamage")
     public String showDamage(@RequestParam("leaseId") int leaseId, Model damageList,
                              Model model,
-                             RedirectAttributes redirectAttributes){
+                             RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException {
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
     model.addAttribute(userRepository.getcurrentUser());
     System.out.println("leaseid i showDamage = " + leaseId);
 
@@ -119,7 +134,11 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
 
 @PostMapping("/deleteDamage")
     public String deleteDamage(@RequestParam("damageId") int damageId,
-                               @RequestParam("leaseId") int leaseId, Model model){
+                               @RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
     System.out.println("damageId = " + damageId);
 
     damageRepository.deleteDamageWithDamageId(damageId);
@@ -133,7 +152,11 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
         return "redirect:/showDamage?leaseId=" + leaseId;
 }
 @GetMapping("/getPrintDamageReport")
-    public String getPrintDamageReport(@RequestParam("leaseId") int leaseId, Model model){
+    public String getPrintDamageReport(@RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
     System.out.println("du er nu i getPrintDamageReport leaseid: " +leaseId);
     model.addAttribute("leaseId", leaseId);
     ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
@@ -142,51 +165,23 @@ public String getEditDamage(@RequestParam("damageId") int damageId,
 }
 @GetMapping("/printDamageReport") // Denne metode printer skaderapporter i en mappe i systemet der hedder skaderapport
     public String printDamageReport(@RequestParam("leaseId") int leaseId, Model model,
-                                    RedirectAttributes redirectAttributes) throws IOException {
-        model.addAttribute("leaseId", leaseId);
-     System.out.println("du er nu i printDamageReport leaseid: " +leaseId);
+                                    RedirectAttributes redirectAttributes) throws IOException, UserNotLoggedInException, WrongUserTypeException {
+    //Verify User is logged in/logged in as the correct type:
+    userRepository.verifyLoggedInUser("REPAIR");
+    //Add the user to the model, to display user relevant items
+    model.addAttribute(userRepository.getcurrentUser());
+    model.addAttribute("leaseId", leaseId);
+    System.out.println("du er nu i printDamageReport leaseid: " + leaseId);
 
     try {
-            Lease lease = leaseRepository.findLeaseById(leaseId);
-            ArrayList<Damage> damages = damageRepository.getAllDamagesForALeaseWithLeaseId(leaseId);
-            //Pathen hedder skaderapport da det er i den yderste mappe
-            String folderPath = "skaderapport";
-            File folder = new File(folderPath);
-            //Navnet på den fil der bliver lavet og dens path
-            String filePath = folderPath + "/skaderapport_" + leaseId + ".txt";
-            FileWriter fw = new FileWriter(filePath);
+        Lease lease = leaseRepository.findLeaseById(leaseId);
+        damageRepository.printSkadesRapport(lease);
 
-            try (BufferedWriter writer = new BufferedWriter(fw)) {
-                writer.write("Skaderapport for lease ID: " + leaseId);
-                writer.newLine();
-                writer.write("Kunde: " + lease.getCustomerName());
-                writer.newLine();
-                writer.write("----------------------------------");
-                writer.newLine();
-
-                for (Damage damage : damages) {
-                    writer.write("Skade id: " + damage.getDamageId());
-                    writer.newLine();
-                    writer.write("Skade type: " + damage.getDamageType());
-                    writer.newLine();
-                    writer.write("Kategori: " + damage.getCategory());
-                    writer.newLine();
-                    writer.write("Pris: " + damage.getPrice() + " kr.");
-                    writer.newLine();
-                    writer.write("----------------------------------");
-                    writer.newLine();
-                }
-
-                writer.flush();
-            }
-
-        } catch (LeaseNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    return "printDamageReport";
+    } catch (LeaseNotFoundException e) {
+        throw new RuntimeException(e);
     }
+    return "printDamageReport";
+}
 
     @GetMapping("/getFixDamage")
     public String getFixDamage(@RequestParam("leaseId") int leaseId,

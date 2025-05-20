@@ -439,3 +439,7 @@ td, th {
 .scrollable {
     overflow-y: auto;
 }
+.tilbageknap {
+    z-index: 51;
+    position: fixed;
+}

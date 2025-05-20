@@ -12,13 +12,16 @@
     <div class="tableContainer">
 
         <!-- Buttons in the top -->
-        <div class="tableContainerItem tableContainerButtons">
+        <div class="tableContainerItem">
 
             <div class="tableAndButton">
             <input type="radio" name="listSelect" id="allCars" hidden checked>
             <label for="allCars" class="boxButton allCarsButton">Alle biler</label>
             <!-- Alle biler -->
-            <table class="toggleShow">
+
+                <div class="toggleShow">
+                <div class="scrollable">
+            <table>
                 <tr>
                     <th>Vognnummer</th>
                     <th>Stelnummer</th>
@@ -38,13 +41,17 @@
                     <td><p th:text="${car.price}"></p></td>
                 </tr>
             </table>
-            </div>
+                </div>
+                </div>
+        </div>
 
             <div class="tableAndButton">
             <input type="radio" name="listSelect" id="leasedCars" hidden>
             <label for="leasedCars" class="boxButton leasedCarsButton">Leasede biler</label>
             <!-- Udlejede biler -->
-            <table class="toggleShow" style="background-color: #82cde6">
+                <div class="toggleShow">
+                    <div class="scrollable">
+            <table>
                 <tr>
                     <th>Vognnummer</th>
                     <th>Stelnummer</th>
@@ -64,13 +71,17 @@
                     <td><p th:text="${car.price}"></p></td>
                 </tr>
             </table>
+                    </div>
+                </div>
             </div>
 
             <div class="tableAndButton">
             <input type="radio" name="listSelect" id="nonLeasedCars" hidden>
             <label for="nonLeasedCars" class="boxButton nonLeasedCarsButton">Ikke leasede biler</label>
             <!-- Ikke udlejede biler -->
-            <table class="toggleShow" style="background-color: gold">
+                <div class="toggleShow">
+                    <div class="scrollable">
+            <table>
                 <tr>
                     <th>Vognnummer</th>
                     <th>Stelnummer</th>
@@ -90,6 +101,8 @@
                     <td><p th:text="${car.price}"></p></td>
                 </tr>
             </table>
+                    </div>
+                </div>
             </div>
 
         </div> <!-- tableContainerItem ends -->

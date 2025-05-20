@@ -4,24 +4,42 @@
     <meta charset="UTF-8">
     <title>Dataregistrering</title>
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
-    <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
+    <link rel="stylesheet" href="../static/popUpBox.css" th:href="@{/popUpBox.css}">
 </head>
 <body>
 <div th:insert="~{/fragments/header :: header}"></div>
 <div class="mainContent">
 
     <div class="userOptions">
+        <div class="boldText">Vælg funktion:</div>
         <a th:href="@{/createLease}" class="boxButton">Opret ny lease</a>
         <a th:href="@{/getShowListsOfCars}" class="boxButton">Vis biler</a>
-        <form th:action="@{/showLease}"  method=get>
-            <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
-            <button type="submit" class="boxButton">Find lease</button>
-        </form>
+
+        <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
+        <label for="needConfirm" class="boxButton">Find en lease</label>
+        <div class="popUpBoxFull">
+            <div class="popUpBox">
+                <div class="boldText">Indtast ID for den lease du vil finde</div>
+                <div class="inputFields">
+                    <form th:action="@{/showLease}"  method=get>
+                        <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
+                        <button id="submitButton" type="submit" hidden>Find lease</button>
+                    </form>
+                </div>
+                <div class="choices">
+                    <!-- the actual method -->
+                    <label for="submitButton" class="textButton">Find lease</label>
+                    <label for="needConfirm" class="textButton">Annuller</label>
+                </div> <!-- div choices ends -->
+            </div>
+        </div><!-- div confirmationBox ends -->
+
+
         <a th:href="@{/getShowAllLeases}" class="boxButton">Vis alle leases</a>
     </div> <!-- div userOptions ends -->
     <div class = notifications>
     <div class="notificationsPanel">
-        NOTIFICATIONS
+        Notifikationer
         <p th:if="${message}" th:text="${message}"></p>
         <div th:each="notification : ${notificationList}" class="notification"  th:classappend="${notification.getType()}">
             <p th:text="${notification.getMessage()}"></p>

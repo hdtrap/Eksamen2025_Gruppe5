@@ -26,19 +26,24 @@
 .popUpBox {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
+
+    justify-content: space-evenly;
     align-items: center;
+
+    gap: 20px;
+
+
+    padding: 30px;
+
     position: fixed;
     transform: translateY(-20px);
     transition: transform 0.3s ease;
 
-    width: 25dvw;
-    height: 25dvh;
-    box-sizing: border-box;
-
     background-color: white;
     border-radius: 3px;
+
+
+
 
     .choices{
         display: flex;
@@ -46,9 +51,6 @@
         justify-content: space-between;
         width: 200px;
 
-        .textButton:hover{
-            color: red;
-        }
     }
 }
 

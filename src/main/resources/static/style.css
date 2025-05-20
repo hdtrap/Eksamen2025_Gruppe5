@@ -265,13 +265,11 @@ button, label, .btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
 
     overflow-y: auto;
     width: auto;
+    max-width: 40vw;
     height: 100%;
-
-    outline: yellow solid 1px;
 }
 
 .formContainer {

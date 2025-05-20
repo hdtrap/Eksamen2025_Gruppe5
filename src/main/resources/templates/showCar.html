@@ -27,7 +27,13 @@
 </form>
     <form th:action="@{/getFixDamage}" method="get">
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
+        <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber" placeholder="Bil Nummer">
         <button type="submit">Udbedrer skade</button>
+    </form>
+    <form th:action="@{/changeCarStatusPendingEvaluation}" method="post">
+        <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
+        <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
+        <button type="submit">Registrer bil som modtaget</button>
     </form>
     <a th:href="@{/getUserPage}" class="">Tilbage</a>
 </div>
@@ -35,7 +41,11 @@
 <div class="information">
     <h2>Information</h2>
     <h1> <span th:text="${lease.customerName}"></span></h1>
-
+    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease}">Bilens status: Klar til lease</p><!--T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease Er stien til enum klassen i java, thymeleaf siger at hvis car.StatusOfCar er den enum så skal den printe det der står ved siden af-->
+    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Leased}">Bilens status: Leaset ud</p>
+    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).GettingRepaired}">Bilens status: Til reparation</p>
+    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Sold}">Bilens status: Solgt</p>
+    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).PendingEvaluation}">Bilens status: Modtaget</p>
     <p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
     <p>Kundens navn: <span th:text="${lease.customerName}"></span></p>
     <p>Bil ID: <span th:text="${car.vehicleNumber}"></span></p>

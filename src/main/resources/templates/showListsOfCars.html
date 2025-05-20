@@ -9,19 +9,16 @@
 <body>
 <div th:insert="~{/fragments/header :: header}"></div>
 <div class="mainContent">
-
     <div class="tableContainer">
 
         <!-- Buttons in the top -->
-        <div class="tableContainerItem">
-            <button>Alle biler</button>
-            <button>Lejede biler</button>
-            <button>Ikke lejede biler</button>
-        </div> <!-- tableContainerItem ends -->
+        <div class="tableContainerItem tableContainerButtons">
 
-        <!-- Attributes -->
-        <div class="tableContainerItem">
-            <table>
+            <div class="tableAndButton">
+            <input type="radio" name="listSelect" id="allCars" hidden checked>
+            <label for="allCars" class="boxButton allCarsButton">Alle biler</label>
+            <!-- Alle biler -->
+            <table class="toggleShow">
                 <tr>
                     <th>Vognnummer</th>
                     <th>Stelnummer</th>
@@ -31,50 +28,71 @@
                     <th>Brændstof</th>
                     <th>Indkøbspris</th>
                 </tr>
+                <tr th:each="car : ${listOfAllCars}">
+                    <td><p th:text="${car.vehicleNumber}"></p></td>
+                    <td><p th:text="${car.chassisNumber}"></p></td>
+                    <td><p th:text="${car.carModel.getBrand()}"></p></td>
+                    <td><p th:text="${car.carModel.getModel()}"></p></td>
+                    <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
+                    <td><p th:text="${car.carModel.getFuelType()}"></p></td>
+                    <td><p th:text="${car.price}"></p></td>
+                </tr>
             </table>
-        </div> <!-- tableContainerItem -->
+            </div>
 
-        <!-- tables -->
-        <div class="scrollable">
-        <div class="tableContainerItem">
-                <table>
-                    <!-- Alle biler -->
-                    <tr th:each="car : ${listOfAllCars}">
-                        <td><p th:text="${car.vehicleNumber}"></p></td>
-                        <td><p th:text="${car.chassisNumber}"></p></td>
-                        <td><p th:text="${car.carModel.getBrand()}"></p></td>
-                        <td><p th:text="${car.carModel.getModel()}"></p></td>
-                        <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
-                        <td><p th:text="${car.carModel.getFuelType()}"></p></td>
-                        <td><p th:text="${car.price}"></p></td>
-                    </tr>
-                </table>
-                <table>
-                    <!-- Udlejede biler -->
-                    <tr th:each="car : ${listOfLeasedCars}">
-                        <td><p th:text="${car.vehicleNumber}"></p></td>
-                        <td><p th:text="${car.chassisNumber}"></p></td>
-                        <td><p th:text="${car.carModel.getBrand()}"></p></td>
-                        <td><p th:text="${car.carModel.getModel()}"></p></td>
-                        <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
-                        <td><p th:text="${car.carModel.getFuelType()}"></p></td>
-                        <td><p th:text="${car.price}"></p></td>
-                    </tr>
-                </table>
-                <table>
-                    <!-- Ikke udlejede biler -->
-                    <tr th:each="car : ${listOfNonLeasedCars}">
-                        <td><p th:text="${car.vehicleNumber}"></p></td>
-                        <td><p th:text="${car.chassisNumber}"></p></td>
-                        <td><p th:text="${car.carModel.getBrand()}"></p></td>
-                        <td><p th:text="${car.carModel.getModel()}"></p></td>
-                        <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
-                        <td><p th:text="${car.carModel.getFuelType()}"></p></td>
-                        <td><p th:text="${car.price}"></p></td>
-                    </tr>
-                </table>
+            <div class="tableAndButton">
+            <input type="radio" name="listSelect" id="leasedCars" hidden>
+            <label for="leasedCars" class="boxButton leasedCarsButton">Leasede biler</label>
+            <!-- Udlejede biler -->
+            <table class="toggleShow" style="background-color: #82cde6">
+                <tr>
+                    <th>Vognnummer</th>
+                    <th>Stelnummer</th>
+                    <th>Mærke</th>
+                    <th>Model</th>
+                    <th>Produktionsår</th>
+                    <th>Brændstof</th>
+                    <th>Indkøbspris</th>
+                </tr>
+                <tr th:each="car : ${listOfLeasedCars}">
+                    <td><p th:text="${car.vehicleNumber}"></p></td>
+                    <td><p th:text="${car.chassisNumber}"></p></td>
+                    <td><p th:text="${car.carModel.getBrand()}"></p></td>
+                    <td><p th:text="${car.carModel.getModel()}"></p></td>
+                    <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
+                    <td><p th:text="${car.carModel.getFuelType()}"></p></td>
+                    <td><p th:text="${car.price}"></p></td>
+                </tr>
+            </table>
+            </div>
+
+            <div class="tableAndButton">
+            <input type="radio" name="listSelect" id="nonLeasedCars" hidden>
+            <label for="nonLeasedCars" class="boxButton nonLeasedCarsButton">Ikke leasede biler</label>
+            <!-- Ikke udlejede biler -->
+            <table class="toggleShow" style="background-color: gold">
+                <tr>
+                    <th>Vognnummer</th>
+                    <th>Stelnummer</th>
+                    <th>Mærke</th>
+                    <th>Model</th>
+                    <th>Produktionsår</th>
+                    <th>Brændstof</th>
+                    <th>Indkøbspris</th>
+                </tr>
+                <tr th:each="car : ${listOfNonLeasedCars}">
+                    <td><p th:text="${car.vehicleNumber}"></p></td>
+                    <td><p th:text="${car.chassisNumber}"></p></td>
+                    <td><p th:text="${car.carModel.getBrand()}"></p></td>
+                    <td><p th:text="${car.carModel.getModel()}"></p></td>
+                    <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
+                    <td><p th:text="${car.carModel.getFuelType()}"></p></td>
+                    <td><p th:text="${car.price}"></p></td>
+                </tr>
+            </table>
+            </div>
+
         </div> <!-- tableContainerItem ends -->
-        </div>
     </div> <!-- tableContainer ends -->
 </div>
 </body>

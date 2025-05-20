@@ -450,12 +450,49 @@ button, label, .btn {
 }
 
 .tableContainerItem {
+    outline: red solid 1px;
+    width: 100%;
     position: relative;
 }
 
+.tableAndButton {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+
+    top: 0;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #2ea8dd;
+    color: white;
+}
+
+input[type="radio"]:checked ~ .toggleShow {
+    opacity: 100;
+}
+
+.toggleShow {
+    opacity: 0;
+}
+
+.allCarsButton {
+    align-self: flex-start;
+    position: absolute;
+    top: -50px;
+}
+.leasedCarsButton {
+    align-self: center;
+    position: absolute;
+    top: -50px;
+}
+.nonLeasedCarsButton {
+    align-self: flex-end;
+    position: absolute;
+    top: -50px;
+}
 
 table, td, th {
-
     width: 100%;
     outline: #acacac solid 1px;
     border-collapse: collapse;
@@ -475,4 +512,12 @@ td, th {
 
 .scrollable {
     overflow-y: auto;
+}
+
+
+
+
+.tilbageknap {
+    z-index: 51;
+    position: absolute;
 }

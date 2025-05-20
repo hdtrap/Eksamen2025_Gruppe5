@@ -37,6 +37,7 @@ public class CarRepository {
             if (resultSet.next()) {
                 car.setVehicleNumber(resultSet.getInt("vehicle_no"));
                 car.setChassisNumber(resultSet.getString("chassis_no"));
+                car.setStatusOfCar(StatusOfCar.valueOf(resultSet.getString("status_of_car")));
 
                 int carModelId = resultSet.getInt("car_model");
                 CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
@@ -96,6 +97,47 @@ public class CarRepository {
         }
         return totalCars;
     }
+    public void makeCarStatusAvailable(Car car){
+        String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            System.out.println("der sker noget i fmakeCarAvailabe");
+            statement.setString(1, "AvailableToLease");
+            statement.setInt(2, car.getVehicleNumber() );
+            System.out.println("Bilen er tilgængelig");
+            statement.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+    public void makeCarStatusGettingRepaired(Car car){
+        String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "GettingRepaired");
+            statement.setInt(2, car.getVehicleNumber() );
+            System.out.println("Bilen er GettingRepaired");
+            statement.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+    public void makeCarStatusPendingEvaluation(Car car){
+        String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "PendingEvaluation");
+            statement.setInt(2, car.getVehicleNumber() );
+            System.out.println("Bilen er PendingEvaluation");
+            statement.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
+
 
     public ArrayList<Car> getAllCars() {
         ArrayList<Car> allCars = new ArrayList<>();
@@ -155,7 +197,7 @@ public class CarRepository {
         ArrayList<Car> nonLeasedCars = new ArrayList<>();
 
         String sqlRequest = "SELECT * FROM cars JOIN leases ON cars.vehicle_no = leases.vehicle_no " +
-                "WHERE NOT leases.start_date <= CURRENT_DATE AND NOT leases.end_date > CURRENT_DATE";
+                "WHERE leases.end_date < CURRENT_DATE";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sqlRequest);

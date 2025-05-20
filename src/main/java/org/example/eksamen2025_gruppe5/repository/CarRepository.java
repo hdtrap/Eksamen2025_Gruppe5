@@ -224,7 +224,15 @@ public class CarRepository {
     public CarModel mostCommonModel() {
         CarModel mostCommon = new CarModel();
 
-        // Count the car models from active leases, group by car models, arrange groups so the biggest group is on top, select top value
+        /*
+        Select all attributes from car_models
+        COUNT(*) AS most_common counts how many appear in each group - most_common is label for each group
+        Join the three tables so all values are reachable
+        WHERE clause so only active leases are counted
+        GROUP BY car_models.id so the groups counted are divided by car_models.id
+        ORDER BY DESC puts the biggest group on top
+        LIMIT 1 only selects one row, which will be the top value, which is in the biggest group, thus the most common value
+        */
         String sqlRequest = "SELECT car_models.*, COUNT(*) AS most_common " +
                 "FROM cars JOIN leases ON cars.vehicle_no = leases.vehicle_no " +
                 "JOIN car_models ON cars.car_model = car_models.id " +

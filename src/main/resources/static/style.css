@@ -533,9 +533,12 @@ table {
 td, th {
     height: 100%;
     text-align: center;
+    overflow: hidden;
 }
 
 th {
+    color: white;
+    background-color: #2ea8dd;
     padding: 2%;
 }
 

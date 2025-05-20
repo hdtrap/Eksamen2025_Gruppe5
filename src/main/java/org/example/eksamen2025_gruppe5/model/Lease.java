@@ -50,7 +50,7 @@ public class Lease {
         fullyProcessed = false;
     }
 
-    public Lease(){}
+    public Lease(int leaseId, Object startDate, Object endDate, Object customerName, Object customerEmail, Object customerNumber, Object o, Object object, Object typeOfLease){}
 
     public int getLeaseId() {
         return leaseId;

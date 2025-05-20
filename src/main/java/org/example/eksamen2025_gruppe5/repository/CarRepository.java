@@ -197,7 +197,7 @@ public class CarRepository {
         ArrayList<Car> nonLeasedCars = new ArrayList<>();
 
         String sqlRequest = "SELECT * FROM cars JOIN leases ON cars.vehicle_no = leases.vehicle_no " +
-                "WHERE NOT leases.start_date <= CURRENT_DATE AND NOT leases.end_date > CURRENT_DATE";
+                "WHERE leases.end_date < CURRENT_DATE";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sqlRequest);

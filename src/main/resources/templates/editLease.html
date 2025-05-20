@@ -10,70 +10,10 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 
 <div class="mainContent">
-    <a th:href="@{/showLease(leaseId=${lease.leaseId})}" class="">Tilbage</a>
 
-    <!--
-<div class="formContainer">
-
-<form th:action="@{/saveUpdateLease}" method="post" class="createForm">
-<input type="hidden" name="id" th:value="${lease.leaseId}"/>
-
-<div class="form-group">
-    <label for="vehicle_no">Vogn Nummer:</label>
-    <input type="text" id="vehicle_no" name="vehicle_no" th:value="${lease.car.getVehicleNumber()}" required>
-</div>
-<div class="form-group">
-    <label for="start_date">Start Dato:</label>
-    <input type="date" id="start_date" name="start_date" th:value="${lease.startDate}" required>
-</div>
-<div class="form-group">
-    <label for="end_date">Slut Dato:</label>
-    <input type="date" id="end_date" name="end_date" th:value="${lease.endDate}" required>
-</div>
-<div class="form-group">
-    <label for="customer_name">Kunde Navn:</label>
-    <input type="text" id="customer_name" name="customer_name" th:value="${lease.customerName}" required>
-</div>
-<div class="form-group">
-    <label for="customer_email">Kunde Email:</label>
-    <input type="text" id="customer_email" name="customer_email" th:value="${lease.customerEmail}" required>
-</div>
-<div class="form-group">
-    <label for="customer_number">Kunde Nummer:</label>
-    <input type="text" id="customer_number" name="customer_number" th:value="${lease.customerNumber}" required>
-</div>
-<div class="form-group">
-    <label for="price_to_start">Udbetaling:</label>
-    <input type="number" id="price_to_start" name="price_to_start" th:value="${lease.priceToStart}" required>
-</div>
-<div class="form-group">
-    <label for="price_pr_month">Månedlig Ydelse:</label>
-    <input type="number" id="price_pr_month" name="price_pr_month" th:value="${lease.pricePrMonth}" required>
-</div>
-<div class="form-group">
-    <label for="type_of_lease">Type Abonnement:</label>
-    <select id="type_of_lease" name="type_of_lease" th:value="${lease.typeOfLease}" required>
-        <option value="ABONNEMENT">Abonnement (3-36 mdr.)</option>
-        <option value="MINILEASING">Minileasing</option>
-        <option value="VAREBIL">Varebil</option>
-    </select>
-</div>
-<fieldset>
-    <legend>Tilvalg:</legend>
-    <div th:each="addon: ${addOnTypes}">
-        <label>
-            <input type="checkbox" name="selectedAddOns" th:value="${addon.addOnTypeId}">
-            <span th:utext="${addon.type} + ' - ' + ${addon.price} + 'kr./md. <br>Beskrivelse: ' + ${addon.description}"></span>
-        </label>
-    </div>
-</fieldset>
-<button type="submit" class="styledButton">submit</button>
-</form>
-</div>
--->
 
     <div class="backButton">
-        <a th:href="@{/getUserPage}" class="textButton">Tilbage</a>
+        <a th:href="@{/showLease(leaseId=${lease.leaseId})}" class="textButton">Tilbage</a>
     </div>
 
 

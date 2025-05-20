@@ -1,10 +1,15 @@
 package org.example.eksamen2025_gruppe5.repository;
 
 import org.example.eksamen2025_gruppe5.model.Damage;
+import org.example.eksamen2025_gruppe5.model.Lease;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -139,6 +144,64 @@ public void payAllDamagesOnALease(int leaseId){
 
     } catch (SQLException e) { e.printStackTrace();
          }
+}
+public void printSkadesRapport(Lease lease) throws IOException {
+    ArrayList<Damage> damages = getAllDamagesForALeaseWithLeaseId(lease.getLeaseId());
+    //Pathen hedder skaderapport da det er i den yderste mappe
+    String folderPath = "skaderapport";
+    File folder = new File(folderPath);
+    //Navnet på den fil der bliver lavet og dens path
+    String filePath = folderPath + "/skaderapport_" + lease.getLeaseId() + ".txt";
+    FileWriter fw = new FileWriter(filePath);
+    double totalpris = 0;
+
+    try (BufferedWriter writer = new BufferedWriter(fw)) {
+        writer.write("Skaderapport for lease ID: " + lease.getLeaseId());
+        writer.newLine();
+        writer.write("Kunde: " + lease.getCustomerName());
+        writer.newLine();
+        writer.write("----------------------------------");
+        writer.newLine();
+
+        for (Damage damage : damages) {
+            writer.newLine();
+            writer.write("Skade id: " + damage.getDamageId());
+            writer.newLine();
+            writer.write("Skade type: " + damage.getDamageType());
+            writer.newLine();
+            writer.write("Kategori: " + damage.getCategory());
+            writer.newLine();
+            writer.write("Pris: " + damage.getPrice() + " kr.");
+            writer.newLine();
+            writer.write("----------------------------------");
+            writer.newLine();
+            totalpris += damage.getPrice();
+        }
+        writer.write("Totalpris til betaling: " + totalpris + "DKK ");
+        writer.newLine();
+        writer.write("Har du spørgsmål eller brug for hjælp, så sidder vi klar til at hjælpe dig.");
+        writer.newLine();
+        writer.newLine();
+        writer.write("Hverdage - 10.00-15.00");
+        writer.newLine();
+        writer.write("(Telefonen er lukket mellem 11:30 - 12:00)");
+        writer.newLine();
+        writer.newLine();
+        writer.write("+45 89 88 50 80");
+        writer.newLine();
+        writer.newLine();
+        writer.write("support@bilabonnement.dk");
+        writer.newLine();
+        writer.newLine();
+        writer.write("Du finder os på Vibeholmsvej 31, 2605 Brøndby,");
+        writer.newLine();
+        writer.write("hvor vi både har vores administration og værksted til klargøring af biler.");
+        writer.newLine();
+
+        writer.flush();
+    } catch (IOException e) {
+        throw new RuntimeException(e);
+    }
 }
 
 

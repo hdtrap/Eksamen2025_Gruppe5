@@ -28,10 +28,15 @@
             </div>
         </div>
     </div>
-    <div class="notifications">
-        NOTIFICATIONS
-        <p th:if="${message}" th:text="${message}"></p>
-    </div> <!-- div notifications ends -->
+<div class = notifications>
+    <div class="notificationsPanel">
+        Notifikationer
+        <p th:if="${message}" th:text="${message}" class="notification"></p>
+        <div th:each="notification : ${notificationList}" class="notification"  th:classappend="${notification.getType()}">
+            <p th:text="${notification.getMessage()}"></p>
+        </div>
+    </div>
+</div><!-- div notifications ends -->
 </div> <!-- mainContent ends -->
 </body>
 </html>

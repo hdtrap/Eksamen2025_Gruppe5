@@ -11,28 +11,58 @@
 
 
 <div class="mainContent">
-    <a th:href="@{/getUserPage}" class="">Tilbage</a>
+    <div class="backButton">
+        <a th:href="@{/getUserPage}" class="textButton">Tilbage</a>
+    </div>
     <div class="formContainer">
-<p class="message" th:if="${message}" th:text="${message}" style="color: red;"></p>
 
-<form th:action="@{/saveCreateUser}" method="post" class="loginForm">
+<form th:action="@{/saveCreateUser}" method="post" class="registerForm">
 
-    <input type="text" th:value="${userInfo.getFirstName}" id="firstName" name="firstName" placeholder="Indtast dit fornavn" required class="inputBox">
-    <br>
-    <input type="text" th:value="${userInfo.getLastName()}" id="lastName" name="lastName" placeholder="Indtast dit efternavn" required class="inputBox">
-    <br>
-    <input type="password" id="passWord" name="passWord" placeholder="Indtast password" required class="inputBox">
-    <br>
-    <input type="password" id="confirmPassWord" name="confirmPassWord" placeholder="Indtast password igen" required class="inputBox">
-    <br>
-    <select name="role" id="role" multiple required>
-        <option value="Data">Data</option>
-        <option value="Repair">Repair</option>
-        <option value="Business">Business</option>
-        <option value="Sysadmin">Sysadmin</option>
-    </select>
+    <div class="boldText">Opret bruger</div>
+    <p class="message" th:if="${message}" th:text="${message}" style="color: red;"></p>
 
-    <button type="submit" class="styledButton">submit</button>
+
+    <div class="form-group">
+        <label for="firstName">Fornavn:</label>
+        <input type="text" id="firstName" name="firstName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Efternavn:</label>
+        <input type="text" id="lastName" name="lastName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="passWord">Password:</label>
+        <input type="password" id="passWord" name="passWord" required>
+    </div>
+
+    <div class="form-group">
+        <label for="confirmPassWord">Bekræft password:</label>
+        <input type="password" id="confirmPassWord" name="confirmPassWord" required>
+    </div>
+
+    <div class="roleradios">
+        Brugertype:
+        <div class="roleRadio">
+            <input type="radio" name="role" th:value="Data" required>
+            <div class="lightText">Data Registrering</div>
+        </div>
+        <div class="roleRadio">
+            <input type="radio" name="role" th:value="Repair">
+            <div class="lightText">Skade Registrering</div>
+        </div>
+        <div class="roleRadio">
+            <input type="radio" name="role" th:value="Business">
+            <div class="lightText">Forretningsudvikling</div>
+        </div>
+        <div class="roleRadio">
+            <input type="radio" name="role" th:value="Sysadmin">
+            <div class="lightText">System administrator</div>
+        </div>
+    </div>
+
+    <button type="submit" class="boxButton">submit</button>
 </form>
     </div>
 </div>

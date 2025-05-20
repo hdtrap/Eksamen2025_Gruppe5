@@ -11,21 +11,49 @@
 
 <div class="mainContent">
     <div class="formContainer">
-        <h1>Bil ID <span th:text="${car.vehicleNumber}"></span></h1>
-        <h1>Lease ID <span th:text="${lease.leaseId}"></span></h1>
-        <p>Tilføj skade</p>
-        <form th:action="@{/addDamage}" method="post" class="createForm">
+        <div class="lightText">Tilføj skade</div>
+        <div class="boldText">Bil ID: <span th:text="${car.vehicleNumber}"></span></div>
+        <div class="boldText">Lease ID: <span th:text="${lease.leaseId}"></span></div>
+        <form th:action="@{/addDamage}" method="post" class="registerForm">
             <div class="form-group">
                 <input type="text" id="damageType" name="damageType" placeholder="Skade type">
             </div>
-            <div class="form-group">
-                <input type="number" id="category" name="category" placeholder="Kategori">
+            <div class="fivePointCatSelect">
+                <div class="lightText">
+                    Kategori
+                </div>
+
+
+                <div class="fivePointRadios">
+                <label>
+                    <span>1</span>
+                    <input type="radio" name="category" th:value="1">
+                </label>
+                <label>
+                    <span>2</span>
+                    <input type="radio" name="category" th:value="2">
+                </label>
+                <label>
+                    <span>3</span>
+                    <input type="radio" name="category" th:value="3">
+                </label>
+                <label>
+                    <span>4</span>
+                    <input type="radio" name="category" th:value="4">
+                </label>
+                <label>
+                    <span>5</span>
+                    <input type="radio" name="category" th:value="5">
+                </label>
+                </div>
             </div>
             <div class="form-group">
                 <input type="number" id="price" name="price" placeholder="Pris">
             </div>
             <input type="hidden" th:value="${lease.leaseId}" id="leaseId" name="leaseId" placeholder="Lease Id">
-            <button type="submit">Tilføj</button>
+
+            <label for="submitButton" class="boxButton">Tilføj skade</label>
+            <button id="submitButton" type="submit" hidden="">Tilføj</button>
         </form>
     </div>
 </div>

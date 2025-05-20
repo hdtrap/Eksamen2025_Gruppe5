@@ -179,6 +179,7 @@ public void printSkadesRapport(Lease lease) throws IOException {
         }
         writer.write("Totalpris til betaling: " + totalpris + "DKK ");
         writer.newLine();
+        writer.newLine();
         writer.write("Har du spørgsmål eller brug for hjælp, så sidder vi klar til at hjælpe dig.");
         writer.newLine();
         writer.newLine();

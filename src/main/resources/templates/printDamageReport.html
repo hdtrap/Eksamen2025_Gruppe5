@@ -11,7 +11,7 @@
 <div class="tilbageknap">
     <form th:action="@{/getShowDamage}" method="get">
         <input type="hidden" th:value="${leaseId}" name="leaseId" placeholder="Lease Id">
-        <button type="submit">Tilbage</button>
+        <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
     </form>
 </div>
 
@@ -20,7 +20,7 @@
     <div th:if="${leaseId != null}">
         <form th:action="@{/printDamageReport}" method="get">
             <input type="hidden" th:value="${leaseId}" name="leaseId" placeholder="Lease Id">
-            <button type="submit">Tryk for at printe</button>
+            <button type="submit" class="boxButton fixedButtonWidth">Tryk for at printe</button>
         </form>
 
         <div th:if="${damages != null}">

@@ -7,7 +7,7 @@
 <body>
 <form th:action="@{/showLease}" method="get">
     <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
-    <button type="submit">Tilbage</button>
+    <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
 </form>
 <p>Skader for lease id : <span th:text="${leaseId}"></span></p>
 <div th:each="damage : ${damages}">
@@ -17,7 +17,7 @@
 </div>
     <form th:action="@{/payDamages}" method="post">
         <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
-        <button type="submit">Marker alle skader som betalt</button>
+        <button type="submit" class="boxButton fixedButtonWidth">Marker alle skader som betalt</button>
     </form>
 
 

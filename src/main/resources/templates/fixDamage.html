@@ -13,17 +13,17 @@
 <div class="userOptions">
         <form th:action="@{/showCar}" method="get">
             <input type="hidden" th:value="${leaseId}" name="leaseId">
-            <button type="submit">Tilbage</button>
+            <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
         </form>
         <form th:action="@{/changeCarStatusAvailable}" method="post">
             <input type="hidden" th:value="${leaseId}" name="leaseId">
             <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-            <button type="submit">Gør status klar</button>
+            <button type="submit" class="boxButton fixedButtonWidth">Gør status klar</button>
         </form>
     <form th:action="@{/changeCarStatusGettingRepaired}" method="post">
         <input type="hidden" th:value="${leaseId}" name="leaseId">
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-        <button type="submit">Gør status til reparation</button>
+        <button type="submit" class="boxButton fixedButtonWidth">Gør status til reparation</button>
     </form>
 </div>
 
@@ -57,7 +57,7 @@
                         <input type="hidden" th:value="${damage.isFixed}" name="isFixed">
                         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber"
                                placeholder="Bil Nummer">
-                        <button type="submit">Udbedrer skade</button>
+                        <button type="submit" class="boxButton fixedButtonWidth">Udbedrer skade</button>
                     </form>
 
                 </div>

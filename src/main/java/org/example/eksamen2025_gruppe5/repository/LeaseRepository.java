@@ -65,7 +65,7 @@ CarRepository carRepository;
 
     // Metode til at finde biler ved deres lease ID
     public Lease findLeaseById(int leaseId) throws LeaseNotFoundException{
-        Lease lease = new Lease();
+        Lease lease = new Lease(leaseId, null, null, null, null, null, null, null, null);
         String sql = "SELECT * FROM leases WHERE lease_id = ?";
 
         try (Connection connection = dataSource.getConnection();

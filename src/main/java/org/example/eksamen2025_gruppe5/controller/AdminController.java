@@ -34,4 +34,13 @@ public class AdminController {
         return "damagePage";
     }
 
+    @GetMapping("/adminGetBusiness")
+    public String adminGetBusiness(Model model) throws UserNotLoggedInException, WrongUserTypeException{
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("SYSADMIN");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+        return "businessPage";
+    }
+
 }

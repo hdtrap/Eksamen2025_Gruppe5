@@ -12,11 +12,11 @@
 
     <div class="userOptions">
         <div class="boldText">Vælg funktion:</div>
-        <a th:href="@{/createLease}" class="boxButton">Opret ny lease</a><!--findes i LeaseController-->
-        <a th:href="@{/getShowListsOfCars}" class="boxButton">Vis biler</a><!--findes i PageController-->
+        <a th:href="@{/createLease}" class="boxButton wideButton">Opret ny lease</a><!--findes i LeaseController-->
+        <a th:href="@{/getShowListsOfCars}" class="boxButton wideButton">Vis biler</a><!--findes i PageController-->
 
         <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
-        <label for="needConfirm" class="boxButton">Find en lease</label>
+        <label for="needConfirm" class="boxButton wideButton">Find en lease</label>
         <div class="popUpBoxFull">
             <div class="popUpBox">
                 <div class="boldText">Indtast ID eller Kunde navn for den lease du vil finde</div>
@@ -35,7 +35,7 @@
         </div><!-- div confirmationBox ends -->
 
 
-        <a th:href="@{/getShowAllLeases}" class="boxButton">Vis alle leases</a>
+        <a th:href="@{/getShowAllLeases}" class="boxButton wideButton">Vis alle leases</a>
     </div> <!-- div userOptions ends -->
     <div class = notifications>
     <div class="notificationsPanel">

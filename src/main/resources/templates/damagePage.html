@@ -18,7 +18,7 @@
 
 
         <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
-            <label for="needConfirm" class="boxButton">Find en lease</label>
+            <label for="needConfirm" class="boxButton fixedButtonWidth">Find en lease</label>
             <div class="popUpBoxFull">
                 <div class="popUpBox">
                     <div class="boldText">Indtast et Lease ID</div>
@@ -35,7 +35,9 @@
                     </div> <!-- div choices ends -->
                 </div>
             </div><!-- div confirmationBox ends -->
-
+        <form th:action="@{/getShowAllLeases}" method="get">
+            <button type="submit" class="boxButton fixedButtonWidth">Vis alle leases</button>
+        </form>
     </div>
     <div class="notifications">
 

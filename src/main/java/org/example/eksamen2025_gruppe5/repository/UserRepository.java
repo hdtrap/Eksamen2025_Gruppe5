@@ -115,7 +115,7 @@ public class UserRepository {
             for (String username:userNamesFound){
                 System.out.println("Username: " + username);
                 //Check if the username is of such a type, that the last four symbols are numbers
-                if (isUsernameUserXXXX(username)){
+                if (username.matches("[a-zA-Z]{4}[0-9]{4}")){
                     //Then, seperate those numbers and find the highest number
                     listOfNumbers.add(Integer.parseInt(username.substring(4,8)));
                     System.out.println("Tal fundet: " + username.substring(4,8));
@@ -157,11 +157,6 @@ public class UserRepository {
             }
         }
 
-    }
-
-    public boolean isUsernameUserXXXX(String username){
-        System.out.println("Username follows format? Answer: " + username.matches("[a-zA-Z]{4}[0-9]{4}"));
-        return username.matches("[a-zA-Z]{4}[0-9]{4}");
     }
 
     public User findUserByUserName(String username) throws UserNotFoundException{

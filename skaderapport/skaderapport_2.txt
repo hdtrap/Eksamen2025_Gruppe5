@@ -1,0 +1,22 @@
+Skaderapport for lease ID: 2
+Kunde: Mark Sørensen
+----------------------------------
+
+Skade id: 2
+Skade type: Broken Mirror
+Kategori: 2
+Pris: 250.0 kr.
+----------------------------------
+Totalpris til betaling: 250.0DKK 
+
+Har du spørgsmål eller brug for hjælp, så sidder vi klar til at hjælpe dig.
+
+Hverdage - 10.00-15.00
+(Telefonen er lukket mellem 11:30 - 12:00)
+
++45 89 88 50 80
+
+support@bilabonnement.dk
+
+Du finder os på Vibeholmsvej 31, 2605 Brøndby,
+hvor vi både har vores administration og værksted til klargøring af biler.

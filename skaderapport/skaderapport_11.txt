@@ -1,0 +1,18 @@
+Skaderapport for lease ID: 11
+Kunde: Børge Mogensen
+----------------------------------
+Skade id: 8
+Skade type: Diesel i Benzintank
+Kategori: 22
+Pris: 2000.0 kr.
+----------------------------------
+Skade id: 9
+Skade type: Skudhuller i døren
+Kategori: 222
+Pris: 22222.0 kr.
+----------------------------------
+Skade id: 10
+Skade type: Snavset rude
+Kategori: 21
+Pris: 31312.0 kr.
+----------------------------------

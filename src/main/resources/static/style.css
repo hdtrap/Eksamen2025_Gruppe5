@@ -537,11 +537,8 @@ td, th {
 th {
     color: white;
     background-color: #2ea8dd;
-    padding: 2%;
-}
-
-tr:hover {
-    box-shadow: 0 0 10px 5px rgba(0,0,0,.2);
+    padding-top: 2%;
+    padding-bottom: 2%;
 }
 
 .fixedButtonWidth {

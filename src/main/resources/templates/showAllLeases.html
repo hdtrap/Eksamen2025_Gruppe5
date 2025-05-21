@@ -19,17 +19,34 @@
         <div class="toggleShow">
           <div class="scrollable">
             <table>
+
+              <!-- colgroup to set width of the columns -->
+              <colgroup>
+                <col style="width: 7%;">
+                <col style="width: 7%;">
+                <col style="width: 11.11%;">
+                <col style="width: 11.11%;">
+                <col style="width: 11.11%;">
+                <col style="width: 19.33%;">
+                <col style="width: 11.11%;">
+                <col style="width: 11.11%;">
+                <col style="width: 11.11%;">
+              </colgroup>
+
+              <!-- Attributes for the table -->
               <tr>
                 <th>Lease ID</th>
-                <th>Vognnummer</th>
+                <th>VognNr</th>
                 <th>Start dato</th>
                 <th>Slut dato</th>
                 <th>Kundenavn</th>
                 <th>Kunde-mail</th>
-                <th>Startpris</th>
+                <th>Udbetaling</th>
                 <th>Mdr. gebyr</th>
                 <th>Type lease</th>
               </tr>
+
+              <!-- Table of all leases -->
               <tr th:each="lease : ${listOfAllLeases}">
                 <td><p th:text="${lease.getLeaseId()}"></p></td>
                 <td><p th:text="${lease.getCar().getVehicleNumber()}"></p></td>
@@ -48,22 +65,35 @@
 
       <!-- All active leases -->
       <div class="tableAndButton">
-        <input type="radio" name="listSelect" id="allActiveLeases" hidden checked>
+        <input type="radio" name="listSelect" id="allActiveLeases" hidden>
         <label for="allActiveLeases" class="boxButton rightTableTopButton">Alle aktive leases</label>
         <div class="toggleShow">
           <div class="scrollable">
             <table>
+              <colgroup>
+                <col style="width: 7%;">
+                <col style="width: 7%;">
+                <col style="width: 11.11%;">
+                <col style="width: 11.11%;">
+                <col style="width: 11.11%;">
+                <col style="width: 19.33%;">
+                <col style="width: 11.11%;">
+                <col style="width: 11.11%;">
+                <col style="width: 11.11%;">
+              </colgroup>
               <tr>
                 <th>Lease ID</th>
-                <th>Vognnummer</th>
+                <th>VognNr</th>
                 <th>Start dato</th>
                 <th>Slut dato</th>
                 <th>Kundenavn</th>
                 <th>Kunde-mail</th>
-                <th>Startpris</th>
+                <th>Udbetaling</th>
                 <th>Mdr. gebyr</th>
                 <th>Type lease</th>
               </tr>
+
+              <!-- Table for all active leases -->
               <tr th:each="lease : ${listOfActiveLeases}">
                 <td><p th:text="${lease.getLeaseId()}"></p></td>
                 <td><p th:text="${lease.getCar().getVehicleNumber()}"></p></td>

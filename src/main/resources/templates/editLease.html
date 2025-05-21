@@ -12,13 +12,13 @@
 <div class="mainContent">
 
 
-    <div class="backButton">
-        <a th:href="@{/showLease(leaseId=${lease.leaseId})}" class="textButton">Tilbage</a><!--findes i LeaseController-->
-    </div>
+    <form th:action="@{/showLease(leaseId=${lease.leaseId})}" method="get">
+        <button type="submit" class="boxButton backButton fixedButtonWidth">Tilbage</button><!--findes i LeaseController-->
+    </form>
 
 
     <div class="formContainer">
-        <form th:action="@{/saveUpdateLease}" method="post" class="registerForm"><!--findes i LeaseController-->
+        <form th:action="@{/saveUpdateLease}" method="post" class="registerForm">
             <input type="hidden" name="id" th:value="${lease.leaseId}"/>
 
             <div class="boldText">Opret Lease</div>

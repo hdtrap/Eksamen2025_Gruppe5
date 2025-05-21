@@ -6,6 +6,7 @@ public class CarModel {
     private String model;
     private int productionYear;
     private String fuelType;
+    private String color;
 
     public CarModel(String brand, String model, int productionYear, String fuelType) {
         this.brand = brand;
@@ -58,5 +59,13 @@ public class CarModel {
 
     public String toString() {
         return brand + " " + model + " " + productionYear + " " + fuelType;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

@@ -10,9 +10,9 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 
 <div class="mainContent">
-    <div class="backButton">
-        <a th:href="@{/getUserPage}" class="textButton">Tilbage</a><!--findes i UserController-->
-    </div>
+    <form th:action="@{/getUserPage}" method="get">
+        <button type="submit" class="boxButton backButton fixedButtonWidth">Tilbage</button>
+    </form>
 
 
     <div class="formContainer">
@@ -24,7 +24,7 @@
                 <select id="vehicle_no" name="vehicle_no" placeholder="Vælg bil" required>
                     <option value="">-- Vælg --</option>
                     <th:block th:each="car : ${availableCars}">
-                        <option th:value="${car.getVehicleNumber()}" th:text="${car.getVehicleNumber()} +' - '+ ${car.getCarModel().getBrand()} +' - ' +${car.getCarModel().getModel()} +' - '+${car.getCarModel().getProductionYear()}"></option>
+                        <option th:value="${car.getVehicleNumber()}" th:text="${car.getVehicleNumber()} +' - '+ ${car.getCarModel().getBrand()} +' - ' +${car.getCarModel().getModel()} +' - '+${car.getCarModel().getProductionYear()}+' - '+${car.getCarModel().getColor()}"></option>
                     </th:block>
                 </select>
             </div>

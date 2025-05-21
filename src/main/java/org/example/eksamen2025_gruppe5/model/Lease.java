@@ -66,7 +66,7 @@ public class Lease {
         fullyProcessed = false;
     }
 
-    public Lease(int leaseId, Object startDate, Object endDate, Object customerName, Object customerEmail, Object customerNumber, Object o, Object object, Object typeOfLease){}
+    public Lease(){}
 
     public int getLeaseId() {
         return leaseId;
@@ -99,16 +99,6 @@ public class Lease {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-
-    /*
-    public int getLeaseTimeInMonths() {
-        return leaseTimeInMonths;
-    }
-
-    public void setLeaseTimeInMonths(int leaseTimeInMonths) {
-        this.leaseTimeInMonths = leaseTimeInMonths;
-    }
-    */
 
     public String getCustomerName() {
         return customerName;

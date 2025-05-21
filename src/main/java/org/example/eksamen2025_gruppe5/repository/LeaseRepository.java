@@ -65,7 +65,7 @@ CarRepository carRepository;
 
     // Metode til at finde biler ved deres lease ID
     public Lease findLeaseById(int leaseId) throws LeaseNotFoundException{
-        Lease lease = new Lease(leaseId, null, null, null, null, null, null, null, null);
+        Lease lease = new Lease();
         String sql = "SELECT * FROM leases WHERE lease_id = ?";
 
         try (Connection connection = dataSource.getConnection();
@@ -287,5 +287,42 @@ CarRepository carRepository;
             e.printStackTrace();
         }
         return listToReturn;
+    }
+
+    // Metode til at finde biler ved deres lease ID
+    public Lease findLeaseByCustomerName(String customerName) throws LeaseNotFoundException{
+        Lease lease = new Lease();
+        String sqlRequest = "SELECT * FROM leases WHERE customer_name = ?";
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sqlRequest)) {
+
+            statement.setString(1, customerName);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                lease.setLeaseId(resultSet.getInt("lease_id"));
+                lease.setStartDate(resultSet.getDate("start_date").toLocalDate());
+                lease.setEndDate(resultSet.getDate("end_date").toLocalDate());
+                lease.setCustomerName(resultSet.getString("customer_name"));
+                lease.setCustomerEmail(resultSet.getString("customer_email"));
+                lease.setCustomerNumber(resultSet.getString("customer_number"));
+                lease.setPriceToStart(resultSet.getDouble("price_to_start"));
+                lease.setPricePrMonth(resultSet.getDouble("price_pr_month"));
+                lease.setTypeOfLease(TypeOfLease.valueOf(resultSet.getString("type_of_lease")));
+
+                //Sætter bilen ind på lease ved hjælp carRepository.findCarByVehicleNumber
+                int vehicleNumber = resultSet.getInt("vehicle_no");
+                Car car = carRepository.findCarByVehicleNumber(vehicleNumber);
+                lease.setCar(car);
+
+            } else throw new LeaseNotFoundException();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new LeaseNotFoundException();
+        }
+
+        return lease;
     }
 }

@@ -13,12 +13,12 @@
         <form th:action="@{/changeCarStatusAvailable}" method="post"><!--findes i CarController-->
             <input type="hidden" th:value="${leaseId}" name="leaseId">
             <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-            <button type="submit" class="boxButton fixedButtonWidth">Gør status klar</button>
+            <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som: klar til udleje</button>
         </form>
         <form th:action="@{/changeCarStatusGettingRepaired}" method="post"><!--findes i CarController-->
             <input type="hidden" th:value="${leaseId}" name="leaseId">
             <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-            <button type="submit" class="boxButton fixedButtonWidth">Gør status til reparation</button>
+            <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som: til reparation</button>
         </form>
         <form th:action="@{/showCar}" method="get"><!--findes i CarController-->
             <input type="hidden" th:value="${leaseId}" name="leaseId">

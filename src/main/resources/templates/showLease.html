@@ -13,10 +13,13 @@
 
 <div class="mainContent">
 <div class="userOptions">
-    <a th:href="@{/getUpdateLease(id=${lease.leaseId})}" class="btn">Rediger lejeaftale</a><!--findes i LeaseController-->
+    <form th:action="@{/getUpdateLease(id=${lease.leaseId})}" method="get"><!--findes i LeaseController-->
+        <input type="hidden" name="leaseId" th:value="${lease.leaseId}" />
+        <button type="submit" class="boxButton fixedButtonWidth">Rediger lejeaftale</button>
+    </form>
 
     <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
-    <label for="needConfirm" class="boxButton">Slet denne lejeaftale</label>
+    <label for="needConfirm" class="boxButton fixedButtonWidth">Slet denne lejeaftale</label>
     <div class="popUpBoxFull">
         <div class="popUpBox">
             <p class="boldText">Bekræft at du vil slette lejeaftalen</p>
@@ -38,7 +41,9 @@
         <input type="hidden" name="leaseId" th:value="${lease.leaseId}" />
         <button type="submit" class="boxButton fixedButtonWidth">Betal for skaderne</button>
     </form>
-    <a th:href="@{/getUserPage}" class="">Tilbage</a>
+    <form th:action="@{/getUserPage}" method="get">
+        <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
+    </form>
 
 </div>
 

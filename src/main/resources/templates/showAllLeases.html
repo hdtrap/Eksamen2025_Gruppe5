@@ -45,8 +45,8 @@
                 <td><p th:text="${lease.getEndDate()}"></p></td>
                 <td><p th:text="${lease.getCustomerName()}"></p></td>
                 <td><p th:text="${lease.getCustomerEmail()}"></p></td>
-                <td><p th:text="${lease.getPriceToStart()}"></p></td>
-                <td><p th:text="${lease.getPricePrMonth()}"></p></td>
+                <td><p th:text="${#numbers.formatDecimal(lease.getPriceToStart(),0,'POINT',2,'COMMA')}"></p></td>
+                <td><p th:text="${#numbers.formatDecimal(lease.getPricePrMonth(),0,'POINT',2,'COMMA')}"></p></td>
                 <td><p th:text="${lease.getTypeOfLease()}"></p></td>
               </tr>
             </table>
@@ -81,8 +81,8 @@
                 <td><p th:text="${lease.getEndDate()}"></p></td>
                 <td><p th:text="${lease.getCustomerName()}"></p></td>
                 <td><p th:text="${lease.getCustomerEmail()}"></p></td>
-                <td><p th:text="${lease.getPriceToStart()}"></p></td>
-                <td><p th:text="${lease.getPricePrMonth()}"></p></td>
+                <td><p th:text="${#numbers.formatDecimal(lease.getPriceToStart(),0,'POINT',2,'COMMA')}"></p></td>
+                <td><p th:text="${#numbers.formatDecimal(lease.getPricePrMonth(),0,'POINT',2,'COMMA')}"></p></td>
                 <td><p th:text="${lease.getTypeOfLease()}"></p></td>
               </tr>
             </table>

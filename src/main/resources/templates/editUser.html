@@ -13,7 +13,7 @@
 
 
 <div class="formContainer">
-<form th:action="@{/saveUpdateUser}" method="post" class="loginForm">
+<form th:action="@{/saveUpdateUser}" method="post" class="loginForm"><!--findes i UserController-->
     <input type="hidden" th:value="${user.getUserName()}" name="oldUserName" id="oldUserName">
     <input type="text" th:value="${user.getUserName()}" id="userName" name="userName" placeholder="Indtast dit username" required class="inputBox">
     <br>

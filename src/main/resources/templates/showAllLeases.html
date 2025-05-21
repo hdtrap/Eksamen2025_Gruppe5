@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ShowActiveLeases</title>
+  <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
+</head>
+<body>
+<div th:insert="~{/fragments/header :: header}"></div>
+<div class="mainContent">
+  <div class="tableContainer">
+
+    <div class="tableContainerItem">
+
+      <!-- All leases -->
+      <div class="tableAndButton">
+        <input type="radio" name="listSelect" id="allLeases" hidden checked>
+        <label for="allLeases" class="boxButton leftTableTopButton">Alle leases</label>
+        <div class="toggleShow">
+          <div class="scrollable">
+            <table>
+              <tr>
+                <th>Lease ID</th>
+                <th>Vognnummer</th>
+                <th>Start dato</th>
+                <th>Slut dato</th>
+                <th>Kundenavn</th>
+                <th>Kunde-mail</th>
+                <th>Startpris</th>
+                <th>Mdr. gebyr</th>
+                <th>Type lease</th>
+              </tr>
+              <tr th:each="lease : ${listOfAllLeases}">
+                <td><p th:text="${lease.getLeaseId()}"></p></td>
+                <td><p th:text="${lease.getCar().getVehicleNumber()}"></p></td>
+                <td><p th:text="${lease.getStartDate()}"></p></td>
+                <td><p th:text="${lease.getEndDate()}"></p></td>
+                <td><p th:text="${lease.getCustomerName()}"></p></td>
+                <td><p th:text="${lease.getCustomerEmail()}"></p></td>
+                <td><p th:text="${lease.getPriceToStart()}"></p></td>
+                <td><p th:text="${lease.getPricePrMonth()}"></p></td>
+                <td><p th:text="${lease.getTypeOfLease()}"></p></td>
+              </tr>
+            </table>
+          </div> <!-- scrollable ends -->
+        </div> <!-- toggleShow ends -->
+      </div> <!-- tableAndButton ends -->
+
+      <!-- All active leases -->
+      <div class="tableAndButton">
+        <input type="radio" name="listSelect" id="allActiveLeases" hidden checked>
+        <label for="allActiveLeases" class="boxButton rightTableTopButton">Alle aktive leases</label>
+        <div class="toggleShow">
+          <div class="scrollable">
+            <table>
+              <tr>
+                <th>Lease ID</th>
+                <th>Vognnummer</th>
+                <th>Start dato</th>
+                <th>Slut dato</th>
+                <th>Kundenavn</th>
+                <th>Kunde-mail</th>
+                <th>Startpris</th>
+                <th>Mdr. gebyr</th>
+                <th>Type lease</th>
+              </tr>
+              <tr th:each="lease : ${listOfActiveLeases}">
+                <td><p th:text="${lease.getLeaseId()}"></p></td>
+                <td><p th:text="${lease.getCar().getVehicleNumber()}"></p></td>
+                <td><p th:text="${lease.getStartDate()}"></p></td>
+                <td><p th:text="${lease.getEndDate()}"></p></td>
+                <td><p th:text="${lease.getCustomerName()}"></p></td>
+                <td><p th:text="${lease.getCustomerEmail()}"></p></td>
+                <td><p th:text="${lease.getPriceToStart()}"></p></td>
+                <td><p th:text="${lease.getPricePrMonth()}"></p></td>
+                <td><p th:text="${lease.getTypeOfLease()}"></p></td>
+              </tr>
+            </table>
+          </div> <!-- scrollable ends -->
+        </div> <!-- toggleShow ends -->
+      </div> <!-- tableAndButton ends -->
+
+
+    </div> <!-- tableContainerItem ends -->
+  </div> <!-- tableContainer ends -->
+</div> <!-- mainContent ends -->
+
+</body>
+</html>

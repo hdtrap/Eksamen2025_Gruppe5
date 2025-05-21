@@ -5,7 +5,7 @@
     <title>payDamages</title>
 </head>
 <body>
-<form th:action="@{/showLease}" method="get">
+<form th:action="@{/showLease}" method="get"><!--findes i LeaseController-->
     <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
     <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
 </form>
@@ -15,7 +15,7 @@
         <p th:text="'Er skaden betalt? : ' + ${damage.isPaid()}">Er skaden betalt</p>
     </div>
 </div>
-    <form th:action="@{/payDamages}" method="post">
+    <form th:action="@{/payDamages}" method="post"><!--findes i DamageController-->
         <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
         <button type="submit" class="boxButton fixedButtonWidth">Marker alle skader som betalt</button>
     </form>

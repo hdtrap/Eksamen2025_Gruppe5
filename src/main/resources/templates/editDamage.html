@@ -20,7 +20,7 @@
             <div class="lightText">Rediger skade</div>
             <div class="boldText">Damage ID: <span th:text="${damage.damageId}"></span></div>
             <div class="boldText">Lease ID: <span th:text="${damage.leaseId}"></span></div>
-            <form th:action="@{/doEditDamage}" method="post" class="registerForm">
+            <form th:action="@{/doEditDamage}" method="post" class="registerForm"><!--findes i DamageController-->
                     <div class="form-group">
                         <input type="text" id="damageType" name="damageType" th:value="${damage.damageType}" placeholder="Skade type">
                     </div>

@@ -15,22 +15,22 @@
 
 <div class="userOptions">
 
-<form th:action="@{/getAddDamage}">
+<form th:action="@{/getAddDamage}"><!--findes i CarController-->
     <input type="hidden" th:value="${car.vehicleNumber}" id="vehicleNumber" name="vehicleNumber" placeholder="Bil Nummer">
     <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
 
     <button type="submit" class="boxButton fixedButtonWidth">Tilføj skade</button>
 </form>
-<form th:action="@{/getShowDamage}" method="get">
+<form th:action="@{/getShowDamage}" method="get"><!--findes i DamageController-->
     <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
     <button type="submit" class="boxButton fixedButtonWidth">Se skader</button>
 </form>
-    <form th:action="@{/getFixDamage}" method="get">
+    <form th:action="@{/getFixDamage}" method="get"><!--findes i DamageController-->
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber" placeholder="Bil Nummer">
         <button type="submit" class="boxButton fixedButtonWidth">Udbedrer skade</button>
     </form>
-    <form th:action="@{/changeCarStatusPendingEvaluation}" method="post">
+    <form th:action="@{/changeCarStatusPendingEvaluation}" method="post"><!--findes i CarController-->
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
         <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som: modtaget</button>

@@ -77,6 +77,7 @@ public class PageController {
     @GetMapping("/getShowListsOfCars")
     public String getShowListOfCars(Model model){
         model.addAttribute(userRepository.getcurrentUser());
+
         System.out.println("Registreret prøver at vise biler");
         model.addAttribute("listOfAllCars", carRepository.getAllCars());
         model.addAttribute("listOfLeasedCars", carRepository.getLeasedCars());

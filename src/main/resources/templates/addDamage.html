@@ -20,7 +20,7 @@
         <div class="lightText">Tilføj skade</div>
         <div class="boldText">Bil ID: <span th:text="${car.vehicleNumber}"></span></div>
         <div class="boldText">Lease ID: <span th:text="${lease.leaseId}"></span></div>
-        <form th:action="@{/addDamage}" method="post" class="registerForm">
+        <form th:action="@{/addDamage}" method="post" class="registerForm"><!--findes i DamageController-->
             <div class="form-group">
                 <input type="text" id="damageType" name="damageType" placeholder="Skade type">
             </div>

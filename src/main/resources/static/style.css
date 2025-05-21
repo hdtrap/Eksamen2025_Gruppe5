@@ -618,6 +618,8 @@ th {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    color: #2ea8dd;
 }
 
 .KPIhead {

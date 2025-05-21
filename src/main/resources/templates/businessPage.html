@@ -1,47 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Forretningsudvikling</title>
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
-    <link rel="stylesheet" href="../static/businessPage.css" th:href="@{/businessPage.css}">
 </head>
 <body>
 <div th:insert="~{/fragments/header :: header}"></div>
-
 <div class="mainContent">
-    <div class="userOptions">
 
-            <div class="kpi"> <!-- Number of leased cars -->
-                <span th:text="${noOfLeasedCars}">Leasede biler</span>
+    <div class="KPIbox">
+        <div class="allKPIs">
+            <div class="KPIhead">
+                <h1>KPI'er</h1>
             </div>
-            <div class="kpi"> <!-- Total cars -->
-                <span th:text="${totalCars}">Biler i alt</span>
+            <div class="KPI">
+        <!-- Number of leased cars -->
+                <p>Antal udlejede biler</p>
+        <span th:text="${noOfLeasedCars}">Lejede biler</span>
             </div>
-            <div class="kpi"> <!-- Monthly revenue -->
-                <span th:text="${revenueFromRentedCars}">Indtjening fra biler</span>
+            <div class="KPI">
+                <!-- Total cars -->
+                <p>Antal biler i alt</p>
+                <span th:text="${totalCars}">Alle biler</span>
             </div>
-            <div class="kpi"> <!-- Value of leased cars -->
+            <div class="KPI">
+                <!-- Monthly revenue -->
+                <p>Månedlig indtjening fra udlejede biler</p>
+                <span th:text="${revenueFromRentedCars}">Månedlig indtjening</span>
+            </div>
+            <div class="KPI">
+                <!-- Value of leased cars -->
+                <p>Samlet værdig af udlejede biler</p>
                 <span th:text="${priceOfLeasedCars}"></span>
             </div>
-            <div class="kpi"> <!-- Average damage sum per lease -->
+            <div class="KPI">
+                <!-- Average damage sum per lease -->
+                <p>Gennemsnitlig skadessum pr. lease</p>
                 <span th:text="${averageDamageSumPerLease}"></span>
             </div>
-            <div class="kpi"> <!-- Most common car model -->
+            <div class="KPI">
+                <!-- Most common car model -->
+                <p>Mest populære bilmodel</p>
                 <span th:text="${mostCommonCarModel}"></span>
             </div>
 
-    </div> <!-- userOptions ends -->
 
-<div class = notifications>
-    <div class="notificationsPanel">
-        Notifikationer
-        <p th:if="${message}" th:text="${message}" class="notification"></p>
-        <div th:each="notification : ${notificationList}" class="notification"  th:classappend="${notification.getType()}">
-            <p th:text="${notification.getMessage()}"></p>
         </div>
     </div>
-</div><!-- div notifications ends -->
+
+    <div class = notifications>
+        <div class="notificationsPanel">
+            Notifikationer
+            <p th:if="${message}" th:text="${message}" class="notification"></p>
+            <div th:each="notification : ${notificationList}" class="notification"  th:classappend="${notification.getType()}">
+                <p th:text="${notification.getMessage()}"></p>
+            </div>
+        </div>
+    </div><!-- div notifications ends -->
 </div> <!-- mainContent ends -->
 </body>
 </html>

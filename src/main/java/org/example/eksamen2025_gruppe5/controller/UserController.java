@@ -194,22 +194,22 @@ public class UserController {
             System.out.println("Role set to = " + role);
             userRepository.updateUser(oldUserName, newUserName, firstName, lastName, passWord, role);
 
-            redirectAttributes.addFlashAttribute("message", "User has been modified");
+            redirectAttributes.addFlashAttribute("message", "Bruger opdateret");
             return "redirect:/getUserPage";
         }
         catch (UserNotFoundException e){
             System.out.println("Error, user was not found");
-            redirectAttributes.addFlashAttribute("message", "User was not updated. Could not find the user.");
+            redirectAttributes.addFlashAttribute("message", "Bruger blev ikke opdateret. Kunne ikke finde en bruger med det navn");
             return "redirect:/getUserPage";
         }
         catch (UserNameTakenException e){
             System.out.println("Error, username was taken");
-            redirectAttributes.addFlashAttribute("message", "User could not be modified. Username is already in use");
+            redirectAttributes.addFlashAttribute("message", "Brugeren kunne ikke opdateres. Brugernavnet er allerede i brug");
             return "redirect:/getUserPage";
         }
         catch (PassWordMismatchException e){
             System.out.println("Error, passwords did not match");
-            redirectAttributes.addFlashAttribute("message", "User was not updated. New passwords did not match");
+            redirectAttributes.addFlashAttribute("message", "Brugeren blev ikke opdateret. Kodeordene matcher ikke");
             return "redirect:/getUserPage";
         }
     }

@@ -39,8 +39,8 @@
     </div> <!-- div userOptions ends -->
     <div class = notifications>
     <div class="notificationsPanel">
-        Notifikationer
-        <p th:if="${message}" th:text="${message}"></p>
+        <p>Notifikationer</p>
+        <div class="notification" th:if="${message}" th:text="${message}"></div>
         <div th:each="notification : ${notificationList}" class="notification"  th:classappend="${notification.getType()}">
             <p th:text="${notification.getMessage()}"></p>
         </div>

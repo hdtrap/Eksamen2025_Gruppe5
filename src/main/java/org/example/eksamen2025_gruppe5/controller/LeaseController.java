@@ -80,7 +80,7 @@ public class LeaseController {
             if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
                 addOnTypeRepository.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
             }
-        return "redirect:/getUserPage";
+        return "redirect:/showLease?leaseId=" + leaseId;
     }
 
     // Viser en lejeaftale
@@ -206,7 +206,7 @@ public class LeaseController {
 
     // Sletter et ønske ud fra id
     @PostMapping("/deleteLease")
-    public String deleteLease(@RequestParam("id") int id){
+    public String deleteLease(@RequestParam("id") int id) throws LeaseNotFoundException {
         leaseRepository.deleteLease(id);
         return "redirect:/getUserPage";
     }

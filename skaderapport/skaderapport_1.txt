@@ -4,7 +4,7 @@ Kunde: Anna Jensen
 
 Skade id: 1
 Skade type: Scratched Paint
-Kategori: 2
+Kategori: 5
 Pris: 150.0 kr.
 ----------------------------------
 Totalpris til betaling: 150.0DKK 

@@ -71,6 +71,7 @@ public class PageController {
     @GetMapping("/dataregPage")
     public String showDataRegPage(Model model){
         model.addAttribute(userRepository.getcurrentUser());
+        model.addAttribute("notificationList", notificationRepository.getDataRegNotifications());
         return "dataregPage";
     }
 

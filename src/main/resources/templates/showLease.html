@@ -44,7 +44,7 @@
         <input type="hidden" name="leaseId" th:value="${lease.leaseId}" />
         <button type="submit" class="boxButton wideButton">Betal for skaderne</button>
     </form>
-    <form th:action="@{/getUserPage}" method="get">
+    <form th:action="@{/dataregPage}" method="get">
         <label for="backButtonSubmit" class="backButton boxButton">Tilbage</label>
         <button type="submit"  id="backButtonSubmit" hidden></button>
     </form>
@@ -52,7 +52,7 @@
 </div>
 
 <div class="information">
-    <h1>Detaljer</h1>
+    <h1>Information</h1>
     <div th:if="${lease != null}">
         <p>Lejeaftale ID: <span th:text="${lease.leaseId}"></span></p>
         <p>Tilknyttet bil ID: <span th:text="${lease.car.getVehicleNumber()}"></span></p>

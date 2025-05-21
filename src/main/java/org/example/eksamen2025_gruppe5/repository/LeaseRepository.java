@@ -126,13 +126,24 @@ CarRepository carRepository;
     }
 
     // Slet en lejeaftale
-    public void deleteLease(int id){
-        String sql = "DELETE FROM leases WHERE lease_id = ?";
+    public void deleteLease(int id) throws LeaseNotFoundException {
+        String sqlLeaseRequest = "DELETE FROM leases WHERE lease_id = ?";
+        String sqlCarRequest = "UPDATE cars SET status_of_car = 'AvailableToLease' WHERE vehicle_no = ?";
 
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, id);
-            statement.executeUpdate();
+        try (Connection connection = dataSource.getConnection()) {
+            connection.setAutoCommit(false);
+
+        try (PreparedStatement leaseStatement = connection.prepareStatement(sqlLeaseRequest);
+            PreparedStatement carStatement = connection.prepareStatement(sqlCarRequest)) {
+
+            leaseStatement.setInt(1, id);
+            leaseStatement.executeUpdate();
+
+            carStatement.setInt(1, findLeaseById(id).getCar().getVehicleNumber());
+            carStatement.executeUpdate();
+
+            connection.commit();
+        }
         } catch (SQLException e){
             e.printStackTrace();
         }

@@ -540,6 +540,7 @@ th {
     padding-top: 2%;
     padding-bottom: 2%;
 }
+/* Tables */
 
 .fixedButtonWidth {
     width: 150px;
@@ -549,3 +550,4 @@ th {
     z-index: 51;
     position: absolute;
 }
+

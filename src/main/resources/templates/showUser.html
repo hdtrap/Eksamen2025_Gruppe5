@@ -22,7 +22,7 @@
                 <p class="lightText">Denne handling er permanent, og kan ikke gøres om</p>
                 <div class="choices">
                     <!-- the actual method -->
-                    <form th:action="@{/deleteUser}" method="post">
+                    <form th:action="@{/deleteUser}" method="post"><!--findes i UserController-->
                         <input type="hidden" th:value="${user.getUserName()}" name="usernameDelete" id="usernameDelete">
                         <button type="submit" id="submitDeleteButton" hidden>Bekræft</button>
                         <label for="submitDeleteButton" class="textButton">Bekræft</label>
@@ -34,12 +34,12 @@
         <!--<label for="needConfirm" class="button">Slet denne bruger</label>-->
 
 
-        <form th:action="@{/getEditUser}" method="post">
+        <form th:action="@{/getEditUser}" method="post"><!--findes i UserController-->
             <input type="hidden" th:value="${user.getUserName()}" name="usernameEdit" id="usernameEdit">
             <button type="submit" id="submitEditButton" hidden>Rediger denne bruger</button>
             <label for="submitEditButton" class="boxButton">Rediger denne bruger</label>
         </form>
-        <a th:href="@{/getUserPage}" class="">Tilbage</a>
+        <a th:href="@{/getUserPage}" class="">Tilbage</a><!--findes i PageController-->
     </div>
     <div class="notifications">
         <div class="notificationsPanel">

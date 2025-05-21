@@ -23,7 +23,7 @@
                 <div class="popUpBox">
                     <div class="boldText">Indtast et Lease ID</div>
                     <div class="inputFields">
-                        <form th:action="@{/showCarWithLeaseID}"  method=get>
+                        <form th:action="@{/showCarWithLeaseID}"  method=get><!--findes i LeaseController-->
                             <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
                             <button type="submit" hidden id="submitButton">Find lease</button>
                         </form>

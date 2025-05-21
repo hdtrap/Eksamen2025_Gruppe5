@@ -17,7 +17,7 @@
 
         <div class="boldText">Vælg funktion:</div>
 
-        <a th:href="@{/getCreateUser}" class="boxButton">Opret ny bruger</a>
+        <a th:href="@{/getCreateUser}" class="boxButton">Opret ny bruger</a><!--findes i UserController-->
 
 
         <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
@@ -26,7 +26,7 @@
             <div class="popUpBox">
                 <div class="boldText">Indtast brugernavn for den bruger du vil finde</div>
                 <div class="inputFields">
-                    <form th:action="@{/getShowUserPage}" method="post">
+                    <form th:action="@{/getShowUserPage}" method="post"><!--findes i UserController-->
                         <input type="text" name="usernameBox" id="usernameBox" placeholder=Brugernavn>
                         <button id="submitButton" hidden type="submit">Find bruger</button>
                     </form>

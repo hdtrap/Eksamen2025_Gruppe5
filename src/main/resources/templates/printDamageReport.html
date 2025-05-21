@@ -9,7 +9,7 @@
 <body>
 <div th:insert="~{/fragments/header :: header}"></div>
 <div class="tilbageknap">
-    <form th:action="@{/getShowDamage}" method="get">
+    <form th:action="@{/getShowDamage}" method="get"><!--findes i DamageController-->
         <input type="hidden" th:value="${leaseId}" name="leaseId" placeholder="Lease Id">
         <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
     </form>
@@ -18,7 +18,7 @@
 <div class="mainContent">
 
     <div th:if="${leaseId != null}">
-        <form th:action="@{/printDamageReport}" method="get">
+        <form th:action="@{/printDamageReport}" method="get"><!--findes i DamageController-->
             <input type="hidden" th:value="${leaseId}" name="leaseId" placeholder="Lease Id">
             <button type="submit" class="boxButton fixedButtonWidth">Tryk for at printe</button>
         </form>

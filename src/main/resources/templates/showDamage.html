@@ -11,11 +11,11 @@
 <div class="mainContent">
 
         <div class="userOptions">
-            <form th:action="@{/showCar}" method="get">
+            <form th:action="@{/showCar}" method="get"><!--findes i LeaseController-->
                 <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
                 <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
             </form>
-            <form th:action="@{/getPrintDamageReport}" method="get">
+            <form th:action="@{/getPrintDamageReport}" method="get"><!--findes i DamageController-->
                 <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
                 <button type="submit" class="boxButton fixedButtonWidth">Print skadesrapport</button>
             </form>
@@ -32,12 +32,12 @@
                     <p th:text="'Kategori: ' + ${damage.category}">Kategori</p>
                     <p th:text="'Pris: ' + ${damage.price}">Pris</p>
                     <div>
-                        <form th:action="@{/deleteDamage}" method="post">
+                        <form th:action="@{/deleteDamage}" method="post"><!--findes i DamageController-->
                             <input type="hidden" th:value="${damage.damageId}" name="damageId" placeholder="damageId">
                             <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
                             <button type="submit" class="boxButton fixedButtonWidth">Slet skade</button>
                         </form>
-                        <form th:action="@{/getEditDamage}" method="get">
+                        <form th:action="@{/getEditDamage}" method="get"><!--findes i DamageController-->
                             <input type="hidden" th:value="${damage.damageId}" name="damageId" placeholder="damageId">
                             <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
                             <button type="submit" class="boxButton fixedButtonWidth">Rediger skade</button>

@@ -12,8 +12,8 @@
 
     <div class="userOptions">
         <div class="boldText">Vælg funktion:</div>
-        <a th:href="@{/createLease}" class="boxButton">Opret ny lease</a>
-        <a th:href="@{/getShowListsOfCars}" class="boxButton">Vis biler</a>
+        <a th:href="@{/createLease}" class="boxButton">Opret ny lease</a><!--findes i LeaseController-->
+        <a th:href="@{/getShowListsOfCars}" class="boxButton">Vis biler</a><!--findes i PageController-->
 
         <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
         <label for="needConfirm" class="boxButton">Find en lease</label>

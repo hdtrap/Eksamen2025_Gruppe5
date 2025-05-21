@@ -10,17 +10,17 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 <div class="mainContent">
     <div class="userOptions">
-        <form th:action="@{/changeCarStatusAvailable}" method="post">
+        <form th:action="@{/changeCarStatusAvailable}" method="post"><!--findes i CarController-->
             <input type="hidden" th:value="${leaseId}" name="leaseId">
             <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
             <button type="submit" class="boxButton fixedButtonWidth">Gør status klar</button>
         </form>
-        <form th:action="@{/changeCarStatusGettingRepaired}" method="post">
+        <form th:action="@{/changeCarStatusGettingRepaired}" method="post"><!--findes i CarController-->
             <input type="hidden" th:value="${leaseId}" name="leaseId">
             <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
             <button type="submit" class="boxButton fixedButtonWidth">Gør status til reparation</button>
         </form>
-        <form th:action="@{/showCar}" method="get">
+        <form th:action="@{/showCar}" method="get"><!--findes i CarController-->
             <input type="hidden" th:value="${leaseId}" name="leaseId">
             <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
         </form>

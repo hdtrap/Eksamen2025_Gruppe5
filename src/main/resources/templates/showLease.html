@@ -13,7 +13,7 @@
 
 <div class="mainContent">
 <div class="userOptions">
-    <a th:href="@{/getUpdateLease(id=${lease.leaseId})}" class="btn">Rediger lejeaftale</a>
+    <a th:href="@{/getUpdateLease(id=${lease.leaseId})}" class="btn">Rediger lejeaftale</a><!--findes i LeaseController-->
 
     <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
     <label for="needConfirm" class="boxButton">Slet denne lejeaftale</label>
@@ -23,7 +23,7 @@
             <p class="lightText">Denne handling er permanent, og kan ikke gøres om</p>
             <div class="choices">
                 <!-- the actual method -->
-                <form th:action="@{/deleteLease}" method="post">
+                <form th:action="@{/deleteLease}" method="post"><!--findes i DamageController-->
                     <input type="hidden" name="id" th:value="${lease.leaseId}"/>
                     <button type="submit" id="submitDeleteButton" hidden>Bekræft</button>
                     <label for="submitDeleteButton" class="textButton">Bekræft</label>

@@ -1,0 +1,158 @@
+USE bilabonnement;
+
+INSERT INTO car_models (brand, model, production_year, fuel_type, color) VALUES
+            ('Mitsubishi', 'Space Star Cosmic 71 HK', 2022, 'Benzin', 'Grå'),
+            ('Mitsubishi', 'Space Star Cosmic 71 HK', 2022, 'Benzin', 'Sort'),
+            ('Mitsubishi', 'Space Star Cosmic 71 HK', 2022, 'Benzin', 'Hvid'),
+
+            ('Fiat', '500e Icon 118 HK', 2023, 'Elektrisk', 'Mintgrøn'),
+            ('Fiat', '500e Icon 118 HK', 2023, 'Elektrisk', 'Lyseblå'),
+            ('Fiat', '500e Icon 118 HK', 2023, 'Elektrisk', 'Sort'),
+
+            ('Fiat', '500e La Prima 118 HK', 2023, 'Elektrisk', 'Bronze'),
+            ('Fiat', '500e La Prima 118 HK', 2023, 'Elektrisk', 'Grå'),
+
+            ('Fiat', '500e Icon Pack 118 HK', 2023, 'Elektrisk', 'Rød'),
+            ('Fiat', '500e Icon Pack 118 HK', 2023, 'Elektrisk', 'Hvid'),
+
+            ('Opel', 'Crossland Edition+ 83HK', 2022, 'Benzin', 'Sølv'),
+            ('Opel', 'Crossland Edition+ 83HK', 2022, 'Benzin', 'Grå'),
+
+            ('Citroën', 'C3 Aircross Impress 110 HK', 2023, 'Benzin', 'Grå'),
+            ('Citroën', 'C3 Aircross Impress 110 HK', 2023, 'Benzin', 'Hvid'),
+
+            ('NAVOR', 'E5 ROCK 218 HK', 2023, 'Elektrisk', 'Sort'),
+            ('NAVOR', 'E5 ROCK 218 HK', 2023, 'Elektrisk', 'Mørkeblå'),
+
+            ('Citroën', 'C4 VTR Sport 130 HK', 2022, 'Benzin', 'Blå'),
+            ('Citroën', 'C4 VTR Sport 130 HK', 2022, 'Benzin', 'Grå'),
+
+            ('Citroën', 'C5 Aircross Feel 130 HK', 2022, 'Diesel', 'Sort'),
+            ('Citroën', 'C5 Aircross Feel 130 HK', 2022, 'Diesel', 'Hvid'),
+
+            ('Nissan', 'ARIYA EVOVLE 238 HK', 2023, 'Elektrisk', 'Kobber'),
+            ('Nissan', 'ARIYA EVOVLE 238 HK', 2023, 'Elektrisk', 'Sort'),
+
+            ('Dacia', 'Sandero Expression 90 HK', 2023, 'Benzin', 'Blå'),
+            ('Dacia', 'Sandero Expression 90 HK', 2023, 'Benzin', 'Hvid'),
+
+            ('Peugeot', '2008 Allure 130 HK. AUT.', 2023, 'Benzin', 'Orange'),
+            ('Peugeot', '2008 Allure 130 HK. AUT.', 2023, 'Benzin', 'Sort'),
+
+            ('Renault', 'Captur Techno 160 HK', 2023, 'Hybrid', 'Rød'),
+            ('Renault', 'Captur Techno 160 HK', 2023, 'Hybrid', 'Sort'),
+
+            ('Honda', 'Civic Sport 184 HK', 2023, 'Hybrid', 'Mørkeblå'),
+            ('Honda', 'Civic Sport 184 HK', 2023, 'Hybrid', 'Grå'),
+
+            ('Honda', 'Civic Advance 184 HK', 2023, 'Hybrid', 'Sølv'),
+            ('Honda', 'Civic Advance 184 HK', 2023, 'Hybrid', 'Sort'),
+
+            ('Peugeot', 'Lille varebil', 2023, 'Diesel', 'Hvid'),
+            ('Peugeot', 'Mellem varebil', 2023, 'Diesel', 'Hvid'),
+            ('Citroën', 'Stor varebil', 2021, 'Diesel', 'Hvid'),
+            ('Fiat', 'Lille elektrisk varebil', 2023, 'Elektrisk', 'Hvid'),
+            ('Opel', 'Mellem elektrisk varebil', 2023, 'Elektrisk', 'Hvid');
+
+
+INSERT INTO addon_types (type, description, price) VALUES
+            ('Afleveringsforsikring', 'Tilvalg af afleveringsforsikring er betinget af en aftale på minimum 12 måneder.', 119),
+            ('Lav selvrisiko', 'Tilvalg af lav selvrisiko er betinget af at kunden minimum er fyldt 30 år.', 89),
+            ('Dækleje', 'Vinterdæk inkl. montering kan tilkøbes, da bilen leveres på sommerdæk. Straks efter bestillingen kontaktes kunden af vores dækservicepartner Rubberduck, som vil foretage monteringen på deres hjemme- eller arbejdsadresse. Alle øvrige dækskift samt opbevaring af sommer- og vinterdæk i perioden er inkluderet i prisen. Vinterdæk monteres på bilens eksisterende fælge, men bilen skal tilbageleveres på sommerdæk. Prisen gælder ved binding i +12 måneder.', 275),
+            ('Viking - Vejhjælp', 'I samarbejde med Viking tilbyder vi vejhjælp til kun 49 kr. pr. måned.', 49);
+
+INSERT INTO cars (chassis_no, car_model, price, status_of_car) VALUES
+            ('CHS100001', 1, 3199.00, 'AvailableToLease'),
+            ('CHS100002', 1, 3199.00, 'Leased'),
+            ('CHS100003', 2, 3999.00, 'AvailableToLease'),
+            ('CHS100004', 2, 3999.00, 'Leased'),
+            ('CHS100005', 3, 4199.00, 'PendingEvaluation'),
+            ('CHS100006', 3, 4199.00, 'AvailableToLease'),
+            ('CHS100007', 4, 4299.00, 'AvailableToLease'),
+            ('CHS100008', 4, 4299.00, 'Leased'),
+            ('CHS100009', 5, 3799.00, 'GettingRepaired'),
+            ('CHS100010', 6, 4599.00, 'PendingEvaluation'),
+            ('CHS100011', 6, 4599.00, 'AvailableToLease'),
+            ('CHS100012', 7, 4899.00, 'Sold'),
+            ('CHS100013', 7, 4899.00, 'AvailableToLease'),
+            ('CHS100014', 8, 3799.00, 'Leased'),
+            ('CHS100015', 8, 3799.00, 'AvailableToLease'),
+            ('CHS100016', 9, 4999.00, 'Leased'),
+            ('CHS100017', 10, 5199.00, 'PendingEvaluation'),
+            ('CHS100018', 11, 3399.00, 'AvailableToLease'),
+            ('CHS100019', 11, 3399.00, 'AvailableToLease'),
+            ('CHS100020', 12, 5599.00, 'Leased'),
+            ('CHS100021', 12, 5599.00, 'Leased'),
+            ('CHS100022', 13, 5799.00, 'AvailableToLease'),
+            ('CHS100023', 14, 5999.00, 'Leased'),
+            ('CHS100024', 15, 5999.00, 'AvailableToLease'),
+            ('CHS100025', 16, 2899.00, 'AvailableToLease'),
+            ('CHS100026', 17, 2999.00, 'AvailableToLease'),
+            ('CHS100027', 18, 3199.00, 'Leased'),
+            ('CHS100028', 19, 6199.00, 'AvailableToLease'),
+            ('CHS100029', 20, 6399.00, 'AvailableToLease'),
+            ('CHS100030', 21, 6599.00, 'AvailableToLease'),
+            ('CHS100031', 1, 3199.00, 'Leased'),
+            ('CHS100032', 1, 3199.00, 'AvailableToLease'),
+            ('CHS100033', 2, 3999.00, 'AvailableToLease'),
+            ('CHS100034', 2, 3999.00, 'Leased'),
+            ('CHS100035', 3, 4199.00, 'AvailableToLease'),
+            ('CHS100036', 3, 4199.00, 'Leased'),
+            ('CHS100037', 4, 4299.00, 'Leased'),
+            ('CHS100038', 4, 4299.00, 'Leased'),
+            ('CHS100039', 5, 3799.00, 'AvailableToLease'),
+            ('CHS100040', 5, 3799.00, 'Leased'),
+            ('CHS100041', 6, 4599.00, 'Leased'),
+            ('CHS100042', 6, 4599.00, 'GettingRepaired'),
+            ('CHS100043', 7, 4899.00, 'AvailableToLease'),
+            ('CHS100044', 7, 4899.00, 'AvailableToLease'),
+            ('CHS100045', 8, 3799.00, 'Leased'),
+            ('CHS100046', 8, 3799.00, 'Leased'),
+            ('CHS100047', 9, 4999.00, 'Leased'),
+            ('CHS100048', 9, 4999.00, 'Sold'),
+            ('CHS100049', 10, 5199.00, 'AvailableToLease'),
+            ('CHS100050', 10, 5199.00, 'AvailableToLease'),
+            ('CHS100051', 11, 3399.00, 'PendingEvaluation'),
+            ('CHS100052', 11, 3399.00, 'AvailableToLease'),
+            ('CHS100053', 12, 5599.00, 'Leased'),
+            ('CHS100054', 12, 5599.00, 'AvailableToLease'),
+            ('CHS100055', 13, 5799.00, 'AvailableToLease'),
+            ('CHS100056', 13, 5799.00, 'Leased'),
+            ('CHS100057', 14, 5999.00, 'Leased'),
+            ('CHS100058', 14, 5999.00, 'GettingRepaired'),
+            ('CHS100059', 15, 5999.00, 'AvailableToLease'),
+            ('CHS100060', 15, 5999.00, 'Leased'),
+            ('CHS100061', 16, 2899.00, 'AvailableToLease'),
+            ('CHS100062', 16, 2899.00, 'Sold'),
+            ('CHS100063', 17, 2999.00, 'AvailableToLease'),
+            ('CHS100064', 17, 2999.00, 'Leased'),
+            ('CHS100065', 18, 3199.00, 'AvailableToLease'),
+            ('CHS100066', 32, 3199.00, 'Leased'),
+            ('CHS100067', 19, 6199.00, 'AvailableToLease'),
+            ('CHS100068', 19, 6199.00, 'AvailableToLease'),
+            ('CHS100069', 20, 6399.00, 'GettingRepaired'),
+            ('CHS100070', 20, 6399.00, 'AvailableToLease'),
+            ('CHS100071', 21, 6599.00, 'AvailableToLease'),
+            ('CHS100072', 21, 6599.00, 'Leased'),
+            ('CHS100073', 1, 3199.00, 'AvailableToLease'),
+            ('CHS100074', 2, 3999.00, 'PendingEvaluation'),
+            ('CHS100075', 3, 4199.00, 'AvailableToLease'),
+            ('CHS100076', 35, 4299.00, 'Leased'),
+            ('CHS100077', 5, 3799.00, 'AvailableToLease'),
+            ('CHS100078', 6, 4599.00, 'Leased'),
+            ('CHS100079', 7, 4899.00, 'AvailableToLease'),
+            ('CHS100080', 8, 3799.00, 'AvailableToLease'),
+            ('CHS100081', 9, 4999.00, 'Leased'),
+            ('CHS100082', 10, 5199.00, 'AvailableToLease'),
+            ('CHS100083', 11, 3399.00, 'AvailableToLease'),
+            ('CHS100084', 12, 5599.00, 'Leased'),
+            ('CHS100085', 13, 5799.00, 'AvailableToLease'),
+            ('CHS100086', 31, 5999.00, 'Leased'),
+            ('CHS100087', 15, 5999.00, 'AvailableToLease'),
+            ('CHS100088', 16, 2899.00, 'Leased'),
+            ('CHS100089', 30, 2999.00, 'AvailableToLease'),
+            ('CHS100090', 18, 3199.00, 'Leased');
+
+
+-- Insert Leases
+INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES ()

@@ -10,9 +10,10 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 <div class="mainContent">
 
-    <div class="backButton">
-        <a th:href="@{/getUserPage}" class="textButton">Tilbage</a>
-    </div>
+    <form th:action="@{/showCar}" method="get">
+        <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
+        <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
+    </form>
 
     <div class="formContainer">
 

@@ -33,9 +33,11 @@
     <form th:action="@{/changeCarStatusPendingEvaluation}" method="post">
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-        <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som modtaget</button>
+        <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som: modtaget</button>
     </form>
-    <a th:href="@{/getUserPage}" class="boxButton fixedButtonWidth">Tilbage</a>
+    <form th:action="@{/getUserPage}" method="get">
+        <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
+    </form>
 </div>
 
 <div class="information">

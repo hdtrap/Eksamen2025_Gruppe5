@@ -31,6 +31,7 @@ public class CarModelRepository {
                 carModel.setModel(resultSet.getString("model"));
                 carModel.setProductionYear(resultSet.getInt("production_year"));
                 carModel.setFuelType(resultSet.getString("fuel_type"));
+                carModel.setColor(resultSet.getString("color"));
 
             }
         } catch (SQLException e) {

@@ -24,7 +24,8 @@ CREATE TABLE car_models  (
          brand varchar(100),
          model varchar(100),
          production_year int,
-         fuel_type varchar(50)
+         fuel_type varchar(50),
+         color VARCHAR(50)
 );
 
 CREATE TABLE addon_types(
@@ -81,11 +82,64 @@ CREATE TABLE damages (
 );
 
 -- Insert Car Models
-INSERT INTO car_models (brand, model, production_year, fuel_type) VALUES
-                  ('Reneault', 'Clio', 2019, 'Hybrid'),
-                  ('Ford', 'Focus', 2017, 'Benzin'),
-                  ('Volkswagen', 'Beetle', '1972', 'Benzin'),
-                  ('BMW', 'M4', 2024, 'Benzin');
+INSERT INTO car_models (brand, model, production_year, fuel_type, color) VALUES
+                                                                             ('Mitsubishi', 'Space Star Cosmic 71 HK', 2022, 'Benzin', 'Grå'),
+                                                                             ('Mitsubishi', 'Space Star Cosmic 71 HK', 2022, 'Benzin', 'Sort'),
+                                                                             ('Mitsubishi', 'Space Star Cosmic 71 HK', 2022, 'Benzin', 'Hvid'),
+
+                                                                             ('Fiat', '500e Icon 118 HK', 2023, 'Elektrisk', 'Mintgrøn'),
+                                                                             ('Fiat', '500e Icon 118 HK', 2023, 'Elektrisk', 'Lyseblå'),
+                                                                             ('Fiat', '500e Icon 118 HK', 2023, 'Elektrisk', 'Sort'),
+
+                                                                             ('Fiat', '500e La Prima 118 HK', 2023, 'Elektrisk', 'Bronze'),
+                                                                             ('Fiat', '500e La Prima 118 HK', 2023, 'Elektrisk', 'Grå'),
+
+                                                                             ('Fiat', '500e Icon Pack 118 HK', 2023, 'Elektrisk', 'Rød'),
+                                                                             ('Fiat', '500e Icon Pack 118 HK', 2023, 'Elektrisk', 'Hvid'),
+
+                                                                             ('Opel', 'Crossland Edition+ 83HK', 2022, 'Benzin', 'Sølv'),
+                                                                             ('Opel', 'Crossland Edition+ 83HK', 2022, 'Benzin', 'Grå'),
+
+                                                                             ('Citroën', 'C3 Aircross Impress 110 HK', 2023, 'Benzin', 'Grå'),
+                                                                             ('Citroën', 'C3 Aircross Impress 110 HK', 2023, 'Benzin', 'Hvid'),
+
+                                                                             ('NAVOR', 'E5 ROCK 218 HK', 2023, 'Elektrisk', 'Sort'),
+                                                                             ('NAVOR', 'E5 ROCK 218 HK', 2023, 'Elektrisk', 'Mørkeblå'),
+
+                                                                             ('Citroën', 'C4 VTR Sport 130 HK', 2022, 'Benzin', 'Blå'),
+                                                                             ('Citroën', 'C4 VTR Sport 130 HK', 2022, 'Benzin', 'Grå'),
+
+                                                                             ('Citroën', 'C5 Aircross Feel 130 HK', 2022, 'Diesel', 'Sort'),
+                                                                             ('Citroën', 'C5 Aircross Feel 130 HK', 2022, 'Diesel', 'Hvid'),
+
+                                                                             ('Nissan', 'ARIYA EVOVLE 238 HK', 2023, 'Elektrisk', 'Kobber'),
+                                                                             ('Nissan', 'ARIYA EVOVLE 238 HK', 2023, 'Elektrisk', 'Sort'),
+
+                                                                             ('Dacia', 'Sandero Expression 90 HK', 2023, 'Benzin', 'Blå'),
+                                                                             ('Dacia', 'Sandero Expression 90 HK', 2023, 'Benzin', 'Hvid'),
+
+                                                                             ('Peugeot', '2008 Allure 130 HK. AUT.', 2023, 'Benzin', 'Orange'),
+                                                                             ('Peugeot', '2008 Allure 130 HK. AUT.', 2023, 'Benzin', 'Sort'),
+
+                                                                             ('Renault', 'Captur Techno 160 HK', 2023, 'Hybrid', 'Rød'),
+                                                                             ('Renault', 'Captur Techno 160 HK', 2023, 'Hybrid', 'Sort'),
+
+                                                                             ('Honda', 'Civic Sport 184 HK', 2023, 'Hybrid', 'Mørkeblå'),
+                                                                             ('Honda', 'Civic Sport 184 HK', 2023, 'Hybrid', 'Grå'),
+
+                                                                             ('Honda', 'Civic Advance 184 HK', 2023, 'Hybrid', 'Sølv'),
+                                                                             ('Honda', 'Civic Advance 184 HK', 2023, 'Hybrid', 'Sort'),
+
+                                                                             ('Peugeot', 'Lille varebil', 2023, 'Diesel', 'Hvid'),
+                                                                             ('Citroën', 'Lille varebil', 2022, 'Diesel', 'Hvid'),
+                                                                             ('Peugeot', 'Mellem varebil', 2023, 'Diesel', 'Hvid'),
+                                                                             ('Fiat', 'Mellem varebil', 2022, 'Diesel', 'Hvid'),
+                                                                             ('Peugeot', 'Stor varebil', 2023, 'Diesel', 'Hvid'),
+                                                                             ('Citroën', 'Stor varebil', 2021, 'Diesel', 'Hvid'),
+                                                                             ('Peugeot', 'Lille elektrisk varebil', 2021, 'Elektrisk', 'Hvid'),
+                                                                             ('Fiat', 'Lille elektrisk varebil', 2023, 'Elektrisk', 'Hvid'),
+                                                                             ('Peugeot', 'Mellem elektrisk varebil', 2023, 'Elektrisk', 'Hvid'),
+                                                                             ('Opel', 'Mellem elektrisk varebil', 2023, 'Elektrisk', 'Hvid');
 
 INSERT INTO addon_types (type, description, price) VALUES
                   ('Afleveringsforsikring', 'Tilvalg af afleveringsforsikring er betinget af en aftale på minimum 12 måneder.', 119),

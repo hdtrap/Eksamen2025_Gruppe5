@@ -49,10 +49,11 @@
                         <p th:text="'Skade type: ' + ${damage.damageType}">Skade type</p>
                         <p th:text="'Pris: ' + ${damage.price}">Pris</p>
                         <p th:text="'Skadens status: ' + (${damage.isFixed} ? 'er udbedret' : 'er ikke udbedret')">Skadens status:</p>
-                        <form th:action="@{/fixDamage}" method="post">
+                        <form th:action="@{/fixDamage}" method="post"><!--findes i CarController-->
                             <input type="hidden" th:value="${damage.leaseId}" name="leaseId">
                             <input type="hidden" th:value="${damage.damageId}" name="damageId">
                             <input type="hidden" th:value="${damage.isFixed}" name="isFixed">
+                            <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber">
                             <button type="submit" class="boxButton fixedButtonWidth">Marker skade som udbedret</button>
                         </form>
 

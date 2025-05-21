@@ -23,7 +23,7 @@
 </form>
 <form th:action="@{/getShowDamage}" method="get"><!--findes i DamageController-->
     <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
-    <button type="submit" class="boxButton fixedButtonWidth">Se skader</button>
+    <button type="submit" class="boxButton fixedButtonWidth">Se og print skader</button>
 </form>
     <form th:action="@{/getFixDamage}" method="get"><!--findes i DamageController-->
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
@@ -33,9 +33,8 @@
     <form th:action="@{/changeCarStatusPendingEvaluation}" method="post"><!--findes i CarController-->
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-        <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som: modtaget</button>
-    </form>
-    <form th:action="@{/getUserPage}" method="get">
+        <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som modtaget</button>
+    </form><form th:action="@{/getUserPage}" method="get"><!--findes i UserController-->
         <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
     </form>
 </div>

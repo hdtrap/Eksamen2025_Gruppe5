@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <title>Forretningsudvikling</title>
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
-    <link rel="stylesheet" href="../static/landingPage.css" th:href="@{/landingPage.css}">
     <link rel="stylesheet" href="../static/businessPage.css" th:href="@{/businessPage.css}">
 </head>
 <body>
 <div th:insert="~{/fragments/header :: header}"></div>
+
 <div class="mainContent">
     <div class="userOptions">
-        <div class="allKpi">
+
             <div class="kpi"> <!-- Number of leased cars -->
-                <span th:text="${noOfLeasedCars}"></span>
-                <br>
-                <span th:text="${totalCars}"></span>
+                <span th:text="${noOfLeasedCars}">Leasede biler</span>
+            </div>
+            <div class="kpi"> <!-- Total cars -->
+                <span th:text="${totalCars}">Biler i alt</span>
             </div>
             <div class="kpi"> <!-- Monthly revenue -->
-                <span th:text="${revenueFromRentedCars}"></span>
+                <span th:text="${revenueFromRentedCars}">Indtjening fra biler</span>
             </div>
             <div class="kpi"> <!-- Value of leased cars -->
                 <span th:text="${priceOfLeasedCars}"></span>
@@ -29,8 +30,9 @@
             <div class="kpi"> <!-- Most common car model -->
                 <span th:text="${mostCommonCarModel}"></span>
             </div>
-        </div>
-    </div>
+
+    </div> <!-- userOptions ends -->
+
 <div class = notifications>
     <div class="notificationsPanel">
         Notifikationer

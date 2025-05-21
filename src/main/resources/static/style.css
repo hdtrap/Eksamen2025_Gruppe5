@@ -167,13 +167,13 @@ html, body {
 
 .boxButton{
     padding: 10px;
-    width: 150px;
     background-color: #ffffff;
     border-radius: 50px;
     border: #2ea8dd solid 2px;
     font-weight: 700;
     color: #2ea8dd;
     cursor: pointer;
+
 
     display: flex;
     align-items: center;
@@ -188,6 +188,10 @@ html, body {
     height: 40px;
     font-family: inherit;
     font-size: 16px;
+}
+
+.wideButton{
+    min-width: 300px;
 }
 
 .boxButton:hover{
@@ -261,6 +265,7 @@ button, label, .btn {
     background-color: #ffe0e0;
     border: red solid 1px;
 }
+
 
 /*Notifications panel*/
 
@@ -546,12 +551,5 @@ th {
 }
 /* Tables */
 
-.fixedButtonWidth {
-    width: 150px;
-}
 
-.tilbageknap {
-    z-index: 51;
-    position: absolute;
-}
 

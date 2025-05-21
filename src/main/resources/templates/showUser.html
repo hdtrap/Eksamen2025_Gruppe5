@@ -15,7 +15,7 @@
     <div class="userOptions">
 
         <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
-        <label for="needConfirm" class="boxButton fixedButtonWidth">Slet denne bruger</label>
+        <label for="needConfirm" class="boxButton wideButton">Slet denne bruger</label>
         <div class="popUpBoxFull">
             <div class="popUpBox">
                 <p class="boldText">Bekræft at du vil slette brugeren</p>
@@ -37,10 +37,10 @@
         <form th:action="@{/getEditUser}" method="post"><!--findes i UserController-->
             <input type="hidden" th:value="${user.getUserName()}" name="usernameEdit" id="usernameEdit">
             <button type="submit" id="submitEditButton" hidden>Rediger denne bruger</button>
-            <label for="submitEditButton" class="boxButton fixedButtonWidth">Rediger denne bruger</label>
+            <label for="submitEditButton" class="boxButton wideButton">Rediger denne bruger</label>
         </form>
         <form th:action="@{/getUserPage}" method="get">
-            <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button><!--findes i PageController-->
+            <button type="submit" class="boxButton wideButton">Tilbage</button><!--findes i PageController-->
         </form>
     </div>
     <div class="notifications">

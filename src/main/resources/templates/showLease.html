@@ -13,13 +13,16 @@
 
 <div class="mainContent">
 <div class="userOptions">
+
+    <div class="boldText">Vælg funktion:</div>
+
     <form th:action="@{/getUpdateLease(id=${lease.leaseId})}" method="get"><!--findes i LeaseController-->
         <input type="hidden" name="leaseId" th:value="${lease.leaseId}" />
-        <button type="submit" class="boxButton fixedButtonWidth">Rediger lejeaftale</button>
+        <button type="submit" class="boxButton wideButton">Rediger lejeaftale</button>
     </form>
 
     <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
-    <label for="needConfirm" class="boxButton fixedButtonWidth">Slet denne lejeaftale</label>
+    <label for="needConfirm" class="boxButton wideButton">Slet denne lejeaftale</label>
     <div class="popUpBoxFull">
         <div class="popUpBox">
             <p class="boldText">Bekræft at du vil slette lejeaftalen</p>
@@ -39,10 +42,11 @@
 
     <form th:action="@{/getPayDamages}" method="get">
         <input type="hidden" name="leaseId" th:value="${lease.leaseId}" />
-        <button type="submit" class="boxButton fixedButtonWidth">Betal for skaderne</button>
+        <button type="submit" class="boxButton wideButton">Betal for skaderne</button>
     </form>
     <form th:action="@{/getUserPage}" method="get">
-        <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
+        <label for="backButtonSubmit" class="backButton boxButton">Tilbage</label>
+        <button type="submit"  id="backButtonSubmit" hidden></button>
     </form>
 
 </div>

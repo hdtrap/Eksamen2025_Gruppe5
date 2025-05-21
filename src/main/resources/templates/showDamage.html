@@ -13,11 +13,11 @@
         <div class="userOptions">
             <form th:action="@{/showCar}" method="get"><!--findes i LeaseController-->
                 <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-                <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
+                <button type="submit" class="boxButton wideButton">Tilbage</button>
             </form>
             <form th:action="@{/getPrintDamageReport}" method="get"><!--findes i DamageController-->
                 <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-                <button type="submit" class="boxButton fixedButtonWidth">Print skadesrapport</button>
+                <button type="submit" class="boxButton wideButton">Print skadesrapport</button>
             </form>
         </div>
 
@@ -35,12 +35,12 @@
                         <form th:action="@{/deleteDamage}" method="post"><!--findes i DamageController-->
                             <input type="hidden" th:value="${damage.damageId}" name="damageId" placeholder="damageId">
                             <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
-                            <button type="submit" class="boxButton fixedButtonWidth">Slet skade</button>
+                            <button type="submit" class="boxButton wideButton">Slet skade</button>
                         </form>
                         <form th:action="@{/getEditDamage}" method="get"><!--findes i DamageController-->
                             <input type="hidden" th:value="${damage.damageId}" name="damageId" placeholder="damageId">
                             <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
-                            <button type="submit" class="boxButton fixedButtonWidth">Rediger skade</button>
+                            <button type="submit" class="boxButton wideButton">Rediger skade</button>
                         </form>
                     </div>
                 </div>

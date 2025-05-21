@@ -7,22 +7,33 @@
 </head>
 <body>
 <div th:insert="~{/fragments/header :: header}"></div>
+
+<div class="mainContent">
+    <div class="userOptions">
+
 <form th:action="@{/showLease}" method="get"><!--findes i LeaseController-->
     <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
-    <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
+    <label for="submitBackButton" class="backButton boxButton">Tilbage</label>
+    <button type="submit" id="submitBackButton" hidden>Tilbage</button>
 </form>
-<p>Skader for lease id : <span th:text="${leaseId}"></span></p>
-<div th:each="damage : ${damages}">
-    <div class="formContainer">
-        <p th:text="'Er skaden betalt? : ' + ${damage.isPaid()}">Er skaden betalt</p>
-    </div>
-</div>
+
     <form th:action="@{/payDamages}" method="post"><!--findes i DamageController-->
         <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
-        <button type="submit" class="boxButton fixedButtonWidth">Marker alle skader som betalt</button>
+        <button type="submit" class="boxButton wideButton">Marker alle skader som betalt</button>
     </form>
+    </div>
 
-
+    <div class="notifications">
+        <div class="notificationsPanel">
+            <p>Skader for lease id : <span th:text="${leaseId}"></span></p>
+            <div th:each="damage : ${damages}">
+                <div class="formContainer">
+                    <p th:text="'Er skaden betalt? : ' + ${damage.isPaid()}">Er skaden betalt</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </body>

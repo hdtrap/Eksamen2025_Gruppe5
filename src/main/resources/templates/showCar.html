@@ -34,8 +34,9 @@
         <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
         <button type="submit" class="boxButton fixedButtonWidth">Registrer bil som modtaget</button>
+    </form><form th:action="@{/getUserPage}" method="get"><!--findes i UserController-->
+        <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>
     </form>
-    <a th:href="@{/getUserPage}" class="boxButton fixedButtonWidth">Tilbage</a>
 </div>
 
 <div class="information">

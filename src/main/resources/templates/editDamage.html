@@ -10,7 +10,7 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 <div class="mainContent">
 
-    <div class="backButton">
+    <div class="backButton boxButton fixedButtonWidth">
         <a th:href="@{/getUserPage}" class="textButton">Tilbage</a>
     </div>
 
@@ -57,8 +57,8 @@
                     </div>
                     <input type="hidden" th:value="${damage.leaseId}" id="leaseId" name="leaseId">
                     <input type="hidden" th:value="${damage.damageId}" name="damageId">
-                <label for="submitButton" class="boxButton">Rediger</label>
-                <button id="submitButton" type="submit" hidden="">Rediger</button>
+                <label for="submitButton" class="boxButton">Bekræft</label>
+                <button id="submitButton" type="submit" hidden="">Bekræft</button>
 
         </form>
     </div>

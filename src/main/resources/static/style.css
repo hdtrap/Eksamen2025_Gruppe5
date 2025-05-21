@@ -95,6 +95,12 @@ html, body {
 
 }
 
+.options{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 /*HEADER*/
 .header {
     /*Text styling*/
@@ -248,12 +254,15 @@ button, label, .btn {
 }
 
 .notification{
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     width: 100%;
     border: black solid 1px;
     border-radius: 3px;
     margin-bottom: 20px;
     box-sizing: border-box;
+    gap: 20px;
 }
 
 .positive{

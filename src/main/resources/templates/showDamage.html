@@ -10,11 +10,14 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 <div class="mainContent">
 
+    <form th:action="@{/showCar}" method="get"><!--findes i LeaseController-->
+        <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
+        <label for="submitBackButton" class="backButton boxButton">Tilbage</label>
+        <button type="submit" id="submitBackButton" hidden>Tilbage</button>
+    </form>
+
         <div class="userOptions">
-            <form th:action="@{/showCar}" method="get"><!--findes i LeaseController-->
-                <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-                <button type="submit" class="boxButton wideButton">Tilbage</button>
-            </form>
+
             <form th:action="@{/getPrintDamageReport}" method="get"><!--findes i DamageController-->
                 <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
                 <button type="submit" class="boxButton wideButton">Print skadesrapport</button>
@@ -26,12 +29,13 @@
             <h1>Alle skader for lease id : <span th:text="${lease.leaseId}"></span></h1>
             <div th:each="damage : ${damages}">
                 <div class="formContainer">
-                    <p th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</p>
-                    <p>----------------------------------------------</p>
-                    <p th:text="'Skade type: ' + ${damage.damageType}">Skade type</p>
-                    <p th:text="'Kategori: ' + ${damage.category}">Kategori</p>
-                    <p th:text="'Pris: ' + ${damage.price}">Pris</p>
-                    <div>
+
+                    <div class="boldText" th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</div>
+                    <div>----------------------------------------------</div>
+                    <div th:text="'Skade type: ' + ${damage.damageType}">Skade type</div>
+                    <div th:text="'Kategori: ' + ${damage.category}">Kategori</div>
+                    <div th:text="'Pris: ' + ${damage.price}">Pris</div>
+                    <div class="options">
                         <form th:action="@{/deleteDamage}" method="post"><!--findes i DamageController-->
                             <input type="hidden" th:value="${damage.damageId}" name="damageId" placeholder="damageId">
                             <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">

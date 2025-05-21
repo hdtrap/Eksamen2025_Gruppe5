@@ -10,31 +10,36 @@
 
 <div class="mainContent">
     <div class="userOptions">
+        <form th:action="@{/showLease}" method="get"><!--findes i LeaseController-->
+            <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
+            <label for="submitBackButton" class="backButton boxButton">Tilbage</label>
+            <button type="submit" id="submitBackButton" hidden>Tilbage</button>
+        </form>
 
-<form th:action="@{/showLease}" method="get"><!--findes i LeaseController-->
-    <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
-    <label for="submitBackButton" class="backButton boxButton">Tilbage</label>
-    <button type="submit" id="submitBackButton" hidden>Tilbage</button>
-</form>
-
-    <form th:action="@{/payDamages}" method="post"><!--findes i DamageController-->
-        <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
-        <button type="submit" class="boxButton wideButton">Marker alle skader som betalt</button>
-    </form>
+        <div class="boldText">Vælg funktion:</div>
+        <form th:action="@{/payDamages}" method="post"><!--findes i DamageController-->
+            <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
+            <button type="submit" class="boxButton wideButton">Marker alle skader som betalt</button>
+        </form>
     </div>
-
     <div class="notifications">
         <div class="notificationsPanel">
-            <p>Skader for lease id : <span th:text="${leaseId}"></span></p>
+            <div class="boldText">Skader for lease id : <span th:text="${leaseId}"></span></div>
             <div th:each="damage : ${damages}">
-                <div class="formContainer">
-                    <p th:text="'Er skaden betalt? : ' + ${damage.isPaid()}">Er skaden betalt</p>
+                <div class="notification" th:classAppend="(${damage.isPaid()} ? 'positive' : 'negative')">
+                    <div class="boldText" th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</div>
+
+                    <div>----------------------------------------------</div>
+                    <div th:text="'Kategori: ' + ${damage.category}">Kategori</div>
+                    <div th:text="'Skade type: ' + ${damage.damageType}">Skade type</div>
+                    <div th:text="'Pris: ' + ${damage.price}">Pris</div>
+                    <div th:text="'Skadens status: ' + (${damage.isFixed} ? 'er udbedret' : 'er ikke udbedret')">Skadens status:</div>
+
+                    <div class="boldText"  th:text="(${damage.isPaid()} ? 'Betalt' : 'Er ikke betalt')">Er skaden betalt</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

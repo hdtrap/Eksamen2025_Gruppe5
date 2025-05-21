@@ -137,6 +137,19 @@ public class CarRepository {
             e.printStackTrace();
         }
     }
+    public void makeCarStatusSold(Car car){
+        String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, "Sold");
+            statement.setInt(2, car.getVehicleNumber() );
+            System.out.println("Bilen er Sold");
+            statement.executeUpdate();
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+    }
 
 
     public ArrayList<Car> getAllCars() {

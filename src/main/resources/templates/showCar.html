@@ -40,6 +40,11 @@
         <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
         <button type="submit" class="boxButton wideButton">Registrer bil som modtaget</button>
     </form>
+    <form th:action="@{/changeCarStatusSold}" method="post"><!--findes i CarController-->
+        <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
+        <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
+        <button type="submit" class="boxButton wideButton">Registrer bil som solgt</button>
+    </form>
 </div>
 
 <div class="notifications">

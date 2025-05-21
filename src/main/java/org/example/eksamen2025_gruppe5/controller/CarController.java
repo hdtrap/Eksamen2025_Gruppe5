@@ -133,4 +133,20 @@ public class CarController {
 
         return "showCar";
     }
+    @PostMapping("/changeCarStatusSold") // Kaldet i fixDamage.html
+    public String changeCarStatusSold(@RequestParam("leaseId") int leaseId,
+                                @RequestParam("vehicleNo") int vehicleNo, Model model) throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {
+        //Verify User is logged in/logged in as the correct type:
+        userRepository.verifyLoggedInUser("REPAIR");
+        //Add the user to the model, to display user relevant items
+        model.addAttribute(userRepository.getcurrentUser());
+
+        Car car = carRepository.findCarByVehicleNumber(vehicleNo);
+        carRepository.makeCarStatusSold(car);
+        Lease lease = leaseRepository.findLeaseById(leaseId);
+        model.addAttribute("car", lease.getCar());
+        model.addAttribute("lease", lease);
+
+        return "showCar";
+    }
 }

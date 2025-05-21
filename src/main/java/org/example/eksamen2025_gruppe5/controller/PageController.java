@@ -55,11 +55,11 @@ public class PageController {
             model.addAttribute("notificationList", notificationRepository.getBusinessNotifications());
 
             // Add KPIs
-            model.addAttribute("revenueFromRentedCars", leaseRepository.monthlyRevenueFromActiveLeases() + " DKK");
+            model.addAttribute("revenueFromRentedCars", leaseRepository.monthlyRevenueFromActiveLeases());
             model.addAttribute("noOfLeasedCars", leaseRepository.noOfLeasedCars());
             model.addAttribute("totalCars", carRepository.totalCars());
-            model.addAttribute("priceOfLeasedCars", leaseRepository.priceOfLeasedCars() +" DKK");
-            model.addAttribute("averageDamageSumPerLease", leaseRepository.avgDamageCost() + " DKK");
+            model.addAttribute("priceOfLeasedCars", leaseRepository.priceOfLeasedCars());
+            model.addAttribute("averageDamageSumPerLease", leaseRepository.avgDamageCost());
             model.addAttribute("mostCommonCarModel", carRepository.mostCommonModel().toString());
             return "businessPage";
         }

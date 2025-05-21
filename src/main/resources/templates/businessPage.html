@@ -28,17 +28,17 @@
             <div class="KPI">
                 <!-- Monthly revenue -->
                 <p>Månedlig indtjening fra udlejede biler</p>
-                <span th:text="${revenueFromRentedCars}">Månedlig indtjening</span>
+                <span th:text="${#numbers.formatDecimal(revenueFromRentedCars,0,'POINT',2,'COMMA')} + ' DKK'"></span>
             </div>
             <div class="KPI">
                 <!-- Value of leased cars -->
                 <p>Samlet værdig af udlejede biler</p>
-                <span th:text="${priceOfLeasedCars}"></span>
+                <span th:text="${#numbers.formatDecimal(priceOfLeasedCars,0,'POINT',2,'COMMA')} + ' DKK'"></span>
             </div>
             <div class="KPI">
                 <!-- Average damage sum per lease -->
                 <p>Gennemsnitlig skadessum pr. lease</p>
-                <span th:text="${averageDamageSumPerLease}"></span>
+                <span th:text="${#numbers.formatDecimal(averageDamageSumPerLease,0,'POINT',2,'COMMA')} + ' DKK'"></span>
             </div>
             <div class="KPI">
                 <!-- Most common car model -->

@@ -218,8 +218,10 @@ public class LeaseController {
         //Add the user to the model, to display user relevant items
         model.addAttribute(userRepository.getcurrentUser());
 
-        model.addAttribute("listOfLeases", leaseRepository.getAllLeases());
+        System.out.println("Trying to show leases");
+        model.addAttribute("listOfAllLeases", leaseRepository.getAllLeases());
+        model.addAttribute("listOfActiveLeases", leaseRepository.getAllActiveLeases());
 
-        return "allLeases";
+        return "showAllLeases";
     }
 }

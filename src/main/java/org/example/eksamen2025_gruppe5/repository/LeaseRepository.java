@@ -237,6 +237,39 @@ CarRepository carRepository;
             while(resultSet.next()){
                 Car car = carRepository.findCarByVehicleNumber(resultSet.getInt("vehicle_no"));
                 Lease leaseToAdd = new Lease(
+                        resultSet.getInt("lease_id"),
+                        car,
+                        resultSet.getDate("start_date").toLocalDate(),
+                        resultSet.getDate("end_date").toLocalDate(),
+                        resultSet.getString("customer_name"),
+                        resultSet.getString("customer_email"),
+                        resultSet.getString("customer_number"),
+                        resultSet.getDouble("price_to_start"),
+                        resultSet.getDouble("price_pr_month"),
+                        resultSet.getString("type_of_lease"));
+
+                listToReturn.add(leaseToAdd);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listToReturn;
+    }
+
+    public ArrayList<Lease> getAllActiveLeases(){
+        ArrayList<Lease> listToReturn = new ArrayList<>();
+        String sql = "SELECT * FROM leases WHERE start_date <= CURRENT_DATE and end_date > CURRENT_DATE";
+
+        //Get all active leases from SQL statement
+        try(Connection connection = dataSource.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                Car car = carRepository.findCarByVehicleNumber(resultSet.getInt("vehicle_no"));
+                Lease leaseToAdd = new Lease(
+                        resultSet.getInt("lease_id"),
                         car,
                         resultSet.getDate("start_date").toLocalDate(),
                         resultSet.getDate("end_date").toLocalDate(),

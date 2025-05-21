@@ -501,17 +501,17 @@ input[type="radio"]:checked ~ .toggleShow {
     overflow-y: scroll;
 }
 
-.allCarsButton {
+.leftTableTopButton {
     align-self: flex-start;
     position: absolute;
     top: -50px;
 }
-.leasedCarsButton {
+.centerTableTopButton {
     align-self: center;
     position: absolute;
     top: -50px;
 }
-.nonLeasedCarsButton {
+.rightTableTopButton {
     align-self: flex-end;
     position: absolute;
     top: -50px;

@@ -1,18 +1,22 @@
 Skaderapport for lease ID: 1
 Kunde: Anna Jensen
 ----------------------------------
+
 Skade id: 1
 Skade type: Scratched Paint
-Kategori: 1
+Kategori: 2
 Pris: 150.0 kr.
 ----------------------------------
-Skade id: 6
-Skade type: Stained Seats
-Kategori: 1
-Pris: 80.0 kr.
-----------------------------------
-Skade id: 7
-Skade type: Diesel i Benzintank
-Kategori: 5
-Pris: 2000.0 kr.
-----------------------------------
+Totalpris til betaling: 150.0DKK 
+
+Har du spørgsmål eller brug for hjælp, så sidder vi klar til at hjælpe dig.
+
+Hverdage - 10.00-15.00
+(Telefonen er lukket mellem 11:30 - 12:00)
+
++45 89 88 50 80
+
+support@bilabonnement.dk
+
+Du finder os på Vibeholmsvej 31, 2605 Brøndby,
+hvor vi både har vores administration og værksted til klargøring af biler.

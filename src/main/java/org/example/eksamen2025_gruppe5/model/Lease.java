@@ -49,6 +49,22 @@ public class Lease {
         this.typeOfLease = TypeOfLease.valueOf(typeOfLease);
         fullyProcessed = false;
     }
+    public Lease(int leaseId,Car car, LocalDate startDate, LocalDate endDate,
+                 String customerName, String customerEmail,
+                 String customerNumber, double priceToStart, double pricePrMonth,
+                 String typeOfLease) {
+        this.leaseId = leaseId;
+        this.car = car;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.customerName = customerName;
+        this.customerEmail = customerEmail;
+        this.customerNumber = customerNumber;
+        this.priceToStart = priceToStart;
+        this.pricePrMonth = pricePrMonth;
+        this.typeOfLease = TypeOfLease.valueOf(typeOfLease);
+        fullyProcessed = false;
+    }
 
     public Lease(int leaseId, Object startDate, Object endDate, Object customerName, Object customerEmail, Object customerNumber, Object o, Object object, Object typeOfLease){}
 

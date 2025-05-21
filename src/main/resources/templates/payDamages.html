@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>payDamages</title>
+    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 </head>
 <body>
+<div th:insert="~{/fragments/header :: header}"></div>
 <form th:action="@{/showLease}" method="get"><!--findes i LeaseController-->
     <input type="hidden" th:value="${leaseId}"  name="leaseId" placeholder="Lease Id">
     <button type="submit" class="boxButton fixedButtonWidth">Tilbage</button>

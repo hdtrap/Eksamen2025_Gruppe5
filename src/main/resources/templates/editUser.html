@@ -4,35 +4,68 @@
     <meta charset="UTF-8">
     <title>Rediger bruger</title>
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
-    <link rel="stylesheet" href="../static/registrationPage.css" th:href="@{/registrationPage.css}">
 </head>
 <body>
 <div th:insert="~{/fragments/header :: header}"></div>
 
 <div class="mainContent">
-
+    <form th:action="@{/getShowUserPage}" method="post">
+        <input type="hidden" name="usernameBox" th:value="${user.userName}" />
+        <button type="submit" class="boxButton backButton fixedButtonWidth">Tilbage</button>
+    </form>
 
 <div class="formContainer">
-<form th:action="@{/saveUpdateUser}" method="post" class="loginForm"><!--findes i UserController-->
-    <input type="hidden" th:value="${user.getUserName()}" name="oldUserName" id="oldUserName">
-    <input type="text" th:value="${user.getUserName()}" id="userName" name="userName" placeholder="Indtast dit username" required class="inputBox">
-    <br>
-    <input type="text" th:value="${user.getFirstName}" id="firstName" name="firstName" placeholder="Indtast dit fornavn" required class="inputBox">
-    <br>
-    <input type="text" th:value="${user.getLastName()}" id="lastName" name="lastName" placeholder="Indtast dit efternavn" required class="inputBox">
-    <br>
-    <input type="password" th:value="${user.getPassword()}" id="passWord" name="passWord" placeholder="Indtast password" required class="inputBox">
-    <br>
-    <input type="password" id="passWordControl" name="passWordControl" placeholder="Indtast password igen" required class="inputBox">
-    <br>
-    <select name="role" id="role" multiple required>
-        <option value="Data">Data</option>
-        <option value="Repair">Repair</option>
-        <option value="Business">Business</option>
-        <option value="Sysadmin">Sysadmin</option>
-    </select>
+    <div class="boldText">Rediger bruger</div>
 
-    <button type="submit" class="styledButton">submit</button>
+    <form th:action="@{/saveUpdateUser}" method="post" class="registerForm"><!--findes i UserController-->
+    <input type="hidden" th:value="${user.getUserName()}" name="oldUserName" id="oldUserName">
+
+    <div class="form-group">
+        <label for="userName">Brugernavn:</label>
+        <input type="text" th:value="${user.getUserName()}" id="userName" name="userName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="firstName">Fornavn:</label>
+        <input type="text" th:value="${user.getFirstName}" id="firstName" name="firstName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Efternavn:</label>
+        <input type="text" th:value="${user.getLastName()}" id="lastName" name="lastName" required>
+    </div>
+
+    <div class="form-group">
+        <label for="passWord">Password:</label>
+        <input type="password" th:value="${user.getPassword()}" id="passWord" name="passWord" required>
+    </div>
+
+    <div class="form-group">
+        <label for="passWordControl">Bekræft password:</label>
+        <input type="password" id="passWordControl" name="passWordControl" required>
+    </div>
+
+    <div class="roleradios">
+        Brugertype:
+        <div class="roleRadio">
+            <input type="radio" name="role" th:value="Data" required>
+            <div class="lightText">Data Registrering</div>
+        </div>
+        <div class="roleRadio">
+            <input type="radio" name="role" th:value="Repair">
+            <div class="lightText">Skade Registrering</div>
+        </div>
+        <div class="roleRadio">
+            <input type="radio" name="role" th:value="Business">
+            <div class="lightText">Forretningsudvikling</div>
+        </div>
+        <div class="roleRadio">
+            <input type="radio" name="role" th:value="Sysadmin">
+            <div class="lightText">System administrator</div>
+        </div>
+    </div>
+
+    <button type="submit" class="boxButton">submit</button>
 </form>
 </div>
 </div>

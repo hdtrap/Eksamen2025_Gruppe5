@@ -257,6 +257,7 @@ button, label, .btn {
     background-color: #ffe0e0;
     border: red solid 1px;
 }
+
 /*Notifications panel*/
 
 /*FORMS*/
@@ -265,6 +266,7 @@ button, label, .btn {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
 
     overflow-y: auto;
     width: auto;
@@ -275,6 +277,7 @@ button, label, .btn {
 .formContainer {
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     gap: 20px;
 
@@ -297,9 +300,6 @@ button, label, .btn {
     width: 300px;
     padding: 30px;
 
-    .boxButton{
-        margin-top: 20px;
-    }
 }
 
 .form-group {
@@ -310,8 +310,6 @@ button, label, .btn {
     position: relative;
 
     width: 100%;
-
-    margin-bottom: 20px;
 
 
 

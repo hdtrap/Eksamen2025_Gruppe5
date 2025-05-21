@@ -36,6 +36,8 @@ public class PageController {
 
         if(userRepository.getcurrentUser().isAdmin()){
             model.addAttribute("isAdmin", "this user is admin");
+
+            model.addAttribute("notificationList", notificationRepository.getAdminNotifications());
             return "adminPage";
         }
         if(userRepository.getcurrentUser().isDataReg()){
@@ -50,7 +52,7 @@ public class PageController {
         }
         if(userRepository.getcurrentUser().isBusiness()){
             model.addAttribute("isBusiness", "this user is business");
-            model.addAttribute("notificationList", notificationRepository.getRepairNotifications());
+            model.addAttribute("notificationList", notificationRepository.getBusinessNotifications());
 
             // Add KPIs
             model.addAttribute("revenueFromRentedCars", "Månedlig indtjening fra udlejede biler: " + leaseRepository.monthlyRevenueFromActiveLeases() + " DKK");

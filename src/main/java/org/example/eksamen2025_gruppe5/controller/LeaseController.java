@@ -85,7 +85,7 @@ public class LeaseController {
 
     // Viser en lejeaftale
     @GetMapping("/showLease")
-    public String getLease(@RequestParam("leaseId") int leaseId,
+    public String getLease(@RequestParam("leaseId") String lease,
                            Model model,
                            RedirectAttributes redirectAttributes)  throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:
@@ -96,20 +96,30 @@ public class LeaseController {
         System.out.println("showLease skal blive vist");
 
         try {
-            Lease currentLease = leaseRepository.findLeaseById(leaseId);
-            System.out.println("Fundet lease: " + currentLease);
+            if (lease.matches("\\d+")) {
+                Lease currentLease = leaseRepository.findLeaseById(Integer.parseInt(lease));
+                System.out.println("Fundet lease: " + currentLease);
 
-            model.addAttribute("lease", currentLease);
-            ArrayList<AddOnType> selectedAddons = addOnTypeRepository.showSelectedAddons(leaseId);
-            model.addAttribute("selectedAddons", selectedAddons);
-            return "showLease";
+                model.addAttribute("lease", currentLease);
+                ArrayList<AddOnType> selectedAddons = addOnTypeRepository.showSelectedAddons(Integer.parseInt(lease));
+                model.addAttribute("selectedAddons", selectedAddons);
+                return "showLease";
+            }
+            else {
+                Lease currentLease = leaseRepository.findLeaseByCustomerName(lease);
+                System.out.println("Fundet lease: " + currentLease);
 
+                model.addAttribute("lease", currentLease);
+                ArrayList<AddOnType> selectedAddons = addOnTypeRepository.showSelectedAddons(currentLease.getLeaseId());
+                model.addAttribute("selectedAddons", selectedAddons);
+                return "showLease";
+            }
 
         }
         catch (LeaseNotFoundException e){
             e.printStackTrace();
-            System.out.println("Lease ikke fundet " + leaseId);
-            redirectAttributes.addFlashAttribute("message", "Kunne ikke finde en lejeaftale med id "+ leaseId +".");
+            System.out.println("Lease ikke fundet " + lease);
+            redirectAttributes.addFlashAttribute("message", "Kunne ikke finde den lejeaftale du ledte efter.");
             return "redirect:/getUserPage"; // skal redirect til skadeside hvis isRepair
         }
 

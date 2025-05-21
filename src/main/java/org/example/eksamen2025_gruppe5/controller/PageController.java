@@ -55,12 +55,12 @@ public class PageController {
             model.addAttribute("notificationList", notificationRepository.getBusinessNotifications());
 
             // Add KPIs
-            model.addAttribute("revenueFromRentedCars", "Månedlig indtjening fra udlejede biler: " + leaseRepository.monthlyRevenueFromActiveLeases() + " DKK");
-            model.addAttribute("noOfLeasedCars", "Antal udlejede biler: " + leaseRepository.noOfLeasedCars());
-            model.addAttribute("totalCars", "Antal biler i alt: " + carRepository.totalCars());
-            model.addAttribute("priceOfLeasedCars", "Samlet værdi af udlejede biler: " + leaseRepository.priceOfLeasedCars() +" DKK");
-            model.addAttribute("averageDamageSumPerLease", "Gennemsnitlig skadessum per lease: " + leaseRepository.avgDamageCost() + " DKK");
-            model.addAttribute("mostCommonCarModel", "Mest populære bilmodel: " + carRepository.mostCommonModel().toString());
+            model.addAttribute("revenueFromRentedCars", leaseRepository.monthlyRevenueFromActiveLeases());
+            model.addAttribute("noOfLeasedCars", leaseRepository.noOfLeasedCars());
+            model.addAttribute("totalCars", carRepository.totalCars());
+            model.addAttribute("priceOfLeasedCars", leaseRepository.priceOfLeasedCars());
+            model.addAttribute("averageDamageSumPerLease", leaseRepository.avgDamageCost());
+            model.addAttribute("mostCommonCarModel", carRepository.mostCommonModel().toString());
             return "businessPage";
         }
         else{

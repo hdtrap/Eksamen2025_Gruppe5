@@ -220,7 +220,7 @@ CarRepository carRepository;
 
         // Gets sum of damage.price divided by number of leases
         String sql = "SELECT SUM(d.price) / COUNT(l.lease_id) AS avg_damage_cost " +
-                "FROM leases l LEFT JOIN damages d ON l.lease_id = d.lease_id WHERE l.fully_processed = 1";
+                "FROM leases l LEFT JOIN damages d ON l.lease_id = d.lease_id WHERE l.end_date <= CURRENT_DATE";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {

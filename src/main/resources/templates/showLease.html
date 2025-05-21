@@ -12,6 +12,12 @@
 <div th:insert="~{/fragments/header :: header}"></div>
 
 <div class="mainContent">
+
+    <form th:action="@{/dataregPage}" method="get">
+        <label for="backButtonSubmit" class="backButton boxButton">Tilbage</label>
+        <button type="submit"  id="backButtonSubmit" hidden></button>
+    </form>
+
 <div class="userOptions">
 
     <div class="boldText">Vælg funktion:</div>
@@ -44,14 +50,11 @@
         <input type="hidden" name="leaseId" th:value="${lease.leaseId}" />
         <button type="submit" class="boxButton wideButton">Betal for skaderne</button>
     </form>
-    <form th:action="@{/dataregPage}" method="get">
-        <label for="backButtonSubmit" class="backButton boxButton">Tilbage</label>
-        <button type="submit"  id="backButtonSubmit" hidden></button>
-    </form>
 
 </div>
 
-<div class="information">
+<div class="notifications">
+    <div class="notificationsPanel">
     <h1>Information</h1>
     <div th:if="${lease != null}">
         <p>Lejeaftale ID: <span th:text="${lease.leaseId}"></span></p>
@@ -69,6 +72,7 @@
                 <span th:utext="${addon.type} + ' - ' + ${addon.price} + 'kr./md.'"></span>
             </label>
         </div>
+    </div>
     </div>
 </div>
 </div>

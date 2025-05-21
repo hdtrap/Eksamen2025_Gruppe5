@@ -19,10 +19,10 @@
         <label for="needConfirm" class="boxButton">Find en lease</label>
         <div class="popUpBoxFull">
             <div class="popUpBox">
-                <div class="boldText">Indtast ID for den lease du vil finde</div>
+                <div class="boldText">Indtast ID eller Kunde navn for den lease du vil finde</div>
                 <div class="inputFields">
                     <form th:action="@{/showLease}"  method=get>
-                        <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
+                        <input type="text" id="leaseId" name="leaseId" placeholder="Lease ID eller Kunde navn" required>
                         <button id="submitButton" type="submit" hidden>Find lease</button>
                     </form>
                 </div>

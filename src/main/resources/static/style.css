@@ -561,7 +561,8 @@ th {
 }
 
 td p{
-    overflow-x: scroll;
+    height: 100%;
+    overflow-x: auto;
 }
 /* Tables */
 

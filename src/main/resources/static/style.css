@@ -549,7 +549,7 @@ table {
 td, th {
     height: 100%;
     text-align: center;
-
+    overflow: hidden;
 }
 
 th {
@@ -557,13 +557,9 @@ th {
     background-color: #2ea8dd;
     padding-top: 2%;
     padding-bottom: 2%;
-    overflow: hidden;
+
 }
 
-td {
-    display: block;
-    overflow-x: auto;
-}
 /* Tables */
 
 /* KPIs */

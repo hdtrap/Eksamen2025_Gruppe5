@@ -558,6 +558,10 @@ th {
     padding-top: 2%;
     padding-bottom: 2%;
 }
+
+td {
+    overflow-x: auto;
+}
 /* Tables */
 
 /* KPIs */

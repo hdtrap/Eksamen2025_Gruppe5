@@ -47,7 +47,7 @@
 
     <div class = notifications>
         <div class="notificationsPanel">
-            Notifikationer
+            <p>Notifikationer</p>
             <p th:if="${message}" th:text="${message}" class="notification"></p>
             <div th:each="notification : ${notificationList}" class="notification"  th:classappend="${notification.getType()}">
                 <p th:text="${notification.getMessage()}"></p>

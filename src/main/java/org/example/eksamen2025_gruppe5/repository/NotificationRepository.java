@@ -20,22 +20,11 @@ public class NotificationRepository {
     }
 
     public ArrayList<Notification> getDataRegNotifications(){
+        System.out.println("Henter DataReg Notifications");
+
         ArrayList<Notification> listOfNotifications = new ArrayList<>();
-        String sqlRequest = "SELECT cars.chassis_no, leases.lease_id, leases.end_date FROM leases JOIN cars ON cars.vehicle_no = leases.vehicle_no WHERE CURRENT_DATE > leases.end_date AND cars.status_of_car = 'Leased'";
 
-        try(Connection connection = dataSource.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest)){
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while(resultSet.next()){
-                Notification notification = new Notification("negative", "Lease ID = "+resultSet.getString("lease_id")+" udløb d. "+resultSet.getDate("end_date")+". Bil med stelnummer: " + resultSet.getString("chassis_no") + " er stadig ikke blevet afleveret.");
-                listOfNotifications.add(notification);
-            }
-        }
-        catch (SQLException e){
-            e.printStackTrace();
-        }
+        listOfNotifications.addAll(getCarIsNotDeliveredNotification());
         listOfNotifications.addAll(getGlobalNotifications());
 
         return listOfNotifications;
@@ -43,6 +32,8 @@ public class NotificationRepository {
 
     public ArrayList<Notification> getRepairNotifications(){
         ArrayList<Notification> listOfNotifications = new ArrayList<>();
+
+        System.out.println("Henter repair Notifications");
 
         listOfNotifications.addAll(getGlobalNotifications());
         listOfNotifications.addAll(getCarNeedsRepairNotifications());
@@ -52,6 +43,7 @@ public class NotificationRepository {
 
     public ArrayList<Notification> getBusinessNotifications(){
         ArrayList<Notification> listToReturn = new ArrayList<>();
+        System.out.println("Henter Business Notifications");
 
         listToReturn.addAll(getGlobalNotifications());
 
@@ -60,8 +52,31 @@ public class NotificationRepository {
 
     public ArrayList<Notification> getAdminNotifications(){
         ArrayList<Notification> listToReturn = new ArrayList<>();
+        System.out.println("Henter Admin Notifications");
 
         listToReturn.addAll(getGlobalNotifications());
+
+        return listToReturn;
+    }
+
+    ArrayList<Notification> getCarIsNotDeliveredNotification(){
+        ArrayList<Notification> listToReturn = new ArrayList<>();
+
+        String sqlRequest = "SELECT cars.chassis_no, leases.lease_id, leases.end_date FROM leases JOIN cars ON cars.vehicle_no = leases.vehicle_no WHERE CURRENT_DATE > leases.end_date AND cars.status_of_car = 'Leased'";
+
+        try(Connection connection = dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sqlRequest)){
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                Notification notification = new Notification("negative", "Lease ID = "+resultSet.getString("lease_id")+" udløb d. "+resultSet.getDate("end_date")+". Bil med stelnummer: " + resultSet.getString("chassis_no") + " er stadig ikke blevet afleveret.");
+                listToReturn.add(notification);
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
 
         return listToReturn;
     }

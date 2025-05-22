@@ -152,7 +152,7 @@ public class LeaseController {
 
     // Viser siden til at redigere en lejeaftale
     @GetMapping("/getUpdateLease")
-    public String updateLease(@RequestParam("id") int id, Model model,
+    public String updateLease(@RequestParam("leaseId") int id, Model model,
                               RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:
         userRepository.verifyLoggedInUser("DATA");

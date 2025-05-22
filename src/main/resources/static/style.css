@@ -560,7 +560,7 @@ th {
 }
 
 td {
-    overflow-x: auto;
+    overflow-x: scroll;
 }
 /* Tables */
 

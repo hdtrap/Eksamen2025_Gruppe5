@@ -41,7 +41,7 @@
                                 <td><p th:text="${car.carModel.getModel()}"></p></td>
                                 <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
                                 <td><p th:text="${car.carModel.getFuelType()}"></p></td>
-                                <td><p th:text="${car.price}"></p></td>
+                                <td><p th:text="${#numbers.formatDecimal(car.price,0,'POINT',2,'COMMA')}"></p></td>
                             </tr>
                         </table>
                     </div>
@@ -71,7 +71,7 @@
                                 <td><p th:text="${car.carModel.getModel()}"></p></td>
                                 <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
                                 <td><p th:text="${car.carModel.getFuelType()}"></p></td>
-                                <td><p th:text="${car.price}"></p></td>
+                                <td><p th:text="${#numbers.formatDecimal(car.price,0,'POINT',2,'COMMA')}"></p></td>
                             </tr>
                         </table>
                     </div>
@@ -101,7 +101,7 @@
                                 <td><p th:text="${car.carModel.getModel()}"></p></td>
                                 <td><p th:text="${car.carModel.getProductionYear()}"></p></td>
                                 <td><p th:text="${car.carModel.getFuelType()}"></p></td>
-                                <td><p th:text="${car.price}"></p></td>
+                                <td><p th:text="${#numbers.formatDecimal(car.price,0,'POINT',2,'COMMA')}"></p></td>
                             </tr>
                         </table>
                     </div>

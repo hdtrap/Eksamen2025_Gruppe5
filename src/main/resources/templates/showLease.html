@@ -64,8 +64,8 @@
         <p>Email: <span th:text="${lease.customerEmail}"></span></p>
         <p>Nummer: <span th:text="${lease.customerNumber}"></span></p>
         <h2>Pris</h2>
-        <p>Udbetaling pris: <span th:text="${lease.priceToStart}"></span>kr.</p>
-        <p>Pris per måned: <span th:text="${lease.pricePrMonth}"></span>kr.</p>
+        <p>Udbetaling pris: <span th:text="${#numbers.formatDecimal(lease.priceToStart,0,'POINT',2,'COMMA')}"></span>kr.</p>
+        <p>Pris per måned: <span th:text="${#numbers.formatDecimal(lease.pricePrMonth,0,'POINT',2,'COMMA')}"></span>kr.</p>
         <h2>Tilvalg</h2>
         <div th:each="addon: ${selectedAddons}">
             <label>

@@ -560,8 +560,8 @@ th {
     overflow: hidden;
 }
 
-td p{
-    height: 100%;
+td {
+    display: block;
     overflow-x: auto;
 }
 /* Tables */

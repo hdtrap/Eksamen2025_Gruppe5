@@ -76,7 +76,8 @@ public class PageController {
     }
 
     @GetMapping("/getShowListsOfCars")
-    public String getShowListOfCars(Model model){
+    public String getShowListOfCars(Model model)throws UserNotLoggedInException, WrongUserTypeException{
+        userRepository.verifyLoggedInUser("ANY");
         model.addAttribute(userRepository.getcurrentUser());
 
         System.out.println("Registreret prøver at vise biler");

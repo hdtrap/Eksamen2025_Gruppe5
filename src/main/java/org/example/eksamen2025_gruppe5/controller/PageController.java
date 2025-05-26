@@ -64,7 +64,7 @@ public class PageController {
             return "businessPage";
         }
         else{
-            model.addAttribute("message", "Could not log in: User has no usertype");
+            model.addAttribute("message", "Kunne ikke logge ind. Brugeren har ingen type.");
             return "/";
         }
     }

@@ -30,9 +30,13 @@ Hvis du ønsker at køre applikationen lokalt skal du:
 8. Tryk på skift bruger type og vælg skaderegistrering
 9. Tryk på "Find et lease" indtast dit lejeaftale ID og tryk på "Søg"
 10. Tryk på "Tilføj skade" udfyld formularen og tryk "Tilføj skade"
+11. Tryk på skift bruger type og vælg Systemadminstrator
+12. Tryk på "Opret ny bruger" udfyld formularen og tryk "submit"
 
-
-
+### Hvad består vores kode af?
+1. Vi bruger Java 21
+2. Vi bruger frameworket Spring Boot, se pom.xml for dependencies
+3. Vi bruger HTML og CSS
 
 #### Dette er en opgave lavet i forbindelse med Datamatiker studiet
 #### Projektgruppe

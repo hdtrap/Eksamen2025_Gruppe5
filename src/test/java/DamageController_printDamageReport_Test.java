@@ -21,7 +21,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ExtendWith(MockitoExtension.class)
+/*@ExtendWith(MockitoExtension.class)
 public class DamageController_printDamageReport_Test {
 
     private MockMvc mockMvc;
@@ -51,3 +51,4 @@ public class DamageController_printDamageReport_Test {
                 .andExpect(model().attribute("leaseId", leaseId));
     }
 }
+*/

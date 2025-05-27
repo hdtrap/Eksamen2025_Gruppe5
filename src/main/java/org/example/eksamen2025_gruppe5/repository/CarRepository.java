@@ -174,6 +174,8 @@ public class CarRepository {
                 CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
                 car.setCarModel(carModel);
                 car.setPrice(resultSet.getDouble("price"));
+                String statusAsString = resultSet.getString("status_of_car");
+                car.setStatusOfCar(StatusOfCar.valueOf(statusAsString));
 
                 allCars.add(car);
             }
@@ -186,9 +188,8 @@ public class CarRepository {
     public ArrayList<Car> getLeasedCars() {
         ArrayList<Car> leasedCars = new ArrayList<>();
 
-        String sqlRequest = "SELECT * FROM cars JOIN leases ON cars.vehicle_no = leases.vehicle_no " +
-                "WHERE leases.start_date <= CURRENT_DATE AND leases.end_date > CURRENT_DATE";
-
+        String sqlRequest = "SELECT * FROM cars " +
+                "WHERE status_of_car = 'Leased'";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sqlRequest);
              ResultSet resultSet = statement.executeQuery();) {
@@ -214,8 +215,8 @@ public class CarRepository {
     public ArrayList<Car> getNonLeasedCars() {
         ArrayList<Car> nonLeasedCars = new ArrayList<>();
 
-        String sqlRequest = "SELECT * FROM cars JOIN leases ON cars.vehicle_no = leases.vehicle_no " +
-                "WHERE leases.end_date < CURRENT_DATE";
+        String sqlRequest = "SELECT * FROM cars " +
+                "WHERE NOT status_of_car = 'Leased'";
 
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sqlRequest);
@@ -229,7 +230,8 @@ public class CarRepository {
                 CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
                 car.setCarModel(carModel);
                 car.setPrice(resultSet.getDouble("price"));
-                car.setStatusOfCar(StatusOfCar.Leased);
+                String statusAsString = resultSet.getString("status_of_car");
+                car.setStatusOfCar(StatusOfCar.valueOf(statusAsString));
 
                 nonLeasedCars.add(car);
             }

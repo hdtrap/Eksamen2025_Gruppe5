@@ -41,18 +41,18 @@ public class DamageRepository {
     public void deleteDamageWithDamageId(int damageId) {
         String sql = "DELETE FROM damages WHERE damage_id = ?";
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, damageId);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
     public void updateDamage(Damage damage) {
         String sql = "UPDATE damages SET damage_type = ?, category = ?, price = ? WHERE damage_id = ?";
         try (Connection connection = dataSource.getConnection();
-        PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sql)) {
             System.out.println("der sker noget i update damage");
             System.out.println("damageid = " + damage.getDamageId());
             statement.setInt(4, damage.getDamageId());
@@ -66,10 +66,9 @@ public class DamageRepository {
 
             e.printStackTrace();
         }
-
     }
 
-    public ArrayList<Damage> getAllDamagesForALeaseWithLeaseId(int leaseId){
+    public ArrayList<Damage> getAllDamagesForALeaseWithLeaseId(int leaseId) {
         ArrayList<Damage> damages = new ArrayList<>();
         String sql = "SELECT * FROM damages WHERE lease_id = ?";
         try (Connection connection = dataSource.getConnection();
@@ -78,22 +77,23 @@ public class DamageRepository {
             statement.setInt(1, leaseId);
             // Jeg gemmer alt hvad jeg har hentet i SQL i mit result set
             ResultSet resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            int damageId = resultSet.getInt("damage_id");
-            String damageType = resultSet.getString("damage_type");
-            int category = resultSet.getInt("category");
-            double price = resultSet.getDouble("price");
-            boolean isPaid = resultSet.getBoolean("isPaid");
-            boolean isFixed = resultSet.getBoolean("isFixed");
+            while (resultSet.next()) {
+                int damageId = resultSet.getInt("damage_id");
+                String damageType = resultSet.getString("damage_type");
+                int category = resultSet.getInt("category");
+                double price = resultSet.getDouble("price");
+                boolean isPaid = resultSet.getBoolean("isPaid");
+                boolean isFixed = resultSet.getBoolean("isFixed");
 
-            Damage damage = new Damage(damageId, leaseId, damageType, category, price, isPaid, isFixed);
-            damages.add(damage);
-        }
+                Damage damage = new Damage(damageId, leaseId, damageType, category, price, isPaid, isFixed);
+                damages.add(damage);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return damages;
     }
+
     public Damage getDamageWithDamageId(int damageId) {
         String sql = "SELECT * FROM damages WHERE damage_id = ?";
 
@@ -119,7 +119,8 @@ public class DamageRepository {
         }
         return damage;
     }
-    public void fixDamage(boolean isFixed, int damage_id){
+
+    public void fixDamage(boolean isFixed, int damage_id) {
         String sql = "UPDATE damages SET isFixed = ? WHERE damage_id = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -133,78 +134,79 @@ public class DamageRepository {
             e.printStackTrace();
         }
     }
-public void payAllDamagesOnALease(int leaseId){
-    System.out.println("payAllDamagesOnALease leaseId : " + leaseId);
-    String sql = "UPDATE damages SET isPaid = CASE WHEN isPaid IS NULL THEN true ELSE NOT isPaid END WHERE lease_id = ?"; //NOT isPaid betyder at den sætter boolean værdien til det modsatte af hvad en i forvejen, CASE WHEN isPaid IS NULL THEN true, betyder at når isPaid er null bliver den til true
-    try (Connection connection = dataSource.getConnection();
-         PreparedStatement statement = connection.prepareStatement(sql)) {
 
-        statement.setInt(1, leaseId);
-        statement.executeUpdate();
+    public void payAllDamagesOnALease(int leaseId) {
+        System.out.println("payAllDamagesOnALease leaseId : " + leaseId);
+        String sql = "UPDATE damages SET isPaid = CASE WHEN isPaid IS NULL THEN true ELSE NOT isPaid END WHERE lease_id = ?"; //NOT isPaid betyder at den sætter boolean værdien til det modsatte af hvad en i forvejen, CASE WHEN isPaid IS NULL THEN true, betyder at når isPaid er null bliver den til true
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
 
-    } catch (SQLException e) { e.printStackTrace();
-         }
-}
-public void printSkadesRapport(Lease lease) throws IOException {
-    ArrayList<Damage> damages = getAllDamagesForALeaseWithLeaseId(lease.getLeaseId());
-    //Pathen hedder skaderapport da det er i den yderste mappe
-    String folderPath = "skaderapport";
-    File folder = new File(folderPath);
-    //Navnet på den fil der bliver lavet og dens path
-    String filePath = folderPath + "/skaderapport_" + lease.getLeaseId() + ".txt";
-    FileWriter fw = new FileWriter(filePath);
-    double totalpris = 0;
+            statement.setInt(1, leaseId);
+            statement.executeUpdate();
 
-    try (BufferedWriter writer = new BufferedWriter(fw)) {
-        writer.write("Skaderapport for lease ID: " + lease.getLeaseId());
-        writer.newLine();
-        writer.write("Kunde: " + lease.getCustomerName());
-        writer.newLine();
-        writer.write("----------------------------------");
-        writer.newLine();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-        for (Damage damage : damages) {
+    public void printSkadesRapport(Lease lease) throws IOException {
+        ArrayList<Damage> damages = getAllDamagesForALeaseWithLeaseId(lease.getLeaseId());
+        //Pathen hedder skaderapport da det er i den yderste mappe
+        String folderPath = "skaderapport";
+        File folder = new File(folderPath);
+        //Navnet på den fil der bliver lavet og dens path
+        String filePath = folderPath + "/skaderapport_" + lease.getLeaseId() + ".txt";
+        FileWriter fw = new FileWriter(filePath);
+        double totalpris = 0;
+
+        try (BufferedWriter writer = new BufferedWriter(fw)) {
+            writer.write("Skaderapport for lease ID: " + lease.getLeaseId());
             writer.newLine();
-            writer.write("Skade id: " + damage.getDamageId());
-            writer.newLine();
-            writer.write("Skade type: " + damage.getDamageType());
-            writer.newLine();
-            writer.write("Kategori: " + damage.getCategory());
-            writer.newLine();
-            writer.write("Pris: " + damage.getPrice() + " kr.");
+            writer.write("Kunde: " + lease.getCustomerName());
             writer.newLine();
             writer.write("----------------------------------");
             writer.newLine();
-            totalpris += damage.getPrice();
+
+            for (Damage damage : damages) {
+                writer.newLine();
+                writer.write("Skade id: " + damage.getDamageId());
+                writer.newLine();
+                writer.write("Skade type: " + damage.getDamageType());
+                writer.newLine();
+                writer.write("Kategori: " + damage.getCategory());
+                writer.newLine();
+                writer.write("Pris: " + damage.getPrice() + " kr.");
+                writer.newLine();
+                writer.write("----------------------------------");
+                writer.newLine();
+                totalpris += damage.getPrice();
+            }
+            writer.write("Totalpris til betaling: " + totalpris + "DKK ");
+            writer.newLine();
+            writer.newLine();
+            writer.write("Har du spørgsmål eller brug for hjælp, så sidder vi klar til at hjælpe dig.");
+            writer.newLine();
+            writer.newLine();
+            writer.write("Hverdage - 10.00-15.00");
+            writer.newLine();
+            writer.write("(Telefonen er lukket mellem 11:30 - 12:00)");
+            writer.newLine();
+            writer.newLine();
+            writer.write("+45 89 88 50 80");
+            writer.newLine();
+            writer.newLine();
+            writer.write("support@bilabonnement.dk");
+            writer.newLine();
+            writer.newLine();
+            writer.write("Du finder os på Vibeholmsvej 31, 2605 Brøndby,");
+            writer.newLine();
+            writer.write("hvor vi både har vores administration og værksted til klargøring af biler.");
+            writer.newLine();
+
+            writer.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        writer.write("Totalpris til betaling: " + totalpris + "DKK ");
-        writer.newLine();
-        writer.newLine();
-        writer.write("Har du spørgsmål eller brug for hjælp, så sidder vi klar til at hjælpe dig.");
-        writer.newLine();
-        writer.newLine();
-        writer.write("Hverdage - 10.00-15.00");
-        writer.newLine();
-        writer.write("(Telefonen er lukket mellem 11:30 - 12:00)");
-        writer.newLine();
-        writer.newLine();
-        writer.write("+45 89 88 50 80");
-        writer.newLine();
-        writer.newLine();
-        writer.write("support@bilabonnement.dk");
-        writer.newLine();
-        writer.newLine();
-        writer.write("Du finder os på Vibeholmsvej 31, 2605 Brøndby,");
-        writer.newLine();
-        writer.write("hvor vi både har vores administration og værksted til klargøring af biler.");
-        writer.newLine();
-
-        writer.flush();
-    } catch (IOException e) {
-        throw new RuntimeException(e);
     }
-}
-
-
 
 }

@@ -11,19 +11,19 @@
 <div class="mainContent">
 
 
-        <div class="userOptions">
+    <div class="userOptions">
 
-            <form th:action="@{/showCar}" method="get"><!--findes i LeaseController-->
-                <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-                <label for="submitBackButton" class="backButton boxButton">Tilbage</label>
-                <button type="submit" id="submitBackButton" hidden>Tilbage</button>
-            </form>
+        <form th:action="@{/showCar}" method="get"><!--findes i LeaseController-->
+            <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
+            <label for="submitBackButton" class="backButton boxButton">Tilbage</label>
+            <button type="submit" id="submitBackButton" hidden>Tilbage</button>
+        </form>
 
-            <form th:action="@{/getPrintDamageReport}" method="get"><!--findes i DamageController-->
-                <input type="hidden" th:value="${lease.leaseId}"  name="leaseId" placeholder="Lease Id">
-                <button type="submit" class="boxButton wideButton">Print skadesrapport</button>
-            </form>
-        </div>
+        <form th:action="@{/getPrintDamageReport}" method="get"><!--findes i DamageController-->
+            <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
+            <button type="submit" class="boxButton wideButton">Print skadesrapport</button>
+        </form>
+    </div>
 
     <div class="notifications">
         <div class="notificationsPanel">

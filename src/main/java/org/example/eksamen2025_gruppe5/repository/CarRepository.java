@@ -54,28 +54,33 @@ public class CarRepository {
     public ArrayList<Car> getAvailableCars() {
         ArrayList<Car> availableCars = new ArrayList<>();
 
+        // SQL forespørgsel der beder om alle biler med statusen AvailableToLease
         String sqlRequest = "SELECT * FROM cars WHERE status_of_car = 'AvailableToLease'";
 
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlRequest);
-             ResultSet resultSet = statement.executeQuery();) {
+        try (Connection connection = dataSource.getConnection();  //Opretter forbindelse til databasen
+             PreparedStatement statement = connection.prepareStatement(sqlRequest);  //Forbereder forespørgslen
+             ResultSet resultSet = statement.executeQuery();) {  //Udfører og gemmer resultatet af forspørgslen i et resultset
 
+            // Opretter et nyt objekt for hver række i resultsettet
             while (resultSet.next()) {
                 Car car = new Car();
                 car.setVehicleNumber(resultSet.getInt("vehicle_no"));
                 car.setChassisNumber(resultSet.getString("chassis_no"));
                 car.setPrice(resultSet.getDouble("price"));
 
+                // Finder den bilmodel der er tilknyttet bilen of tilføjer til objektet
                 int carModelId = resultSet.getInt("car_model");
                 CarModel carModel = carModelRepository.findCarModelFromId(carModelId);
                 car.setCarModel(carModel);
 
+                // Tilføjer alle biler til en arraylist
                 availableCars.add(car);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        // returnerer listen af biler
         return availableCars;
     }
 

@@ -19,12 +19,15 @@ public class AddOnTypeRepository {
 
     public ArrayList<AddOnType> getAllAddOnTypes() {
         ArrayList<AddOnType> addOnTypes = new ArrayList<>();
+
+        // SQL forespørgsel der beder om alt data fra tabellen addon_types
         String sqlRequest = "SELECT * FROM addon_types";
 
-        try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sqlRequest);
-             ResultSet resultSet = statement.executeQuery();) {
+        try (Connection connection = dataSource.getConnection();  //Opretter forbindelse til databasen
+             PreparedStatement statement = connection.prepareStatement(sqlRequest);  //Forbereder forespørgslen
+             ResultSet resultSet = statement.executeQuery();) {  //Udfører og gemmer resultatet af forspørgslen i et resultset
 
+            // Opretter et nyt objekt for hver række i resultsettet og tilføjer til arraylisten
             while (resultSet.next()) {
                 AddOnType addOnType = new AddOnType();
                 addOnType.setAddOnTypeId(resultSet.getInt("id"));
@@ -37,6 +40,7 @@ public class AddOnTypeRepository {
             e.printStackTrace();
         }
 
+        //Returnerer arraylisten
         return addOnTypes;
     }
 

@@ -86,7 +86,7 @@ public class NotificationRepository {
         ArrayList<Notification> listToReturn = new ArrayList<>();
 
         listToReturn.add(new Notification("positive", "Husk der er sommerfest d. 20/6! Kom glad <3"));
-        listToReturn.add(new Notification("negative", "fervent store fyringsrunder i morgen"));
+        listToReturn.add(new Notification("negative", "Der udføres rutine vedligeholdelse af elevatoren i bygning A d. 4 juni. Brug trappen i stedet."));
 
         return listToReturn;
     }

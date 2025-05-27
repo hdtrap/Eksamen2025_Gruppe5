@@ -41,8 +41,10 @@ public class LeaseController {
         //Add the user to the model, to display user relevant items
         model.addAttribute(userRepository.getcurrentUser());
 
+        //Henter en liste af biler der er tilgængelige til udleje ud fra information i databasen
         ArrayList<Car> availableCars = carRepository.getAvailableCars();
         model.addAttribute("availableCars", availableCars);
+        //Henter de mulige tilvalg der kan tilføjes til en lejeaftale ud fra information i databasen
         ArrayList<AddOnType> addOnTypes = addOnTypeRepository.getAllAddOnTypes();
         model.addAttribute("addOnTypes", addOnTypes);
         return "createLease";

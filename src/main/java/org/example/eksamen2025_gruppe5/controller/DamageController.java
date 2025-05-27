@@ -3,6 +3,7 @@ package org.example.eksamen2025_gruppe5.controller;
 import org.example.eksamen2025_gruppe5.exceptions.LeaseNotFoundException;
 import org.example.eksamen2025_gruppe5.exceptions.UserNotLoggedInException;
 import org.example.eksamen2025_gruppe5.exceptions.WrongUserTypeException;
+import org.example.eksamen2025_gruppe5.model.Car;
 import org.example.eksamen2025_gruppe5.model.Damage;
 import org.example.eksamen2025_gruppe5.model.Lease;
 import org.example.eksamen2025_gruppe5.repository.CarRepository;
@@ -48,7 +49,7 @@ public String addDamage(
         @RequestParam("damageType") String damageType,
         @RequestParam(value = "category", required = false) Integer category,
         @RequestParam(value = "price", required = false) Double price,
-        @RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
+        @RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException, LeaseNotFoundException {
     //Verify User is logged in/logged in as the correct type:
     userRepository.verifyLoggedInUser("REPAIR");
     //Add the user to the model, to display user relevant items
@@ -59,6 +60,9 @@ public String addDamage(
             category == null || price == null) {
         model.addAttribute("error", "Alle felter skal udfyldes.");
         model.addAttribute("leaseId", leaseId);
+        Lease lease = leaseRepository.findLeaseById(leaseId);
+        Car car = carRepository.findCarByVehicleNumber(lease.getCar().getVehicleNumber());
+        model.addAttribute("car", car);
         return "addDamage";
     }
 

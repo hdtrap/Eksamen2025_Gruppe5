@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/*
+
 @ExtendWith(MockitoExtension.class)
 public class LeaseController_ShowLease_Unittest {
     @Mock
@@ -47,17 +47,16 @@ public class LeaseController_ShowLease_Unittest {
     public void showLeaseAcceptanceFlow() throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {
         //Arrange
         int leaseId=1;
-        Lease lease=new Lease(leaseId, null, null, null, null,null,null,null,null);
+        Lease lease=new Lease();
 
         when(leaseRepository.findLeaseById(leaseId)).thenReturn(lease);
         when(addOnTypeRepository.showSelectedAddons(leaseId)).thenReturn(new ArrayList<>());
 
         //Act
-        String result = leaseController.getLease(leaseId, model, redirectAttributes);
+        String result = leaseController.getLease(String.valueOf(leaseId), model, redirectAttributes);
 
         //Assert
         assertEquals(result, "showLease");
         verify(model).addAttribute("lease", lease);
     }
 }
-*/

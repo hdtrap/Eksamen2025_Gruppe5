@@ -13,6 +13,7 @@
 
 
     <form th:action="@{/showLease(leaseId=${lease.leaseId})}" method="get">
+        <input type="hidden" name="leaseId" th:value="${lease.leaseId}"/>
         <button type="submit" class="boxButton backButton">Tilbage</button><!--findes i LeaseController-->
     </form>
 

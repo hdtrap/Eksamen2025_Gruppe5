@@ -62,7 +62,7 @@ INSERT INTO users (username, first_name, last_name, password, role) VALUES
            ('rede0001', 'Repair', 'Demo', '1234', 'REPAIR'),
            ('bude0001', 'Business', 'Demo', '1234', 'BUSINESS'),
            ('dade0001', 'Data', 'Demo', '1234', 'DATA'),
-           ('demo0001', 'Demo', 'Mode', '1234', 'SYSADMIN');
+           ('demo', 'Demo', 'Mode', 'demo', 'SYSADMIN');
 
 -- Insert Cars
 INSERT INTO cars (chassis_no, car_model, price, status_of_car) VALUES

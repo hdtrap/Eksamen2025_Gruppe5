@@ -6,12 +6,6 @@ public class AddOnType {
     private String description;
     private double price;
 
-    public AddOnType(String type, String description, double price) {
-        this.type = type;
-        this.description = description;
-        this.price = price;
-    }
-
     public AddOnType() {}
 
     public int getAddOnTypeId() {

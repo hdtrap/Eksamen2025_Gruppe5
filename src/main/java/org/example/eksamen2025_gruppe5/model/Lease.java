@@ -7,7 +7,6 @@ public class Lease {
     private Car car;
     private LocalDate startDate;
     private LocalDate endDate;
-    private int leaseTimeInMonths;
     private String customerName;
     private String customerEmail;
     private String customerNumber;
@@ -15,24 +14,6 @@ public class Lease {
     private double pricePrMonth;
     private TypeOfLease typeOfLease;
     private boolean fullyProcessed;
-
-    public Lease(int leaseId, Car car, LocalDate startDate, LocalDate endDate,
-                 int leaseTimeInMonths, String customerName, String customerEmail,
-                 String customerNumber, double priceToStart, double pricePrMonth,
-                 boolean fullyProcessed, String typeOfLease) {
-        this.leaseId = leaseId;
-        this.car = car;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.leaseTimeInMonths = leaseTimeInMonths;
-        this.customerName = customerName;
-        this.customerEmail = customerEmail;
-        this.customerNumber = customerNumber;
-        this.priceToStart = priceToStart;
-        this.pricePrMonth = pricePrMonth;
-        this.fullyProcessed = fullyProcessed;
-        this.typeOfLease = TypeOfLease.valueOf(typeOfLease);
-    }
 
     public Lease(Car car, LocalDate startDate, LocalDate endDate,
                  String customerName, String customerEmail,

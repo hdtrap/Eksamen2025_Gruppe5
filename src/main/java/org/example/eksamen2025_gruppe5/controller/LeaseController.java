@@ -8,7 +8,6 @@ import org.example.eksamen2025_gruppe5.repository.AddOnTypeRepository;
 import org.example.eksamen2025_gruppe5.repository.CarRepository;
 import org.example.eksamen2025_gruppe5.repository.LeaseRepository;
 import org.example.eksamen2025_gruppe5.repository.UserRepository;
-import org.example.eksamen2025_gruppe5.service.LeaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

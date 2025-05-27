@@ -312,7 +312,7 @@ CarRepository carRepository;
     }
 
     //Sarah
-    // Metode til at finde biler ved deres lease ID
+    // Metode til at finde lease ved deres kundenavn
     public Lease findLeaseByCustomerName(String customerName) throws LeaseNotFoundException{
         Lease lease = new Lease();
         String sqlRequest = "SELECT * FROM leases WHERE customer_name = ?";

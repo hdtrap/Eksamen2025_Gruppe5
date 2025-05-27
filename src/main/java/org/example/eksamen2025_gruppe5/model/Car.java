@@ -7,7 +7,6 @@ public class Car {
     private CarModel carModel;
     private StatusOfCar statusOfCar;
 
-
     public int getVehicleNumber() {
         return vehicleNumber;
     }
@@ -27,7 +26,6 @@ public class Car {
     public void setChassisNumber(String chassisNumber) {
         this.chassisNumber = chassisNumber;
     }
-
 
     public void setPrice(double price) {
         this.price = price;

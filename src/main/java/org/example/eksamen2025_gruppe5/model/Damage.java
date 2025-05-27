@@ -1,8 +1,6 @@
 package org.example.eksamen2025_gruppe5.model;
 
 public class Damage {
-
-
     private int damageId;
     private int leaseId;
     private String damageType;

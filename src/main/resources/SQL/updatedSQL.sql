@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS leases;
 DROP TABLE IF EXISTS cars;
 DROP TABLE IF EXISTS car_models;
 
+DROP DATABASE bilabonnement;
 
 CREATE TABLE users (
                        username VARCHAR(50)UNIQUE PRIMARY KEY,
@@ -188,3 +189,4 @@ INSERT INTO damages (lease_id, damage_type, category, price) VALUES
                  (4, 'Cracked Windshield', 3, 400.00),
                  (5, 'Dented Door', 2, 300.00),
                  (1, 'Stained Seats', 1, 80.00);
+

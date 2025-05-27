@@ -15,7 +15,8 @@ CREATE TABLE car_models  (
              brand varchar(100),
              model varchar(100),
              production_year int,
-             fuel_type varchar(50)
+             fuel_type varchar(50),
+             color VARCHAR(50)
 );
 
 CREATE TABLE addon_types(

@@ -22,15 +22,17 @@ CarRepository carRepository;
 
     // Oprette en lejeaftale
     public int saveLease(Lease lease){
-        // SQL forespørgsel
-        String sqlLeaseRequest = "INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        // SQL forespørgseler
+        String sqlLeaseRequest = "INSERT INTO leases (vehicle_no, start_date, end_date, customer_name, " +
+                "customer_email, customer_number, price_to_start, price_pr_month, type_of_lease, fully_processed) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String sqlCarRequest = "UPDATE cars SET status_of_car = 'Leased' WHERE vehicle_no = ?";
 
-        try (Connection connection = dataSource.getConnection()) {
-            connection.setAutoCommit(false);
+        try (Connection connection = dataSource.getConnection()) {  // Opretter forbindelse til databasen
+            connection.setAutoCommit(false);  // starter transaction
 
+            // Forbereder forespørgsler for både at indsætte data om lease og opdatering af bil status.
             try (PreparedStatement leaseStatement = connection.prepareStatement(sqlLeaseRequest, Statement.RETURN_GENERATED_KEYS);
-                PreparedStatement carStatement = connection.prepareStatement(sqlCarRequest)) {
+                 PreparedStatement carStatement = connection.prepareStatement(sqlCarRequest)) {
 
                 leaseStatement.setInt(1, lease.getCar().getVehicleNumber());
                 leaseStatement.setDate(2, Date.valueOf(lease.getStartDate()));

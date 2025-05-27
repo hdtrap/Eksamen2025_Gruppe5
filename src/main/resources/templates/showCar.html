@@ -23,7 +23,6 @@
 <form th:action="@{/getAddDamage}"><!--findes i CarController-->
     <input type="hidden" th:value="${car.vehicleNumber}" id="vehicleNumber" name="vehicleNumber" placeholder="Bil Nummer">
     <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
-
     <button type="submit" class="boxButton wideButton">Tilføj skade</button>
 </form>
 <form th:action="@{/getShowDamage}" method="get"><!--findes i DamageController-->

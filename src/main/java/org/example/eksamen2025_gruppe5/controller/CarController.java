@@ -40,8 +40,6 @@ public class CarController {
     userRepository.verifyLoggedInUser("REPAIR");
     //Add the user to the model, to display user relevant items
     model.addAttribute(userRepository.getcurrentUser());
-
-
     try {
         Lease lease = leaseRepository.findLeaseById(leaseId);
         model.addAttribute("car", lease.getCar());

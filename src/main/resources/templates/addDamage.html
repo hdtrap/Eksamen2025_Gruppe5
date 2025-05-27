@@ -22,7 +22,7 @@
         <div class="boldText">Lease ID: <span th:text="${lease.leaseId}"></span></div>
         <form th:action="@{/addDamage}" method="post" class="registerForm"><!--findes i DamageController-->
             <div class="form-group">
-                <input type="text" id="damageType" name="damageType" placeholder="Skade type">
+                <input type="text" id="damageType" name="damageType" placeholder="Skade type" required>
             </div>
             <div class="fivePointCatSelect">
                 <div class="lightText">
@@ -33,7 +33,7 @@
                 <div class="fivePointRadios">
                 <label>
                     <span>1</span>
-                    <input type="radio" name="category" th:value="1">
+                    <input type="radio" name="category" th:value="1" required>
                 </label>
                 <label>
                     <span>2</span>
@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="number" id="price" name="price" placeholder="Pris">
+                <input type="number" id="price" name="price" placeholder="Pris" required>
             </div>
             <input type="hidden" th:value="${lease.leaseId}" id="leaseId" name="leaseId" placeholder="Lease Id">
 

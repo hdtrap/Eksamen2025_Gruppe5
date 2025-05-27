@@ -1,5 +1,6 @@
 package org.example.eksamen2025_gruppe5.model;
 
+//Sarah
 public enum StatusOfCar {
     AvailableToLease,
     Leased,
@@ -7,6 +8,7 @@ public enum StatusOfCar {
     Sold,
     PendingEvaluation;
 
+    //Peter
     public String getDanishLabel() {
         return switch (this) {
             case AvailableToLease -> "Tilgængelig";

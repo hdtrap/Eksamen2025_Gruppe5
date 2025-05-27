@@ -19,6 +19,7 @@ public class DamageRepository {
     @Autowired
     DataSource dataSource;
 
+    //Frederik
     public void saveDamage(Damage damage) {
         System.out.println("Vi prøver save Damage");
         System.out.println("lease id i saveDamage = " + damage.getLeaseId());
@@ -38,6 +39,7 @@ public class DamageRepository {
         }
     }
 
+    //Frederik
     public void deleteDamageWithDamageId(int damageId) {
         String sql = "DELETE FROM damages WHERE damage_id = ?";
         try (Connection connection = dataSource.getConnection();
@@ -49,6 +51,7 @@ public class DamageRepository {
         }
     }
 
+    //Frederik
     public void updateDamage(Damage damage) {
         String sql = "UPDATE damages SET damage_type = ?, category = ?, price = ? WHERE damage_id = ?";
         try (Connection connection = dataSource.getConnection();
@@ -68,6 +71,7 @@ public class DamageRepository {
         }
     }
 
+    //Frederik
     public ArrayList<Damage> getAllDamagesForALeaseWithLeaseId(int leaseId) {
         ArrayList<Damage> damages = new ArrayList<>();
         String sql = "SELECT * FROM damages WHERE lease_id = ?";
@@ -94,6 +98,7 @@ public class DamageRepository {
         return damages;
     }
 
+    //Frederik
     public Damage getDamageWithDamageId(int damageId) {
         String sql = "SELECT * FROM damages WHERE damage_id = ?";
 
@@ -120,6 +125,7 @@ public class DamageRepository {
         return damage;
     }
 
+    //Frederik
     public void fixDamage(boolean isFixed, int damage_id) {
         String sql = "UPDATE damages SET isFixed = ? WHERE damage_id = ?";
         try (Connection connection = dataSource.getConnection();
@@ -135,6 +141,7 @@ public class DamageRepository {
         }
     }
 
+    //Frederik
     public void payAllDamagesOnALease(int leaseId) {
         System.out.println("payAllDamagesOnALease leaseId : " + leaseId);
         String sql = "UPDATE damages SET isPaid = CASE WHEN isPaid IS NULL THEN true ELSE NOT isPaid END WHERE lease_id = ?"; //NOT isPaid betyder at den sætter boolean værdien til det modsatte af hvad en i forvejen, CASE WHEN isPaid IS NULL THEN true, betyder at når isPaid er null bliver den til true
@@ -149,6 +156,7 @@ public class DamageRepository {
         }
     }
 
+    //Frederik
     public void printSkadesRapport(Lease lease) throws IOException {
         ArrayList<Damage> damages = getAllDamagesForALeaseWithLeaseId(lease.getLeaseId());
         //Pathen hedder skaderapport da det er i den yderste mappe

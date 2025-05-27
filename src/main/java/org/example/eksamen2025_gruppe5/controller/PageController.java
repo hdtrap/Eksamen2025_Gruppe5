@@ -23,16 +23,13 @@ public class PageController {
     @Autowired
     private LeaseRepository leaseRepository;
 
+    //Mikkel
     @GetMapping("/")
     public String getLoginpage(){
         return "index";
     }
 
-    @GetMapping("/error")
-    public String getErrorPage(){
-        return "errorPage";
-    }
-
+    //Mikkel
     @GetMapping("/getUserPage")
     public String getUserPage(Model model)  throws UserNotLoggedInException, WrongUserTypeException{
 
@@ -73,13 +70,17 @@ public class PageController {
             return "/";
         }
     }
+
+    //Sarah
     @GetMapping("/dataregPage")
-    public String showDataRegPage(Model model){
+    public String showDataRegPage(Model model)throws UserNotLoggedInException, WrongUserTypeException{
+        userRepository.verifyLoggedInUser("DATA");
         model.addAttribute(userRepository.getcurrentUser());
         model.addAttribute("notificationList", notificationRepository.getDataRegNotifications());
         return "dataregPage";
     }
 
+    //Peter
     @GetMapping("/getShowListsOfCars")
     public String getShowListOfCars(Model model)throws UserNotLoggedInException, WrongUserTypeException{
         userRepository.verifyLoggedInUser("ANY");

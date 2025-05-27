@@ -1,5 +1,6 @@
 package org.example.eksamen2025_gruppe5.model;
 
+//Frederik
 public class Damage {
     private int damageId;
     private int leaseId;

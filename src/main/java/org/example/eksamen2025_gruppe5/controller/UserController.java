@@ -23,6 +23,7 @@ public class UserController {
    @Autowired
     UserRepository userRepository;
 
+   //Mikkel
     @GetMapping("getCreateUser")
     public String getCreateUserPage(Model model)  throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:
@@ -40,6 +41,7 @@ public class UserController {
         return "createUserPage";
     }
 
+    //Mikkel
     @PostMapping("/saveCreateUser")
     public String saveCreateUser (@RequestParam("firstName") String firstName,
                                  @RequestParam("lastName") String lastname,
@@ -86,6 +88,7 @@ public class UserController {
         return "redirect:/getUserPage";
     }
 
+    //Mikkel
     @PostMapping("/loginUser")
     public String tryLoginUser(@RequestParam("userName") String userName,
                                @RequestParam("passWord") String passWord,
@@ -101,6 +104,7 @@ public class UserController {
         }
     }
 
+    //Mikkel
     @PostMapping("/logOutUser")
     public String logOutUser(){
         System.out.println("User is logging out: " + userRepository.getcurrentUser().getUserName());
@@ -108,6 +112,7 @@ public class UserController {
         return "redirect:/";
     }
 
+    //Mikkel
     @PostMapping("/getShowUserPage")
     public String getShowUserPage(
             @RequestParam("usernameBox") String username,
@@ -136,6 +141,7 @@ public class UserController {
         }
     }
 
+    //Mikkel
     @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("usernameDelete") String username,
                              Model model,
@@ -153,6 +159,7 @@ public class UserController {
         return "redirect:/getUserPage";
     }
 
+    //Mikkel
     @PostMapping("/getEditUser")
     public String editUser(@RequestParam("usernameEdit") String username,
                              Model model,
@@ -174,6 +181,7 @@ public class UserController {
             }
     }
 
+    //Mikkel
     @PostMapping("/saveUpdateUser")
     public String saveEditUser(
             @RequestParam("userName") String newUserName,

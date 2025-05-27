@@ -2,6 +2,8 @@ package org.example.eksamen2025_gruppe5.model;
 
 import java.time.LocalDate;
 
+
+//Sarah
 public class Lease {
     private int leaseId;
     private Car car;

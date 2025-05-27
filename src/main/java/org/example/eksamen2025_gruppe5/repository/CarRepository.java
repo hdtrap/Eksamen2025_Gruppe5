@@ -22,6 +22,7 @@ public class CarRepository {
     @Autowired
     CarModelRepository carModelRepository;
 
+    //Frederik
     //Finder en bil i Databasen som kan sættes på Lease objekter
     public Car findCarByVehicleNumber(int vehicleNumber) {
         System.out.println("CarRepository.findCarByVehicleNumber");
@@ -51,6 +52,7 @@ public class CarRepository {
         return car;
     }
 
+    //Sarah
     public ArrayList<Car> getAvailableCars() {
         ArrayList<Car> availableCars = new ArrayList<>();
 
@@ -84,6 +86,7 @@ public class CarRepository {
         return availableCars;
     }
 
+    //Peter
     public int totalCars() {
         int totalCars = 0;
 
@@ -102,6 +105,8 @@ public class CarRepository {
         }
         return totalCars;
     }
+
+    //Frederik
     public void makeCarStatusAvailable(Car car){
         String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
         try (Connection connection = dataSource.getConnection();
@@ -116,6 +121,8 @@ public class CarRepository {
             e.printStackTrace();
         }
     }
+
+    //Frederik
     public void makeCarStatusGettingRepaired(Car car){
         String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
         try (Connection connection = dataSource.getConnection();
@@ -129,6 +136,8 @@ public class CarRepository {
             e.printStackTrace();
         }
     }
+
+    //Frederik
     public void makeCarStatusPendingEvaluation(Car car){
         String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
         try (Connection connection = dataSource.getConnection();
@@ -142,6 +151,8 @@ public class CarRepository {
             e.printStackTrace();
         }
     }
+
+    //Frederik
     public void makeCarStatusSold(Car car){
         String sql = "UPDATE cars SET status_of_car = ? WHERE vehicle_no = ?";
         try (Connection connection = dataSource.getConnection();
@@ -157,6 +168,7 @@ public class CarRepository {
     }
 
 
+    //Frederk
     public ArrayList<Car> getAllCars() {
         ArrayList<Car> allCars = new ArrayList<>();
 
@@ -185,6 +197,7 @@ public class CarRepository {
         return allCars;
     }
 
+    //Peter
     public ArrayList<Car> getLeasedCars() {
         ArrayList<Car> leasedCars = new ArrayList<>();
 
@@ -212,6 +225,7 @@ public class CarRepository {
         return leasedCars;
     }
 
+    //Peter
     public ArrayList<Car> getNonLeasedCars() {
         ArrayList<Car> nonLeasedCars = new ArrayList<>();
 
@@ -241,6 +255,7 @@ public class CarRepository {
         return nonLeasedCars;
     }
 
+    //Peter
     public CarModel mostCommonModel() {
         CarModel mostCommon = new CarModel();
 

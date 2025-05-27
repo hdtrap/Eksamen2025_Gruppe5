@@ -15,10 +15,12 @@ public class NotificationRepository {
 
     private final DataSource dataSource;
 
+
     public NotificationRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
+    //Mikkel
     public ArrayList<Notification> getDataRegNotifications(){
         System.out.println("Henter DataReg Notifications");
 
@@ -30,6 +32,7 @@ public class NotificationRepository {
         return listOfNotifications;
     }
 
+    //Mikkel
     public ArrayList<Notification> getRepairNotifications(){
         ArrayList<Notification> listOfNotifications = new ArrayList<>();
 
@@ -41,6 +44,7 @@ public class NotificationRepository {
         return listOfNotifications;
     }
 
+    //Mikkel
     public ArrayList<Notification> getBusinessNotifications(){
         ArrayList<Notification> listToReturn = new ArrayList<>();
         System.out.println("Henter Business Notifications");
@@ -50,6 +54,7 @@ public class NotificationRepository {
         return listToReturn;
     }
 
+    //Mikkel
     public ArrayList<Notification> getAdminNotifications(){
         ArrayList<Notification> listToReturn = new ArrayList<>();
         System.out.println("Henter Admin Notifications");
@@ -59,6 +64,7 @@ public class NotificationRepository {
         return listToReturn;
     }
 
+    //Sarah
     ArrayList<Notification> getCarIsNotDeliveredNotification(){
         ArrayList<Notification> listToReturn = new ArrayList<>();
 
@@ -82,6 +88,7 @@ public class NotificationRepository {
     }
 
 
+    //Mikkel
     ArrayList<Notification> getGlobalNotifications(){
         ArrayList<Notification> listToReturn = new ArrayList<>();
 
@@ -91,7 +98,7 @@ public class NotificationRepository {
         return listToReturn;
     }
 
-
+    //Mikkel, Frederik
     ArrayList<Notification> getCarNeedsRepairNotifications(){
         ArrayList<Notification> listToReturn = new ArrayList<>();
         //First, look through the database to find the licenseplates for cars, that have pending damages

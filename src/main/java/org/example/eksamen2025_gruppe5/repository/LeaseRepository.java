@@ -20,6 +20,7 @@ public class LeaseRepository {
 @Autowired
 CarRepository carRepository;
 
+    //Sarah
     // Oprette en lejeaftale
     public int saveLease(Lease lease){
         // SQL forespørgseler
@@ -65,6 +66,7 @@ CarRepository carRepository;
         return -1;
     }
 
+    //Sarah
     // Metode til at finde biler ved deres lease ID
     public Lease findLeaseById(int leaseId) throws LeaseNotFoundException{
         Lease lease = new Lease();
@@ -102,6 +104,7 @@ CarRepository carRepository;
         return lease;
     }
 
+    //Sarah
     // Opdater en lejeaftale
     public void updateLease(Lease lease){
         String sqlRequest = "UPDATE leases SET vehicle_no = ?, start_date = ?, end_date = ?, customer_name = ?," +
@@ -127,6 +130,7 @@ CarRepository carRepository;
         }
     }
 
+    //Sarah
     // Slet en lejeaftale
     public void deleteLease(int id) throws LeaseNotFoundException {
         String sqlLeaseRequest = "DELETE FROM leases WHERE lease_id = ?";
@@ -151,6 +155,7 @@ CarRepository carRepository;
         }
     }
 
+    //Peter
     // Få månedlig indtjening
     public double monthlyRevenueFromActiveLeases() {
         double revenue = 0;
@@ -171,6 +176,7 @@ CarRepository carRepository;
 
     // Få samlet værdig af alle udlejede biler
 
+    //Peter
     // Find Id på biler som er lejet ud
     // Find samlet pris på de biler
     public double priceOfLeasedCars() {
@@ -195,6 +201,7 @@ CarRepository carRepository;
         return price;
     }
 
+    //Peter
     // Få antal biler som bliver leaset ud
     public int noOfLeasedCars() {
         int noOfCars = 0;
@@ -216,7 +223,7 @@ CarRepository carRepository;
         return noOfCars;
     }
 
-    //
+    //Peter
     public double avgDamageCost() {
         double avgDamage = 0;
 
@@ -238,6 +245,7 @@ CarRepository carRepository;
         return avgDamage;
     }
 
+    //Mikkel
     public ArrayList<Lease> getAllLeases(){
         ArrayList<Lease> listToReturn = new ArrayList<>();
         String sql = "SELECT * FROM leases";
@@ -270,6 +278,7 @@ CarRepository carRepository;
         return listToReturn;
     }
 
+    //Peter
     public ArrayList<Lease> getAllActiveLeases(){
         ArrayList<Lease> listToReturn = new ArrayList<>();
         String sql = "SELECT * FROM leases WHERE start_date <= CURRENT_DATE and end_date > CURRENT_DATE";
@@ -302,6 +311,7 @@ CarRepository carRepository;
         return listToReturn;
     }
 
+    //Sarah
     // Metode til at finde biler ved deres lease ID
     public Lease findLeaseByCustomerName(String customerName) throws LeaseNotFoundException{
         Lease lease = new Lease();

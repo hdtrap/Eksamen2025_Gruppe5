@@ -34,6 +34,7 @@ public class LeaseController {
     @Autowired
     AddOnTypeRepository addOnTypeRepository;
 
+    //Sarah
     @GetMapping("/createLease")
     public String createLease(Model model) throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:
@@ -50,6 +51,7 @@ public class LeaseController {
         return "createLease";
     }
 
+    //Sarah
     @PostMapping("/saveCreateLease")
     public String postCreateLease(@RequestParam("vehicle_no") int vehicleNo,
                                   @RequestParam("start_date") LocalDate startDate,
@@ -95,6 +97,7 @@ public class LeaseController {
         return "redirect:/showLease?leaseId=" + leaseId;
     }
 
+    //Sarah
     // Viser en lejeaftale
     @GetMapping("/showLease")
     public String getLease(@RequestParam("leaseId") String lease,
@@ -137,6 +140,7 @@ public class LeaseController {
 
     }
 
+    //Frederik
     @GetMapping("/showCarWithLeaseID")
     public String showCarWithLeaseID(@RequestParam("leaseId") int leaseId, Model model,
                                      RedirectAttributes redirectAttributes) throws UserNotLoggedInException, WrongUserTypeException{
@@ -150,6 +154,7 @@ public class LeaseController {
         return "redirect:/showCar?leaseId=" + leaseId; //?leaseId sender en paramater med i url så jeg kan hente leaseId i CarControlleren
     }
 
+    //Sarah
     // Viser siden til at redigere en lejeaftale
     @GetMapping("/getUpdateLease")
     public String updateLease(@RequestParam("leaseId") int id, Model model,
@@ -173,6 +178,7 @@ public class LeaseController {
         }
     }
 
+    //Sarah
     // Håndterer indsendelsen af formularen til at opdatere en lejeaftale
     @PostMapping("/saveUpdateLease")
     public String postUpdateLease(
@@ -214,13 +220,15 @@ public class LeaseController {
         }
     }
 
-    // Sletter et ønske ud fra id
+    //Sarah
+    // Sletter en lease ud fra id
     @PostMapping("/deleteLease")
     public String deleteLease(@RequestParam("id") int id) throws LeaseNotFoundException {
         leaseRepository.deleteLease(id);
         return "redirect:/getUserPage";
     }
 
+    //Mikkel, Peter
     @GetMapping("/getShowAllLeases")
     public String getShowAllLeases(Model model)throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:

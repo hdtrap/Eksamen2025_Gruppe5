@@ -12,6 +12,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    //Mikkel
     public String generateUserName(String firstname, String lastName){
 
         String firstLetters = firstname.substring(0,2) + lastName.substring(0,2);

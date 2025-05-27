@@ -7,6 +7,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
+    //Mikkel
     @ExceptionHandler(UserNotLoggedInException.class)
     public String handleNotLoggedIn(RedirectAttributes redirectAttributes){
         System.out.println();
@@ -14,6 +15,7 @@ public class GlobalExceptionHandler {
         return "redirect:/";
     }
 
+    //Mikkel
     @ExceptionHandler(WrongUserTypeException.class)
     public String handleWrongUser(RedirectAttributes redirectAttributes){
         redirectAttributes.addFlashAttribute("message", "Du er ikke den rigtige type bruger");

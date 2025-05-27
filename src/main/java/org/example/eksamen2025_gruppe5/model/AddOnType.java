@@ -1,5 +1,7 @@
 package org.example.eksamen2025_gruppe5.model;
 
+
+//Sarah
 public class AddOnType {
     private int AddOnTypeId;
     private String type;

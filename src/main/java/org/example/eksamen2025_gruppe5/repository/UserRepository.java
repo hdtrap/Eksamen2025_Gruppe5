@@ -30,6 +30,7 @@ public class UserRepository {
         this.dataSource = dataSource;
     }
 
+    //Mikkel
     public void saveUser(User createdUser) throws SQLException{
         System.out.println("AT this point the user will be saved");
 
@@ -52,6 +53,7 @@ public class UserRepository {
         }
     }
 
+    //Mikkel
     public Boolean LogInUserSuccess(String username, String passWord){
         String sql = "SELECT * FROM users WHERE username=? AND password=?;";
 
@@ -80,15 +82,17 @@ public class UserRepository {
         }
     }
 
+    //Mikkel
     public void logOutSession(){
         loggedInUsers.remove(httpSession.getId());
     }
 
+    //Mikkel
     public User getcurrentUser(){
         return loggedInUsers.get(httpSession.getId());
     }
 
-
+    //Mikkel
     public String findNumberForUsername(String firstLetters){
         String sql = "SELECT * FROM users WHERE username LIKE ?";
 
@@ -145,6 +149,7 @@ public class UserRepository {
         }
     }
 
+    //Mikkel
     public void verifyLoggedInUser(String userTypeThePageNeeds) throws UserNotLoggedInException, WrongUserTypeException, NullPointerException{
         if (getcurrentUser() == null){
             throw new UserNotLoggedInException();
@@ -159,6 +164,7 @@ public class UserRepository {
 
     }
 
+    //Mikkel
     public User findUserByUserName(String username) throws UserNotFoundException{
         String sql = "SELECT * FROM users WHERE username=?";
 
@@ -182,6 +188,7 @@ public class UserRepository {
         }
     }
 
+    //Mikkel
     public void deleteUserByUserName(String username) throws UserNotFoundException {
         String sql = "DELETE FROM users WHERE username=?";
 
@@ -208,6 +215,7 @@ public class UserRepository {
 
     }
 
+    //Mikkel
     public void updateUser(String oldUserName, String newUserName, String newFirstName, String newLastname, String newPassWord, String newRole) throws UserNotFoundException, UserNameTakenException {
 
         //First, validate that the User has not been deleted already
@@ -251,6 +259,7 @@ public class UserRepository {
         }
     }
 
+    //Mikkel
     public Boolean isUserNameAvailable(String username){
         try{
             findUserByUserName(username);
@@ -261,6 +270,7 @@ public class UserRepository {
         }
     }
 
+    //Mikkel
     public void checkPassWordMatch(String passWord, String passWordControl) throws PassWordMismatchException{
         if(!passWord.equals(passWordControl)){
             throw new PassWordMismatchException();

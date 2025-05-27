@@ -1,5 +1,6 @@
 package org.example.eksamen2025_gruppe5.model;
 
+//Sarah
 public class CarModel {
     private int carModelId;
     private String brand;

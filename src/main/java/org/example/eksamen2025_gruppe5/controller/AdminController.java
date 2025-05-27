@@ -28,6 +28,7 @@ public class AdminController {
         this.notificationRepository = notificationRepository;
     }
 
+    //Mikkel
     @GetMapping("/adminGetData")
     public String adminGetData(Model model) throws UserNotLoggedInException, WrongUserTypeException {
         //Verify User is logged in/logged in as the correct type:
@@ -40,6 +41,7 @@ public class AdminController {
         return "dataregPage";
     }
 
+    //Mikkel
     @GetMapping("/adminGetRepair")
     public String adminGetRepair(Model model) throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:
@@ -51,6 +53,7 @@ public class AdminController {
         return "damagePage";
     }
 
+    //Mikkel
     @GetMapping("/adminGetBusiness")
     public String adminGetBusiness(Model model) throws UserNotLoggedInException, WrongUserTypeException{
         //Verify User is logged in/logged in as the correct type:

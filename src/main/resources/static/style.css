@@ -1,10 +1,8 @@
 :root {
     font-family: montserrat, sans-serif;
-
-    --btnColor: blue;
 }
 
-/* FONTS */
+/* FONTS, Mikkel */
 @font-face {
     font-family: 'montserrat';
     src: url('/fonts/Montserrat-Regular.ttf') format('truetype');
@@ -55,7 +53,7 @@ html, body {
     padding: 0;
 }
 
-/*TEXTSTYLES*/
+/*TEXTSTYLES, Mikkel*/
 .boldText{
     font-weight: 700;
 }
@@ -68,6 +66,7 @@ html, body {
 /*TEXTSTYLES*/
 
 
+/*Mikkel Peter*/
 .mainContent {
     display: flex;
     flex-wrap: wrap;
@@ -101,7 +100,7 @@ html, body {
     gap: 20px;
 }
 
-/*HEADER*/
+/*HEADER Mikkel*/
 .header {
     /*Text styling*/
     font-size: 20px;
@@ -162,7 +161,7 @@ html, body {
 /*HEADER*/
 
 
-/*BUTTONS*/
+/*BUTTONS Mikkel*/
 .textButton{
     transition: color .2s;
 }
@@ -220,7 +219,7 @@ button, label, .btn {
 
 
 
-/*Notifications Panel*/
+/*Notifications Panel Mikkel*/
 
 .notifications {
     display: flex;
@@ -278,7 +277,7 @@ button, label, .btn {
 
 /*Notifications panel*/
 
-/*FORMS*/
+/*FORMS Mikkel, Peter*/
 
 .registerForm{
     display: flex;
@@ -335,7 +334,7 @@ button, label, .btn {
 /*FORMS*/
 
 
-/*Inputs*/
+/*Inputs, Mikkel*/
 .roleRadio{
     display: flex;
     flex-direction: row;
@@ -372,7 +371,7 @@ button, label, .btn {
     }
 }
 
-/*Drop Down Menu*/
+/*Drop Down Menu, Mikkel*/
 .dropDownMenuContainer{
     height: 50px;
     overflow: visible;
@@ -455,7 +454,7 @@ button, label, .btn {
 /* Drop Down Menu*/
 
 
-/* Tables */
+/* Tables, Peter*/
 .tableContainer {
     display: flex;
     flex-direction: column;
@@ -562,7 +561,7 @@ th {
 
 /* Tables */
 
-/* KPIs */
+/* KPIs, Peter */
 
 .KPIbox {
     display: flex;

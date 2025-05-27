@@ -37,12 +37,13 @@ public class DamageController {
     @Autowired
     private CarRepository carRepository;
 
-
+//Frederik
     @GetMapping("/addDamage")
     public String getAddDamage() {
         return "addDamage";
     }
 
+    //Frederik
     @PostMapping("/addDamage")
     public String addDamage(
             @RequestParam("damageType") String damageType,
@@ -72,6 +73,8 @@ public class DamageController {
         return "redirect:/showDamage?leaseId=" + leaseId;
     }
 
+
+    //Frederik
     @GetMapping("/getEditDamage")
     public String getEditDamage(@RequestParam("damageId") int damageId,
                                 @RequestParam("leaseId") int leaseId,
@@ -94,6 +97,7 @@ public class DamageController {
         }
     }
 
+    //Frederik
     @PostMapping("/doEditDamage")
     public String editDamage(@RequestParam("damageType") String damageType,
                              @RequestParam("category") int category,
@@ -113,6 +117,7 @@ public class DamageController {
         return "redirect:/showDamage?leaseId=" + leaseId;
     }
 
+    //Frederik
     @GetMapping("/showDamage")
     public String showDamage(@RequestParam("leaseId") int leaseId, Model damageList,
                              Model model,
@@ -135,6 +140,7 @@ public class DamageController {
         }
     }
 
+    //Frederik
     @PostMapping("/deleteDamage")
     public String deleteDamage(@RequestParam("damageId") int damageId,
                                @RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
@@ -151,11 +157,13 @@ public class DamageController {
         return "redirect:/showDamage?leaseId=" + leaseId;
     }
 
+    //Frederik
     @GetMapping("/getShowDamage")
     public String getShowDamage(@RequestParam("leaseId") int leaseId) {
         return "redirect:/showDamage?leaseId=" + leaseId;
     }
 
+    //Frederik
     @GetMapping("/getPrintDamageReport")
     public String getPrintDamageReport(@RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
         //Verify User is logged in/logged in as the correct type:
@@ -170,6 +178,7 @@ public class DamageController {
         return "printDamageReport";
     }
 
+    //Frederik
     @GetMapping("/printDamageReport")
     // Denne metode printer skaderapporter i en mappe i systemet der hedder skaderapport
     public String printDamageReport(@RequestParam("leaseId") int leaseId, Model model,
@@ -192,6 +201,7 @@ public class DamageController {
         return "printDamageReport";
     }
 
+    //Frederik
     @GetMapping("/getFixDamage")
     public String getFixDamage(@RequestParam("leaseId") int leaseId,
                                @RequestParam("vehicleNumber") int vehicleNumber, Model model) throws UserNotLoggedInException, WrongUserTypeException {
@@ -208,6 +218,7 @@ public class DamageController {
         return "fixDamage";
     }
 
+    //Frederik
     @PostMapping("/fixDamage")
     public String fixDamage(@RequestParam("leaseId") int leaseId,
                             @RequestParam("damageId") int damageID,
@@ -232,6 +243,7 @@ public class DamageController {
         return "fixDamage";
     }
 
+    //Frederik
     @GetMapping("/getPayDamages")
     public String getPayDamages(@RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
         //Verify User is logged in/logged in as the correct type:
@@ -245,6 +257,7 @@ public class DamageController {
         return "payDamages";
     }
 
+    //Frederik
     @PostMapping("/payDamages")
     public String payDamages(@RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
         //Verify User is logged in/logged in as the correct type:

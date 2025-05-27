@@ -32,7 +32,7 @@ public class CarController {
     @Autowired
     DamageRepository damageRepository;
 
-
+//Frederik
 @GetMapping("/showCar") // Jeg requester leaseId tilføjer både lease og car
     public String showCar(@RequestParam("leaseId") int leaseId, Model model,
                           RedirectAttributes redirectAttributes)  throws UserNotLoggedInException, WrongUserTypeException {
@@ -52,6 +52,7 @@ public class CarController {
     }
 }
 
+//Frederik
 @GetMapping("/getAddDamage")
     public String addDamage(@RequestParam("vehicleNumber") int vehicleNumber,
                             @RequestParam("leaseId") int leaseId, Model model,
@@ -77,6 +78,8 @@ public class CarController {
         return "redirect:/showCar";
     }
 }
+
+//Frederik
     @PostMapping("/changeCarStatusAvailable") // Kaldet i fixDamage.html
     public String changeCarStatusAvailable(@RequestParam("leaseId") int leaseId,
                                   @RequestParam("vehicleNo") int vehicleNo, Model model) throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {
@@ -96,6 +99,7 @@ public class CarController {
 
         return "fixDamage";
     }
+//Frederik
     @PostMapping("/changeCarStatusGettingRepaired") // Kaldet i fixDamage.html
     public String changeCarStatusGettingRepaired(@RequestParam("leaseId") int leaseId,
                                            @RequestParam("vehicleNo") int vehicleNo, Model model) throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {
@@ -114,6 +118,8 @@ public class CarController {
 
         return "fixDamage";
     }
+
+    //Frederik
     @PostMapping("/changeCarStatusPendingEvaluation") // Kaldet i fixDamage.html
     public String changeCarStatusPendingEvaluation(@RequestParam("leaseId") int leaseId,
                                                  @RequestParam("vehicleNo") int vehicleNo, Model model) throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {
@@ -131,6 +137,8 @@ public class CarController {
 
         return "showCar";
     }
+
+    //Frederik
     @PostMapping("/changeCarStatusSold") // Kaldet i fixDamage.html
     public String changeCarStatusSold(@RequestParam("leaseId") int leaseId,
                                 @RequestParam("vehicleNo") int vehicleNo, Model model) throws LeaseNotFoundException, UserNotLoggedInException, WrongUserTypeException {

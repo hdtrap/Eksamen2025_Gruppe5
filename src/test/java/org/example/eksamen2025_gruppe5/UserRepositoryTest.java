@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+//Mikkel
 @ExtendWith(MockitoExtension.class)
 public class UserRepositoryTest {
 

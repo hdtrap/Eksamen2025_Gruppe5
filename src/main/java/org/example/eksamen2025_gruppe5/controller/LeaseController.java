@@ -134,21 +134,9 @@ public class LeaseController {
         //Add the user to the model, to display user relevant items
         model.addAttribute(userRepository.getcurrentUser());
 
-        try {
-            Lease currentLease = leaseRepository.findLeaseById(leaseId);
-            System.out.println("Fundet lease: " + currentLease);
+        System.out.println("Fundet lease: " + leaseId);
 
-            model.addAttribute("lease", currentLease);
-            return "redirect:/showCar?leaseId=" + currentLease.getLeaseId(); //?leaseId + currentLease.getLeaseId() sender en paramater med i url så jeg kan hente lease i CarControlleren
-
-        }
-        catch (LeaseNotFoundException e){
-            e.printStackTrace();
-            System.out.println("Lease ikke fundet " + leaseId);
-            redirectAttributes.addFlashAttribute("message", "Kunne ikke finde en lejeaftale med id "+ leaseId +".");
-            return "redirect:/getUserPage"; // skal redirect til skadeside hvis isRepair
-        }
-
+        return "redirect:/showCar?leaseId=" + leaseId; //?leaseId sender en paramater med i url så jeg kan hente leaseId i CarControlleren
     }
 
     // Viser siden til at redigere en lejeaftale

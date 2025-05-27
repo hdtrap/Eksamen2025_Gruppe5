@@ -7,7 +7,13 @@ Skade type: Broken Mirror
 Kategori: 2
 Pris: 250.0 kr.
 ----------------------------------
-Totalpris til betaling: 250.0DKK 
+
+Skade id: 7
+Skade type: daspi 2138r8392y r938 7 ajndlk aouasd 73q
+Kategori: 5
+Pris: 1.2313217932163872E29 kr.
+----------------------------------
+Totalpris til betaling: 1.2313217932163872E29DKK 
 
 Har du spørgsmål eller brug for hjælp, så sidder vi klar til at hjælpe dig.
 

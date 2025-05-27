@@ -59,8 +59,8 @@ public String addDamage(
     if (damageType == null || damageType.trim().isEmpty() ||
             category == null || price == null) {
         model.addAttribute("error", "Alle felter skal udfyldes.");
-        model.addAttribute("leaseId", leaseId);
         Lease lease = leaseRepository.findLeaseById(leaseId);
+        model.addAttribute("lease", lease);
         Car car = carRepository.findCarByVehicleNumber(lease.getCar().getVehicleNumber());
         model.addAttribute("car", car);
         return "addDamage";

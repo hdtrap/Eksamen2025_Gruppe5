@@ -27,7 +27,7 @@
         </form>
 
         <div th:if="${damages != null}">
-            <p>Dine skader ser sådan ud for lease id :<span th:text="${leaseId}"><br>OBS!! Denne metode virker kun når<br> man kører programmet lokalt </span></p>
+            <p>Dine skader ser sådan ud for lease id :<span th:text="${leaseId}"></span><br>OBS!! Denne metode virker kun når<br> man kører programmet lokalt </p>
             <div th:each="damage : ${damages}">
                     <p>----------------------------------------------</p>
                     <p th:text="'Skade Id: ' + ${damage.damageId}">Skade Id</p>

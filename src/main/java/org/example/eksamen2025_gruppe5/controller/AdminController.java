@@ -66,7 +66,7 @@ public class AdminController {
         model.addAttribute("averageDamageSumPerLease", leaseRepository.avgDamageCost());
         model.addAttribute("mostCommonCarModel", carRepository.mostCommonModel().toString());
 
-        model.addAttribute("notificationListe", notificationRepository.getBusinessNotifications());
+        model.addAttribute("notificationList", notificationRepository.getBusinessNotifications());
         return "businessPage";
     }
 

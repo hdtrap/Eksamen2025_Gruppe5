@@ -20,7 +20,7 @@ Hvis du ønsker at køre applikationen lokalt skal du:
 ![carbon (2)](https://github.com/user-attachments/assets/bf3ed565-6aa0-449b-a46d-b4465170b76f)
 
 ### Hvordan bruger jeg programmet
-1. Åben vores webapp på linket : 
+1. Åben vores webapp på linket : http://bilabonnementintern-def5b9gcd8c9aaat.swedencentral-01.azurewebsites.net
 2. Login med vores Demo bruger **brugernavn: demo kodeord: demo**
 3. Tryk på pilen ved siden af "Skift bruger type" i headeren
 4. Tryk på Dataregistrering

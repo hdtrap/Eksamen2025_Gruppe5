@@ -61,26 +61,37 @@ public class LeaseController {
                                   @RequestParam("price_pr_month") Double pricePrMonth,
                                   @RequestParam("type_of_lease") String typeOfLease,
                                   @RequestParam(value = "selectedAddOns", required = false) ArrayList<Integer> selectedAddOns,
-                                  RedirectAttributes redirectAttributes){
+                                  RedirectAttributes redirectAttributes){  // modtagede parametre fra html siden
 
+            //Opretter bil objekt ud fra vogn nummer
             Car car = carRepository.findCarByVehicleNumber(vehicleNo);
+
+            // Opretter et lease objekt med slutdato ud fra hvilken abonnementstype der er valgt
             Lease lease;
             if (typeOfLease.equalsIgnoreCase("Limited")){
                 endDate = startDate.plusMonths(5);
                 lease = new Lease(car, startDate, endDate, customerName, customerEmail, customerNumber, priceToStart, pricePrMonth, typeOfLease);
             }
-            else {
+            else if (endDate == null){
+                redirectAttributes.addFlashAttribute("message", "Der skete en fejl, din lejeaftale blev ikke gemt. Prøv igen.");
+                return "redirect:/getUserPage";
+            } else {
                 lease = new Lease(car, startDate, endDate, customerName, customerEmail, customerNumber, priceToStart, pricePrMonth, typeOfLease);
             }
+
+            // Gemmer lease objektet i databasen og modtager det genererede leaseId fra databasen
             int leaseId = leaseRepository.saveLease(lease);
 
+            // Hvis der sker en fejl med at gemme leasen i databasen bliver -1 returneret og brugeren bliver redirected til deres brugerside
             if (leaseId == -1) {
                 redirectAttributes.addFlashAttribute("message", "Der skete en fejl, din lejeaftale blev ikke gemt. Prøv igen.");
                 return "redirect:/getUserPage";
             }
+            // Hvis Addons ikke er null eller tom bliver de tilføjet til lease
             if (selectedAddOns !=null && !selectedAddOns.isEmpty()) {
-                addOnTypeRepository.addSelectedAddonsToLease(lease.getLeaseId(), selectedAddOns);
+                addOnTypeRepository.addSelectedAddonsToLease(leaseId, selectedAddOns);
             }
+            // redirect til den lease man lige har oprettet
         return "redirect:/showLease?leaseId=" + leaseId;
     }
 
@@ -175,7 +186,7 @@ public class LeaseController {
             @RequestParam("price_to_start") Double priceToStart,
             @RequestParam("price_pr_month") Double pricePrMonth,
             @RequestParam("type_of_lease") String typeOfLease,
-            @RequestParam("selectedAddOns") ArrayList<Integer> selectedAddOns,
+            @RequestParam(value = "selectedAddOns", required = false) ArrayList<Integer> selectedAddOns,
             RedirectAttributes redirectAttributes){
 
         try {

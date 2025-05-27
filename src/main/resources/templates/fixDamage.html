@@ -28,16 +28,19 @@
     </div>
     <div class="notifications">
         <div class="notificationsPanel">
-            <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease}">Bilens
+            <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease}">
+                Bilens
                 status: Klar til lease</h1>
             <!--T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease Er stien til enum klassen i java, thymeleaf siger at hvis car.StatusOfCar er den enum så skal den printe det der står ved siden af-->
             <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Leased}">Bilens status:
                 Leaset ud</h1>
-            <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).GettingRepaired}">Bilens
+            <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).GettingRepaired}">
+                Bilens
                 status: Til reparation</h1>
             <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Sold}">Bilens status:
                 Solgt</h1>
-            <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).PendingEvaluation}">Bilens
+            <h1 th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).PendingEvaluation}">
+                Bilens
                 status: Modtaget</h1>
 
             <div th:if="${damages != null}">
@@ -49,7 +52,8 @@
                         <p th:text="'Kategori: ' + ${damage.category}">Kategori</p>
                         <p th:text="'Skade type: ' + ${damage.damageType}">Skade type</p>
                         <p th:text="'Pris: ' + ${damage.price}">Pris</p>
-                        <p th:text="'Skadens status: ' + (${damage.isFixed} ? 'er udbedret' : 'er ikke udbedret')">Skadens status:</p>
+                        <p th:text="'Skadens status: ' + (${damage.isFixed} ? 'er udbedret' : 'er ikke udbedret')">
+                            Skadens status:</p>
                         <form th:action="@{/fixDamage}" method="post"><!--findes i CarController-->
                             <input type="hidden" th:value="${damage.leaseId}" name="leaseId">
                             <input type="hidden" th:value="${damage.damageId}" name="damageId">

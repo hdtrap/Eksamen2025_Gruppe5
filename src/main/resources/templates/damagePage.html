@@ -18,37 +18,38 @@
 
 
         <input type="checkbox" name="confirmation" id="needConfirm" class="hiddenToggle">
-            <label for="needConfirm" class="boxButton wideButton">Find en lease</label>
-            <div class="popUpBoxFull">
-                <div class="popUpBox">
-                    <div class="boldText">Indtast et Lease ID</div>
-                    <div class="inputFields">
-                        <form th:action="@{/showCarWithLeaseID}"  method=get><!--findes i LeaseController-->
-                            <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
-                            <button type="submit" hidden id="submitButton">Find lease</button>
-                        </form>
-                    </div>
-                    <div class="choices">
-                        <!-- the actual method -->
-                        <label for="submitButton" class="textButton">Søg</label>
-                        <label for="needConfirm" class="textButton">Annuller</label>
-                    </div> <!-- div choices ends -->
+        <label for="needConfirm" class="boxButton wideButton">Find en lease</label>
+        <div class="popUpBoxFull">
+            <div class="popUpBox">
+                <div class="boldText">Indtast et Lease ID</div>
+                <div class="inputFields">
+                    <form th:action="@{/showCarWithLeaseID}" method=get><!--findes i LeaseController-->
+                        <input type="number" id="leaseId" name="leaseId" placeholder="Lease ID" required>
+                        <button type="submit" hidden id="submitButton">Find lease</button>
+                    </form>
                 </div>
-            </div><!-- div confirmationBox ends -->
+                <div class="choices">
+                    <!-- the actual method -->
+                    <label for="submitButton" class="textButton">Søg</label>
+                    <label for="needConfirm" class="textButton">Annuller</label>
+                </div> <!-- div choices ends -->
+            </div>
+        </div><!-- div confirmationBox ends -->
         <form th:action="@{/getShowAllLeases}" method="get">
             <button type="submit" class="boxButton wideButton">Vis alle leases</button>
         </form>
     </div>
     <div class="notifications">
 
-            <div class="notificationsPanel">
-                <p>Notifikationer</p>
-                <div class="notification" th:if="${message}" th:text="${message}"></div>
-                <div th:each="notification : ${notificationList}" class="notification"  th:classappend="${notification.getType()}">
-                    <p th:text="${notification.getMessage()}"></p>
-                </div>
-
+        <div class="notificationsPanel">
+            <p>Notifikationer</p>
+            <div class="notification" th:if="${message}" th:text="${message}"></div>
+            <div th:each="notification : ${notificationList}" class="notification"
+                 th:classappend="${notification.getType()}">
+                <p th:text="${notification.getMessage()}"></p>
             </div>
+
+        </div>
 
     </div>
 </div>

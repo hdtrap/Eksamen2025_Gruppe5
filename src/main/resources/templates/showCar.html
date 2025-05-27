@@ -13,54 +13,61 @@
 <div class="mainContent">
 
 
-<div class="userOptions">
+    <div class="userOptions">
 
-    <form th:action="@{/getUserPage}" method="get"><!--findes i UserController-->
-        <label for="submitBackButton" class="backButton boxButton">Tilbage</label>
-        <button type="submit" id="submitBackButton" hidden>Tilbage</button>
-    </form>
+        <form th:action="@{/getUserPage}" method="get"><!--findes i UserController-->
+            <label for="submitBackButton" class="backButton boxButton">Tilbage</label>
+            <button type="submit" id="submitBackButton" hidden>Tilbage</button>
+        </form>
 
-<form th:action="@{/getAddDamage}"><!--findes i CarController-->
-    <input type="hidden" th:value="${car.vehicleNumber}" id="vehicleNumber" name="vehicleNumber" placeholder="Bil Nummer">
-    <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
-    <button type="submit" class="boxButton wideButton">Tilføj skade</button>
-</form>
-<form th:action="@{/getShowDamage}" method="get"><!--findes i DamageController-->
-    <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
-    <button type="submit" class="boxButton wideButton">Se og print skader</button>
-</form>
-    <form th:action="@{/getFixDamage}" method="get"><!--findes i DamageController-->
-        <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
-        <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber" placeholder="Bil Nummer">
-        <button type="submit" class="boxButton wideButton">Udbedrer skade</button>
-    </form>
-    <form th:action="@{/changeCarStatusPendingEvaluation}" method="post"><!--findes i CarController-->
-        <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
-        <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-        <button type="submit" class="boxButton wideButton">Registrer bil som modtaget</button>
-    </form>
-    <form th:action="@{/changeCarStatusSold}" method="post"><!--findes i CarController-->
-        <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
-        <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
-        <button type="submit" class="boxButton wideButton">Registrer bil som solgt</button>
-    </form>
-</div>
-
-<div class="notifications">
-    <div class="notificationsPanel">
-    <h2>Information</h2>
-    <h1> <span th:text="${lease.customerName}"></span></h1>
-    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease}">Bilens status: Klar til lease</p><!--T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease Er stien til enum klassen i java, thymeleaf siger at hvis car.StatusOfCar er den enum så skal den printe det der står ved siden af-->
-    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Leased}">Bilens status: Leaset ud</p>
-    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).GettingRepaired}">Bilens status: Til reparation</p>
-    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Sold}">Bilens status: Solgt</p>
-    <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).PendingEvaluation}">Bilens status: Modtaget</p>
-    <p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
-    <p>Kundens navn: <span th:text="${lease.customerName}"></span></p>
-    <p>Bil ID: <span th:text="${car.vehicleNumber}"></span></p>
-    <p>Stelnummer: <span th:text="${car.chassisNumber}"></span></p>
+        <form th:action="@{/getAddDamage}"><!--findes i CarController-->
+            <input type="hidden" th:value="${car.vehicleNumber}" id="vehicleNumber" name="vehicleNumber"
+                   placeholder="Bil Nummer">
+            <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
+            <button type="submit" class="boxButton wideButton">Tilføj skade</button>
+        </form>
+        <form th:action="@{/getShowDamage}" method="get"><!--findes i DamageController-->
+            <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
+            <button type="submit" class="boxButton wideButton">Se og print skader</button>
+        </form>
+        <form th:action="@{/getFixDamage}" method="get"><!--findes i DamageController-->
+            <input type="hidden" th:value="${lease.leaseId}" name="leaseId" placeholder="Lease Id">
+            <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNumber" placeholder="Bil Nummer">
+            <button type="submit" class="boxButton wideButton">Udbedrer skade</button>
+        </form>
+        <form th:action="@{/changeCarStatusPendingEvaluation}" method="post"><!--findes i CarController-->
+            <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
+            <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
+            <button type="submit" class="boxButton wideButton">Registrer bil som modtaget</button>
+        </form>
+        <form th:action="@{/changeCarStatusSold}" method="post"><!--findes i CarController-->
+            <input type="hidden" th:value="${lease.leaseId}" name="leaseId">
+            <input type="hidden" th:value="${car.vehicleNumber}" name="vehicleNo">
+            <button type="submit" class="boxButton wideButton">Registrer bil som solgt</button>
+        </form>
     </div>
-</div>
+
+    <div class="notifications">
+        <div class="notificationsPanel">
+            <h2>Information</h2>
+            <h1><span th:text="${lease.customerName}"></span></h1>
+            <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease}">
+                Bilens status: Klar til lease</p>
+            <!--T(org.example.eksamen2025_gruppe5.model.StatusOfCar).AvailableToLease Er stien til enum klassen i java, thymeleaf siger at hvis car.StatusOfCar er den enum så skal den printe det der står ved siden af-->
+            <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Leased}">Bilens status:
+                Leaset ud</p>
+            <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).GettingRepaired}">Bilens
+                status: Til reparation</p>
+            <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).Sold}">Bilens status:
+                Solgt</p>
+            <p th:if="${car.statusOfCar == T(org.example.eksamen2025_gruppe5.model.StatusOfCar).PendingEvaluation}">
+                Bilens status: Modtaget</p>
+            <p>Lease ID: <span th:text="${lease.leaseId}"></span></p>
+            <p>Kundens navn: <span th:text="${lease.customerName}"></span></p>
+            <p>Bil ID: <span th:text="${car.vehicleNumber}"></span></p>
+            <p>Stelnummer: <span th:text="${car.chassisNumber}"></span></p>
+        </div>
+    </div>
 
 </div>
 </body>

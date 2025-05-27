@@ -46,13 +46,22 @@ public class DamageController {
 @PostMapping("/addDamage")
 public String addDamage(
         @RequestParam("damageType") String damageType,
-        @RequestParam("category") int category,
-        @RequestParam("price") double price,
+        @RequestParam(value = "category", required = false) Integer category,
+        @RequestParam(value = "price", required = false) Double price,
         @RequestParam("leaseId") int leaseId, Model model) throws UserNotLoggedInException, WrongUserTypeException {
     //Verify User is logged in/logged in as the correct type:
     userRepository.verifyLoggedInUser("REPAIR");
     //Add the user to the model, to display user relevant items
+
+    //Metode til at sørge for at felterne er udfyldt damageType.trim().isEmpty() sørger for man ikke kan skrive mellemrum
     model.addAttribute(userRepository.getcurrentUser());
+    if (damageType == null || damageType.trim().isEmpty() ||
+            category == null || price == null) {
+        model.addAttribute("error", "Alle felter skal udfyldes.");
+        model.addAttribute("leaseId", leaseId);
+        return "addDamage";
+    }
+
     System.out.println("leaseid i addDamage = " + leaseId);
     Damage newDamage = new Damage(leaseId, damageType, category, price);
     //newDamage.setDamageId()

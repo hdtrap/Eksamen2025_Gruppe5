@@ -28,6 +28,11 @@ public class PageController {
         return "index";
     }
 
+    @GetMapping("/error")
+    public String getErrorPage(){
+        return "errorPage";
+    }
+
     @GetMapping("/getUserPage")
     public String getUserPage(Model model)  throws UserNotLoggedInException, WrongUserTypeException{
 

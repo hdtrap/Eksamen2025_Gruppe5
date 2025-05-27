@@ -15,7 +15,7 @@ Bare brug dette link : http://bilabonnementintern-def5b9gcd8c9aaat.swedencentral
 Hvis du ønsker at køre applikationen lokalt skal du:
 
 1. Opret en lokal MySQL-database
-2. Kør disse SQL-script i projektet (src/main/resources/SQL/CREATE.sql) og (src/main/resources/SQL/CREATE.sql)
+2. Kør disse SQL-script i projektet (src/main/resources/SQL/CREATE.sql) og (src/main/resources/SQL/INSERT.sql)
 3. I application.properties, tilføj dine egne databaseoplysninger:
 ![carbon (2)](https://github.com/user-attachments/assets/bf3ed565-6aa0-449b-a46d-b4465170b76f)
 

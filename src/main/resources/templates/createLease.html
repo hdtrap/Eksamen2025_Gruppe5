@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/registrationPage.css" th:href="@{/registrationPage.css}">
 </head>
 <body>
-<div th:insert="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: header}"></div>
 
 <div class="mainContent">
     <form th:action="@{/dataregPage}" method="get">

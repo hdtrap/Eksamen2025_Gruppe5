@@ -19,10 +19,12 @@
 
 <div class="mainContent">
 
-    <p th:if="${message}" th:text="${message}"></p>
+
 
     <div class="formContainer loginBox">
     <form th:action="@{/loginUser}" method="post" class="registerForm"><!--findes i UserController-->
+        <p th:if="${message}" th:text="${message}">Velkommen!</p>
+
         <div class="form-group">
         <label for="userName">Brugernavn:</label>
         <input type="text" id="userName" name="userName">

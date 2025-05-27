@@ -96,7 +96,7 @@ public class UserController {
             return "redirect:/getUserPage";
         }
         else {
-            redirectAttributes.addFlashAttribute("message", "Forkert brugernavn eller password, prøv igen");
+            redirectAttributes.addFlashAttribute("message", "Forkert brugernavn eller password.");
             return "redirect:/";
         }
     }

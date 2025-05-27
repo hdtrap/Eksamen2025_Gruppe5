@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 </head>
 <body>
-<div th:insert="fragments/header :: header"></div>
+<div th:replace="~{fragments/header :: header}"></div>
 <div class="mainContent">
     <form th:action="@{/getUserPage}" method="get">
         <button type="submit" class="boxButton backButton">Tilbage</button>
